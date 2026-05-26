@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=1200, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HAYONO | Culinary Creator</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -32,6 +32,53 @@
         .phone-scroll-vertical { will-change: transform; }
         .spotlight-group:hover .spotlight-card { opacity: 0.5; }
         .spotlight-group .spotlight-card:hover { opacity: 1 !important; transform: scale(1.1); box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); z-index: 10; }
+
+        /* ===== 移动端响应式 ===== */
+        @media (max-width: 767px) {
+            /* 导航栏 */
+            nav { padding-left: 16px !important; padding-right: 16px !important; height: 56px !important; }
+            nav .hidden-mobile { display: none !important; }
+
+            /* 滚动大图 */
+            .warm-scroll-section { width: 100% !important; height: 50vh !important; margin-bottom: 40px !important; }
+            .warm-scroll-section img { height: 50vh !important; }
+
+            /* 通用 section 间距 */
+            section[class*="px-[64px]"] { padding-left: 16px !important; padding-right: 16px !important; }
+            section[class*="px-"][class*="md:px-"] { padding-left: 16px !important; padding-right: 16px !important; }
+
+            /* 品牌理念 */
+            .brand-philosophy { padding-top: 40px !important; padding-bottom: 60px !important; padding-left: 16px !important; padding-right: 16px !important; }
+            .brand-philosophy h2 { font-size: 24px !important; }
+
+            /* About */
+            .about-section { padding-top: 40px !important; padding-bottom: 60px !important; padding-left: 16px !important; padding-right: 16px !important; }
+
+            /* 作品集网格 */
+            .portfolio-grid-mobile { grid-template-columns: repeat(2, 1fr) !important; gap: 8px !important; padding: 0 8px !important; }
+
+            /* 落地项目 */
+            .projects-section-mobile { padding-top: 40px !important; padding-bottom: 80px !important; }
+            .projects-section-mobile .project-desc { display: none !important; }
+            .projects-section-mobile .project-name { font-size: 13px !important; }
+            .projects-section-mobile .project-label { font-size: 9px !important; }
+
+            /* Social */
+            .social-inner { padding: 40px 16px !important; }
+
+            /* 美食卡片 */
+            .food-card-item { width: 10rem !important; padding: 0.5rem !important; }
+            .food-card-item .food-img-wrap { height: 9rem !important; }
+
+            /* Contact */
+            .contact-section { padding-left: 16px !important; padding-right: 16px !important; margin-top: 60px !important; padding-top: 60px !important; }
+            .contact-headline { font-size: 20px !important; }
+            .contact-logo-wrap { width: 100px !important; height: 100px !important; }
+            .contact-card-text { font-size: 16px !important; }
+
+            /* 图片自适应 */
+            img { max-width: 100%; height: auto; }
+        }
     </style>
 </head>
 <body class="relative selection:bg-[#E85A2A] selection:text-white">
@@ -59,7 +106,7 @@
 
     <nav class="h-[72px] px-[40px] flex justify-between items-center bg-[#F4F2EE] border-b border-[#E5E5E5]">
         <span class="text-[16px] font-medium text-[#0E0E0E] tracking-tight" style="font-family:'Inter Tight',sans-serif;">Hayono</span>
-        <div class="flex items-center gap-8 text-[14px] font-medium text-[#9A9A95]" style="font-family:'Inter Tight',sans-serif;">
+        <div class="hidden-mobile flex items-center gap-8 text-[14px] font-medium text-[#9A9A95]" style="font-family:'Inter Tight',sans-serif;">
             <span class="cursor-pointer transition-colors duration-200 hover:text-[#0E0E0E]">Menu</span>
             <span class="cursor-pointer transition-colors duration-200 hover:text-[#0E0E0E]">Index</span>
             <span class="cursor-pointer transition-colors duration-200 hover:text-[#0E0E0E]">Contact</span>
@@ -68,7 +115,7 @@
     </nav>
 
     <!-- 第二屏 -->
-    <section class="relative w-screen h-[65vh] overflow-hidden bg-[#F4F2EE] mb-[80px]">
+    <section class="warm-scroll-section relative w-screen h-[65vh] overflow-hidden bg-[#F4F2EE] mb-[80px]">
         <div class="absolute inset-0 z-0 flex scroll-track w-max">
             <div class="flex [&_img]:block">
                 <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/msgzxjItDDfNy8PB.jpg?Expires=1780292840&Signature=L4wGxl~P7e7rHPutqtRWzrkpRIYArgNQMY3fvTs8ydHTo1vM2jUctyjSi8BS8fZXepRF6eut9MHWoQEM4Umv4hlOMHtxmjP2JVNulCHQVzo7AvdeBvuddY9Ys5dJqHgRIKiGxqMTY8Fzm6-gdhFV4S6ONfDZV3s5OysDNT~-B~rKRTRc25Fh9qQQYxdxvMw5AVBjlYAODTFiLKXuOe0hVUDHRwIIA7i3olUC15t675dswm2~E~rkXBTP5j15tiut8xDzdBvmC0WPxry3t5a7IwrS8VDsz3DZHIgwmumfpSSosxjFRjkxxqXR~TsZwvqSnahQc4TJ~vQciop0EfbQNA__&Key-Pair-Id=K3USGZIKWMDCSX" class="h-[65vh] aspect-[3/4] object-cover shrink-0" alt="Quiet Manor" />
@@ -98,7 +145,7 @@
     </section>
 
     <!-- 第三屏 -->
-    <section class="relative w-full bg-[#F4F2EE] px-[64px] pt-[60px] pb-[80px] flex flex-col justify-between">
+    <section class="brand-philosophy relative w-full bg-[#F4F2EE] px-[64px] pt-[60px] pb-[80px] flex flex-col justify-between">
         <div class="grid grid-cols-1 md:grid-cols-12 gap-6 w-full">
             <div class="hidden md:block md:col-span-3"></div>
             <div class="md:col-span-7">
@@ -137,7 +184,7 @@
 
 
     <!-- 第五屏：About -->
-    <section class="relative w-full bg-[#F4F2EE] px-[64px] pt-[60px] pb-[80px] flex justify-between items-start">
+    <section class="about-section relative w-full bg-[#F4F2EE] px-[64px] pt-[60px] pb-[80px] flex justify-between items-start">
         <div class="font-['JetBrains_Mono'] text-[14px] text-[#0E0E0E] font-medium tracking-tight">(About.)</div>
         <div class="flex flex-col gap-3">
             <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/Pp7FviQzvFc9r2ew.jpg?Expires=1779970424&Signature=af1amERs-CPBgPgMMthPBgxW1-1gEAKNExZI3rNuvvui3Z~7OAHfhEcBiY9Mh-H7FbXKVzVqfh0OSL0b6gXnW7pCoMHSmOTCadFelkJ~jVlVCug4CimtoAbb6Hw7J3RIa8BqQ50t6mcVBljffyI3giQREQGBolHQjIKw8cW2Bdd3qrt5Z1xpbJmdV4QqntqE-tZSq0hpErgTsF~gz6r-k-oVNAsWMlqfVqCq9ies~zE~FCNGXFuoL-M7RMQZhzjhC~WBmuxHcL4KctrYizwbD41JH7WDGpAgCDqLnmQhVNsL0Ghr88zsk4Q3S2y4EHHCnWIz9xe1pEi4LYimr6XTcg__&Key-Pair-Id=K3USGZIKWMDCSX" alt="About Space" class="w-[180px] h-[220px] object-cover">
@@ -146,7 +193,7 @@
 
     <!-- 作品集网格版块 -->
     <section class="relative w-full bg-[#F4F2EE] px-[16px] md:px-[40px] pt-[60px] pb-[80px]">
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-5 gap-y-16" id="portfolio-grid">
+        <div class="portfolio-grid-mobile grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-5 gap-y-16" id="portfolio-grid">
             <!-- 01 Berry -->
             <div class="flex flex-col relative group cursor-pointer">
                 <div class="absolute top-0 left-2 w-3 h-3 bg-[#0E0E0E] rounded-full z-10"></div>
@@ -232,7 +279,7 @@
     </section>
 
     <!-- 落地项目板块 -->
-    <section class="relative w-full bg-[#F4F2EE] pt-[60px] pb-[120px]" id="projects-section">
+    <section class="projects-section-mobile relative w-full bg-[#F4F2EE] pt-[60px] pb-[120px]" id="projects-section">
         <div class="pl-[64px]">
             <span class="font-['JetBrains_Mono'] text-[14px] text-[#0E0E0E] font-medium tracking-tight mb-8 block">(Selected Works.)</span>
         </div>
@@ -243,8 +290,8 @@
             <div class="flex transition-colors duration-300 hover:bg-[#F0EEEB] border-b border-[#DCDACF]">
                 <div class="w-[10%] px-[8px] md:px-[24px] pt-[40px] font-['JetBrains_Mono'] text-[11px] text-[#9A9A95]">[01]</div>
                 <div class="w-[20%] md:w-[15%] px-[4px] md:px-[16px] pt-[24px] md:pt-[40px]">
-                    <span class="text-[15px] font-medium text-[#0E0E0E] block" style="font-family: 'Inter Tight', sans-serif;">百年老洋房咖啡馆</span>
-                    <span class="font-['JetBrains_Mono'] text-[11px] text-[#9A9A95] mt-1 uppercase tracking-wider block">Visual Upgrade</span>
+                    <span class="project-name text-[15px] font-medium text-[#0E0E0E] block" style="font-family: 'Inter Tight', sans-serif;">百年老洋房咖啡馆</span>
+                    <span class="project-label font-['JetBrains_Mono'] text-[11px] text-[#9A9A95] mt-1 uppercase tracking-wider block">Visual Upgrade</span>
                 </div>
                 <div class="w-[45%] md:w-[50%] px-[8px] md:px-[32px] pt-[24px] md:pt-[36px] pr-[4px] md:pr-[60px]">
                     <h2 class="text-[24px] leading-[1.35] text-[#0E0E0E] tracking-[-0.01em]" style="font-family: 'Inter Tight', sans-serif;">围绕音乐、美食与数字艺术，完成从空间到产品线的全维度视觉与味觉升级</h2>
@@ -258,8 +305,8 @@
             <div class="flex transition-colors duration-300 hover:bg-[#F0EEEB] border-b border-[#DCDACF]">
                 <div class="w-[10%] px-[8px] md:px-[24px] pt-[40px] font-['JetBrains_Mono'] text-[11px] text-[#9A9A95]">[02]</div>
                 <div class="w-[20%] md:w-[15%] px-[4px] md:px-[16px] pt-[24px] md:pt-[40px]">
-                    <span class="text-[15px] font-medium text-[#0E0E0E] block" style="font-family: 'Inter Tight', sans-serif;">新中式茶饮品牌</span>
-                    <span class="font-['JetBrains_Mono'] text-[11px] text-[#9A9A95] mt-1 uppercase tracking-wider block">Chinese Tea</span>
+                    <span class="project-name text-[15px] font-medium text-[#0E0E0E] block" style="font-family: 'Inter Tight', sans-serif;">新中式茶饮品牌</span>
+                    <span class="project-label font-['JetBrains_Mono'] text-[11px] text-[#9A9A95] mt-1 uppercase tracking-wider block">Chinese Tea</span>
                 </div>
                 <div class="w-[45%] md:w-[50%] px-[8px] md:px-[32px] pt-[24px] md:pt-[36px] pr-[4px] md:pr-[60px]">
                     <h2 class="text-[24px] leading-[1.35] text-[#0E0E0E] tracking-[-0.01em]" style="font-family: 'Inter Tight', sans-serif;">从零构建新中式茶饮体系，涵盖茶饮、点心与糖水的全案产品设计</h2>
@@ -273,8 +320,8 @@
             <div class="flex transition-colors duration-300 hover:bg-[#F0EEEB] border-b border-[#DCDACF]">
                 <div class="w-[10%] px-[8px] md:px-[24px] pt-[40px] font-['JetBrains_Mono'] text-[11px] text-[#9A9A95]">[03]</div>
                 <div class="w-[20%] md:w-[15%] px-[4px] md:px-[16px] pt-[24px] md:pt-[40px]">
-                    <span class="text-[15px] font-medium text-[#0E0E0E] block" style="font-family: 'Inter Tight', sans-serif;">防空洞露营基地</span>
-                    <span class="font-['JetBrains_Mono'] text-[11px] text-[#9A9A95] mt-1 uppercase tracking-wider block">Camping</span>
+                    <span class="project-name text-[15px] font-medium text-[#0E0E0E] block" style="font-family: 'Inter Tight', sans-serif;">防空洞露营基地</span>
+                    <span class="project-label font-['JetBrains_Mono'] text-[11px] text-[#9A9A95] mt-1 uppercase tracking-wider block">Camping</span>
                 </div>
                 <div class="w-[45%] md:w-[50%] px-[8px] md:px-[32px] pt-[24px] md:pt-[36px] pr-[4px] md:pr-[60px]">
                     <h2 class="text-[24px] leading-[1.35] text-[#0E0E0E] tracking-[-0.01em]" style="font-family: 'Inter Tight', sans-serif;">打破常规空间限制，将户外野趣与地下沉浸感融合，打造极具反差感的青年文化聚集地</h2>
@@ -288,8 +335,8 @@
             <div class="flex transition-colors duration-300 hover:bg-[#F0EEEB]" data-project="3">
                 <div class="w-[10%] px-[8px] md:px-[24px] pt-[40px] font-['JetBrains_Mono'] text-[11px] text-[#9A9A95]">[04]</div>
                 <div class="w-[20%] md:w-[15%] px-[4px] md:px-[16px] pt-[24px] md:pt-[40px]">
-                    <span class="text-[15px] font-medium text-[#0E0E0E] block" style="font-family: 'Inter Tight', sans-serif;">品牌IP落地</span>
-                    <span class="font-['JetBrains_Mono'] text-[11px] text-[#9A9A95] mt-1 uppercase tracking-wider block">Brand IP</span>
+                    <span class="project-name text-[15px] font-medium text-[#0E0E0E] block" style="font-family: 'Inter Tight', sans-serif;">品牌IP落地</span>
+                    <span class="project-label font-['JetBrains_Mono'] text-[11px] text-[#9A9A95] mt-1 uppercase tracking-wider block">Brand IP</span>
                 </div>
                 <div class="w-[45%] md:w-[50%] px-[8px] md:px-[32px] pt-[24px] md:pt-[36px] pr-[4px] md:pr-[60px]">
                     <h2 class="text-[24px] leading-[1.35] text-[#0E0E0E] tracking-[-0.01em]" style="font-family: 'Inter Tight', sans-serif;">让线上流量同款走向线下，以个人IP甜品摊的形式，打造流动的高校快闪与市集体验</h2>
@@ -304,7 +351,7 @@
 
     <!-- 第六屏：Social 板块 -->
     <section class="relative w-full bg-[#F4F2EE] px-[8px] pt-[60px] pb-[100px]">
-        <div class="relative w-full bg-[#E8E6E1] rounded-[16px] px-[32px] lg:px-[80px] pt-[100px] pb-[140px] flex flex-col items-center">
+        <div class="social-inner relative w-full bg-[#E8E6E1] rounded-[16px] px-[32px] lg:px-[80px] pt-[100px] pb-[140px] flex flex-col items-center">
 
             <!-- 胶囊页眉：灰底8px包裹凸起 -->
             <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-[50%] bg-[#E8E6E1] rounded-full p-[8px] z-10">
@@ -464,35 +511,35 @@
             <!-- 上排5张 -->
             <div class="flex flex-wrap justify-center gap-2 mb-2 spotlight-group overflow-hidden">
                 <a href="https://www.xiaohongshu.com/explore/64b5038c000000002301c3b6" target="_blank" rel="noopener noreferrer" class="spotlight-card group flex flex-col w-44 md:w-60 bg-[#E8E6E1] rounded-2xl shadow-sm transition-all duration-500 overflow-hidden p-2 md:p-3">
-                    <div class="w-full h-48 md:h-52 overflow-hidden flex items-center justify-center mb-2">
+                    <div class="food-img-wrap w-full h-48 md:h-52 overflow-hidden flex items-center justify-center mb-2">
                         <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/lLepJYxHaj1k1c31.png?Expires=1780317419&Signature=qfXtl2rk5hY2MqFG90PsOwMFi3vGr6z-SxvAtczxpOGUSxW0BHN73yFquRnswEeF3IGB2Jh7dtE~6FY~~dnplRWX7o7i9T04~lzRYfKjZgvE1~4w~vjtp4vVRy6Lj1QCuVSHumpZArDALTpxnApu2mTIxOd6uDOSL61vRLPbzmT2ajfyeXCdWmfi3Khm6uoFgWdsq-TwReCHSwsmgqdGfoH6oU9OYYcOhlab-jcmXpZ11ZSREh6S--GiLFkA-lQC3dqhHSGwCWOQBDIms58-Lfw0TFJHgAPMsJmLvGIYmGYYwMlP~2Tk8YJd9oQRyxHFWBu~LAaT9C59Fd-NIi8E-A__&Key-Pair-Id=K3USGZIKWMDCSX" alt="中式腌渍水果" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110">
                     </div>
                     <h3 class="text-[16px] font-bold text-[#3A3A3A] text-center mb-0.5" style="font-family: 'Inter', 'Noto Sans SC', sans-serif;">中式腌渍水果</h3>
                     <p class="text-[14px] font-medium text-[#6B6B6B] text-center" style="font-family: 'Inter Tight', 'Inter', sans-serif;">Chinese Pickled Fruit</p>
                 </a>
-                <a href="https://www.xiaohongshu.com/explore/62431b8b000000000102cce6" target="_blank" rel="noopener noreferrer" class="spotlight-card group flex flex-col w-52 md:w-60 bg-[#E8E6E1] rounded-2xl shadow-sm transition-all duration-500 overflow-hidden p-3">
-                    <div class="w-full h-48 md:h-52 overflow-hidden flex items-center justify-center mb-2">
+                <a href="https://www.xiaohongshu.com/explore/62431b8b000000000102cce6" target="_blank" rel="noopener noreferrer" class="food-card-item spotlight-card group flex flex-col w-52 md:w-60 bg-[#E8E6E1] rounded-2xl shadow-sm transition-all duration-500 overflow-hidden p-3">
+                    <div class="food-img-wrap w-full h-48 md:h-52 overflow-hidden flex items-center justify-center mb-2">
                         <div class="w-full h-full transition-transform duration-500 group-hover:scale-110 flex items-center justify-center"><img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/Y5eE4MtFDx3ibZfV.png?Expires=1780317419&Signature=W6dEG9jhZWF6nH8zYWf2Otql01vR959buDydG0L6SvjUJy705tZvl95djKXn4tjGzHdsMFYyu4KSY5S5Y9OC4QS1EWGxV4tELNPtziyNmnPriBX-4o02XZDAERa4Bo-yvfR3dgPBPU~MGRNiRh4ZSUott1l~K4NvMlq6Pg0waSZ2feZu~ompep2K0QA1wyjAbC2gt7qhukEV8-g8oGLwGpSy3~3mgZd1q2cy398tS5mUqQu9UtAaVmfXSatIyNOmm29SeFGaoc4B2tf1~PhSrjyOOHVejeiCYnElsO~yONaTKqNrc~b1tY4CRqfIBWlHn6FBQM-65w7luEYFGwsxbQ__&Key-Pair-Id=K3USGZIKWMDCSX" alt="巴西莓酸奶碗" class="w-full h-full object-contain scale-125"></div>
                     </div>
                     <h3 class="text-[16px] font-bold text-[#3A3A3A] text-center mb-0.5" style="font-family: 'Inter', 'Noto Sans SC', sans-serif;">巴西莓酸奶碗</h3>
                     <p class="text-[14px] font-medium text-[#6B6B6B] text-center" style="font-family: 'Inter Tight', 'Inter', sans-serif;">Açaí Bowl</p>
                 </a>
-                <a href="https://www.xiaohongshu.com/explore/61998e9a0000000001028c11" target="_blank" rel="noopener noreferrer" class="spotlight-card group flex flex-col w-52 md:w-60 bg-[#E8E6E1] rounded-2xl shadow-sm transition-all duration-500 overflow-hidden p-3">
-                    <div class="w-full h-48 md:h-52 overflow-hidden flex items-center justify-center mb-2">
+                <a href="https://www.xiaohongshu.com/explore/61998e9a0000000001028c11" target="_blank" rel="noopener noreferrer" class="food-card-item spotlight-card group flex flex-col w-52 md:w-60 bg-[#E8E6E1] rounded-2xl shadow-sm transition-all duration-500 overflow-hidden p-3">
+                    <div class="food-img-wrap w-full h-48 md:h-52 overflow-hidden flex items-center justify-center mb-2">
                         <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/jmrJFaoroV62KJ9j.png?Expires=1780315586&Signature=iufwCfUsIwkkBWyjVaQ8kSfxjv8PV98GB62yegaMGKiBThI13KPBxe7mPY7Ye7cCgAfDrTtZrTBihhbtHrc73LVq9DYEd2p86JqkWDWspOFaT34XpxlqWziCoU95NDNdiA82gCR5I5xgCzLWwBNefi5~g0wtmViJXWDb2c3MD37t6AS7Tv-f6p-Gy1vUWUcFPFOntXbk4nwot5ujiBK5ga104jX6Vc1fveI0Dr8hQCzmYdT~MxTlrvKzc3CUye7dBMbzRir0aCaoNVbkUBJ6CdqWNbwK7ua3qXhDCIIDk~wzF24UyYU76G4q3F3ZoMlW6g31ixfVfjw8xxA9lB2NoA__&Key-Pair-Id=K3USGZIKWMDCSX" alt="香蕉磅蛋糕" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110">
                     </div>
                     <h3 class="text-[16px] font-bold text-[#3A3A3A] text-center mb-0.5" style="font-family: 'Inter', 'Noto Sans SC', sans-serif;">香蕉磅蛋糕</h3>
                     <p class="text-[14px] font-medium text-[#6B6B6B] text-center" style="font-family: 'Inter Tight', 'Inter', sans-serif;">Banana Pound Cake</p>
                 </a>
-                <a href="https://www.xiaohongshu.com/explore/62fb631e000000000f015161" target="_blank" rel="noopener noreferrer" class="spotlight-card group flex flex-col w-52 md:w-60 bg-[#E8E6E1] rounded-2xl shadow-sm transition-all duration-500 overflow-hidden p-3">
-                    <div class="w-full h-48 md:h-52 overflow-hidden flex items-center justify-center mb-2">
+                <a href="https://www.xiaohongshu.com/explore/62fb631e000000000f015161" target="_blank" rel="noopener noreferrer" class="food-card-item spotlight-card group flex flex-col w-52 md:w-60 bg-[#E8E6E1] rounded-2xl shadow-sm transition-all duration-500 overflow-hidden p-3">
+                    <div class="food-img-wrap w-full h-48 md:h-52 overflow-hidden flex items-center justify-center mb-2">
                         <div class="w-full h-full transition-transform duration-500 group-hover:scale-110 flex items-center justify-center"><img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/KDEpEg2lJ2uAYaJ5.png?Expires=1780316343&Signature=nt91dURra3CTedMRe2cW2Ezk1OXMKOKFQiGRnz51tL7E4~YdSqPK-6SjdNFhqI18Pu3lKYbV2krr3DEx-h7p3rlMJ7jRf0W0zuo-qOrJmSWoOIXMM-E5BJwSOI91nfT~DiMCyN9ih9IKSwRydftvtkjFIYfOKkibrQNOBVS3jM~JFUOrBMDNhBHpQT9rIcz6UZ9wqN~aqaJ2JoZZyJ1YtTkOedPnx~9jDmQ98OUyqi5SqWq3O1LsHf1RnzTFs5ntZvRbl7-pyyfZGLV7ZDxTe6qE4gXhAq0Fa6G~Q7QsQtlVP~TeAMLDrsfLjO5nTFvWg0vMFVARICbZx0F30syk6Q__&Key-Pair-Id=K3USGZIKWMDCSX" alt="三文鱼能量碗" class="w-full h-full object-contain scale-125"></div>
                     </div>
                     <h3 class="text-[16px] font-bold text-[#3A3A3A] text-center mb-0.5" style="font-family: 'Inter', 'Noto Sans SC', sans-serif;">三文鱼能量碗</h3>
                     <p class="text-[14px] font-medium text-[#6B6B6B] text-center" style="font-family: 'Inter Tight', 'Inter', sans-serif;">Salmon Power Bowl</p>
                 </a>
-                <a href="https://www.xiaohongshu.com/explore/6395c784000000002203542a" target="_blank" rel="noopener noreferrer" class="spotlight-card group flex flex-col w-52 md:w-60 bg-[#E8E6E1] rounded-2xl shadow-sm transition-all duration-500 overflow-hidden p-3">
-                    <div class="w-full h-48 md:h-52 overflow-hidden flex items-center justify-center mb-2">
+                <a href="https://www.xiaohongshu.com/explore/6395c784000000002203542a" target="_blank" rel="noopener noreferrer" class="food-card-item spotlight-card group flex flex-col w-52 md:w-60 bg-[#E8E6E1] rounded-2xl shadow-sm transition-all duration-500 overflow-hidden p-3">
+                    <div class="food-img-wrap w-full h-48 md:h-52 overflow-hidden flex items-center justify-center mb-2">
                         <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/DM58zRDPAob5cWCR.png?Expires=1780315836&Signature=PgeiD-IZcxDxhQ3XZnEDuYKu41V3e-7UJHCowa4H3-G-5-nx18ApNhGILFUKYRep3VphoKSb5glqH8M6m7UKKQlhErvRtRg8g0UxrakHnmO-YlsBjjP8D4V6M4KiJkzLk5ItcTtRIbdJbl8K0hgiodmnik9bXruNC4MSiDuKOAvdXjNpy5NMDu-Ubgl7NsFSq50blhG8-kc4jaECDXFLwqNDrsYGDJ3OxaslyPyfvOWjiOLaFyI4Ru71wdVxM3GO0iTin8-duhlTV1~rDwbKI8tDIHoDoHbvnTrfFkQu2dJoZsUYpvmk9wDPfkHY239Pd~UMGBEa~jEd-QtpoH2V1Q__&Key-Pair-Id=K3USGZIKWMDCSX" alt="抹茶饼干三明治" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110">
                     </div>
                     <h3 class="text-[16px] font-bold text-[#3A3A3A] text-center mb-0.5" style="font-family: 'Inter', 'Noto Sans SC', sans-serif;">抹茶饼干三明治</h3>
@@ -501,29 +548,29 @@
             </div>
             <!-- 下排4张 -->
             <div class="flex flex-wrap justify-center gap-2 spotlight-group overflow-hidden">
-                <a href="https://www.xiaohongshu.com/explore/62fcb98800000000160308f1" target="_blank" rel="noopener noreferrer" class="spotlight-card group flex flex-col w-52 md:w-60 bg-[#E8E6E1] rounded-2xl shadow-sm transition-all duration-500 overflow-hidden p-3">
-                    <div class="w-full h-48 md:h-52 overflow-hidden flex items-center justify-center mb-2">
+                <a href="https://www.xiaohongshu.com/explore/62fcb98800000000160308f1" target="_blank" rel="noopener noreferrer" class="food-card-item spotlight-card group flex flex-col w-52 md:w-60 bg-[#E8E6E1] rounded-2xl shadow-sm transition-all duration-500 overflow-hidden p-3">
+                    <div class="food-img-wrap w-full h-48 md:h-52 overflow-hidden flex items-center justify-center mb-2">
                         <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/Wi3QcqL86ZThCQUq.png?Expires=1780316307&Signature=tTqotM3MmLB1xbrGxaLuSr8jd7MXDRRC1n2GAFAOQGqT6mJ~6QmSX~9MVWPO2be2wiQW4oxwYocrJrzrQHdk-~7aJ0d0T-m7JCAwu3a4QWazkoOVfuq6YrMWWqQGq4AuRmAtmcs8mCW5F~pGtcPjeDrRC~FeNWW2-wlE82Xlg5MnWYeSBexBb~dC2TH1U0mZSuXuAV51MlNyoXL6lYEz-qZX3e9Vdgxf~L7hkJYV0HCZVhOY4VbI1Qbm8YCr~JLl2BYCIQDNiR2GbxzX1ueGfLZpk4rCcT-zuIr~kL8T70Cw2rDNTVfwdetV60FwMIssIa0iTSKBIvkaqB4gFSNGoQ__&Key-Pair-Id=K3USGZIKWMDCSX" alt="越南春卷" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110">
                     </div>
                     <h3 class="text-[16px] font-bold text-[#3A3A3A] text-center mb-0.5" style="font-family: 'Inter', 'Noto Sans SC', sans-serif;">越南春卷</h3>
                     <p class="text-[14px] font-medium text-[#6B6B6B] text-center" style="font-family: 'Inter Tight', 'Inter', sans-serif;">Vietnamese Spring Rolls</p>
                 </a>
-                <a href="https://www.xiaohongshu.com/explore/68f1fe9c000000000703bb7a" target="_blank" rel="noopener noreferrer" class="spotlight-card group flex flex-col w-52 md:w-60 bg-[#E8E6E1] rounded-2xl shadow-sm transition-all duration-500 overflow-hidden p-3">
-                    <div class="w-full h-48 md:h-52 overflow-hidden flex items-center justify-center mb-2">
+                <a href="https://www.xiaohongshu.com/explore/68f1fe9c000000000703bb7a" target="_blank" rel="noopener noreferrer" class="food-card-item spotlight-card group flex flex-col w-52 md:w-60 bg-[#E8E6E1] rounded-2xl shadow-sm transition-all duration-500 overflow-hidden p-3">
+                    <div class="food-img-wrap w-full h-48 md:h-52 overflow-hidden flex items-center justify-center mb-2">
                         <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/rOxwHTfbJZ1nRbtI.png?Expires=1780316642&Signature=CmEYPRk6LMDRjC2qf2smK7wfpBmtG-CeGx~Ic~v0D5CXiGdstPO79x69rgcfm935nkDxCHvMasT6sXUVvxM31~I0QOfFm2PmCqJ7~JVt06PCqdXLzSN2WRjZNlnKUys-qJ~XK4lMfBlf05QoVuEPjKD-ylw-7fwMMvxM0hpICDCEvvugle5af~GVm9Dazy1lEAqf-htVtPPfcM45vzjVZsm2AqWBs1k0T8ihutTDXWn6wamEt3UHoojldbVk7bpd2rqFwEmsjXV~qfbzbAqm1R-QYS7U405iqkMlXUF-WIJiNmDSq~wC3hMNhbSNJkIg5-cuxvPq1woVkDGPYS~FHQ__&Key-Pair-Id=K3USGZIKWMDCSX" alt="辣奶油培根意面" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110">
                     </div>
                     <h3 class="text-[16px] font-bold text-[#3A3A3A] text-center mb-0.5" style="font-family: 'Inter', 'Noto Sans SC', sans-serif;">辣奶油培根意面</h3>
                     <p class="text-[14px] font-medium text-[#6B6B6B] text-center" style="font-family: 'Inter Tight', 'Inter', sans-serif;">Spicy Creamy Bacon Pasta</p>
                 </a>
-                <a href="https://www.xiaohongshu.com/explore/6475c0a10000000013033d31" target="_blank" rel="noopener noreferrer" class="spotlight-card group flex flex-col w-52 md:w-60 bg-[#E8E6E1] rounded-2xl shadow-sm transition-all duration-500 overflow-hidden p-3">
-                    <div class="w-full h-48 md:h-52 overflow-hidden flex items-center justify-center mb-2">
+                <a href="https://www.xiaohongshu.com/explore/6475c0a10000000013033d31" target="_blank" rel="noopener noreferrer" class="food-card-item spotlight-card group flex flex-col w-52 md:w-60 bg-[#E8E6E1] rounded-2xl shadow-sm transition-all duration-500 overflow-hidden p-3">
+                    <div class="food-img-wrap w-full h-48 md:h-52 overflow-hidden flex items-center justify-center mb-2">
                         <div class="w-full h-full transition-transform duration-500 group-hover:scale-110 flex items-center justify-center"><img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/WCa58hzJ6jUsig4Z.png?Expires=1780316771&Signature=kHJco4Yjo4qehJGupiZuMT16kT7cSKADXpvvvzQy-aGtmdJCtRy5Soh70KGC4EyxzvNUz8KvP2KGX5Pc-zazuUrYruB8gm2umVClFoMjEaA0du8eTg0hLjPZ8S4Nd9500TbOm-g2pXAJ~V44l~fKKJceovQJq7iyP0y3XQPunaImgi2FhOYsChFejwZZNL9L3aAsAj9t0wk9W07QkkxH6v7smjN8LKI6Qf9K6joZ9JnP2RbjPJ9PAThK4ZgqPxQnEbEn8N2FaUtgYW9RG~GK8CfdgqP4mydmUlPTXmq-Bpsto-FoJRihSxr6H6ZyosrAd-V6GmlLv9sJc5m~9PxiTQ__&Key-Pair-Id=K3USGZIKWMDCSX" alt="酸奶青瓜沙拉" class="w-full h-full object-contain scale-125"></div>
                     </div>
                     <h3 class="text-[16px] font-bold text-[#3A3A3A] text-center mb-0.5" style="font-family: 'Inter', 'Noto Sans SC', sans-serif;">酸奶青瓜沙拉</h3>
                     <p class="text-[14px] font-medium text-[#6B6B6B] text-center" style="font-family: 'Inter Tight', 'Inter', sans-serif;">Yogurt Cucumber Salad</p>
                 </a>
-                <a href="https://www.xiaohongshu.com/explore/618da923000000002103ce66" target="_blank" rel="noopener noreferrer" class="spotlight-card group flex flex-col w-52 md:w-60 bg-[#E8E6E1] rounded-2xl shadow-sm transition-all duration-500 overflow-hidden p-3">
-                    <div class="w-full h-48 md:h-52 overflow-hidden flex items-center justify-center mb-2">
+                <a href="https://www.xiaohongshu.com/explore/618da923000000002103ce66" target="_blank" rel="noopener noreferrer" class="food-card-item spotlight-card group flex flex-col w-52 md:w-60 bg-[#E8E6E1] rounded-2xl shadow-sm transition-all duration-500 overflow-hidden p-3">
+                    <div class="food-img-wrap w-full h-48 md:h-52 overflow-hidden flex items-center justify-center mb-2">
                         <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/gJiwpB6K2dkyWEBb.png?Expires=1780317806&Signature=YZAtjbtbknj3quP6tEovvTHVKleF5ZQNtZwllmPh6JEMeNHgswefrCxKwRQiI4jFVD8Eq~bnUZLj8CwEgSY7NyVqddiKE-7hW0RFirqG1HICeP4KNlET~K2yTK~o-Cp7WUrMHQPQWBZ1HevxnN9XibW7hdWgEzW7NRT6KSzXNtugMPO5iDvgyfDxlqMefDhEdfCClvLclazzi~~Fhi5yu1AMxtl47gkqiaHuehySNnB6zLElFD6Yw6i4T11bQotRJywwbiFkepIXjsXQM~GG-Gces8Wp5Z~zfg4vCp1To0KDY8nk9ZOa~xn4e497JM~RkJt-zJPKij-79W3kMg5TKQ__&Key-Pair-Id=K3USGZIKWMDCSX" alt="巧克力燕麦碗" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110">
                     </div>
                     <h3 class="text-[16px] font-bold text-[#3A3A3A] text-center mb-0.5" style="font-family: 'Inter', 'Noto Sans SC', sans-serif;">巧克力燕麦碗</h3>
@@ -534,13 +581,13 @@
     </section>
 
     <!-- Contact 版块 -->
-    <section class="relative w-full bg-[#E8E6E1] px-[24px] md:px-[64px] mt-[100px] pt-[80px] pb-[32px] border-t border-[#DCDACF]">
+    <section class="contact-section relative w-full bg-[#E8E6E1] px-[24px] md:px-[64px] mt-[100px] pt-[80px] pb-[32px] border-t border-[#DCDACF]">
         <div class="mb-12 md:mb-16 -mt-4 text-right">
-            <h2 class="text-[22px] md:text-[32px] leading-[1.1] text-[#0E0E0E] tracking-tight font-light" style="font-family: 'Inter Tight', sans-serif;">Bring your brand to the table.</h2>
+            <h2 class="contact-headline text-[22px] md:text-[32px] leading-[1.1] text-[#0E0E0E] tracking-tight font-light" style="font-family: 'Inter Tight', sans-serif;">Bring your brand to the table.</h2>
         </div>
         <div class="flex flex-col lg:flex-row gap-16 lg:gap-8 justify-between items-end mb-24">
             <div class="w-full lg:w-[30%] flex flex-col justify-start gap-8 -mt-20">
-                <div class="relative w-[130px] h-[130px] flex items-center justify-center">
+                <div class="contact-logo-wrap relative w-[130px] h-[130px] flex items-center justify-center">
                     <svg class="absolute inset-0 w-full h-full animate-spin-slow" viewBox="0 0 100 100">
                         <path id="textPath" d="M 50, 50 m -38, 0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0" fill="none"></path>
                         <text font-size="13.5" font-family="'Inter Tight', sans-serif" font-weight="500" fill="#C75A2A">
@@ -566,7 +613,7 @@
                         <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     </div>
                     <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-                        <span class="text-[20px] text-[#0E0E0E] group-hover:text-white transition-colors duration-500 font-medium tracking-tight" style="font-family:'Inter Tight',sans-serif;">Food Styling</span>
+                        <span class="contact-card-text text-[20px] text-[#0E0E0E] group-hover:text-white transition-colors duration-500 font-medium tracking-tight" style="font-family:'Inter Tight',sans-serif;">Food Styling</span>
                     </div>
                 </div>
                 <div class="relative aspect-square group cursor-pointer">
@@ -575,7 +622,7 @@
                         <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     </div>
                     <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-                        <span class="text-[20px] text-[#0E0E0E] group-hover:text-white transition-colors duration-500 font-medium tracking-tight" style="font-family:'Inter Tight',sans-serif;">Visual Diary</span>
+                        <span class="contact-card-text text-[20px] text-[#0E0E0E] group-hover:text-white transition-colors duration-500 font-medium tracking-tight" style="font-family:'Inter Tight',sans-serif;">Visual Diary</span>
                     </div>
                 </div>
                 <div class="relative aspect-square group cursor-pointer">
@@ -584,7 +631,7 @@
                         <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     </div>
                     <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-                        <span class="text-[20px] text-[#0E0E0E] group-hover:text-white transition-colors duration-500 font-medium tracking-tight" style="font-family:'Inter Tight',sans-serif;">Art Direction</span>
+                        <span class="contact-card-text text-[20px] text-[#0E0E0E] group-hover:text-white transition-colors duration-500 font-medium tracking-tight" style="font-family:'Inter Tight',sans-serif;">Art Direction</span>
                     </div>
                 </div>
             </div>
@@ -635,27 +682,10 @@
         function playIntro() {
             if (introTl) introTl.kill();
 
-            // 小屏等比缩放到屏幕宽度（screen.width 获取真实设备宽度）
-            const realWidth = screen.width || window.innerWidth;
-            const isSmall = realWidth < 1200;
-            const pageScale = isSmall ? realWidth / 1200 : 1;
-            if (isSmall) {
-                introOverlay.style.width = '1200px';
-                introOverlay.style.transform = `scale(${pageScale})`;
-                introOverlay.style.transformOrigin = 'top left';
-                realWebsite.style.width = '1200px';
-                realWebsite.style.transform = 'translateY(40px) scale(' + (0.98 * pageScale) + ')';
-                realWebsite.style.transformOrigin = 'top left';
-            }
-
             introOverlay.style.display = 'block';
             gsap.set(introOverlay, { opacity: 1 });
             gsap.set(introContent, { opacity: 1 });
-            if (!isSmall) {
-                gsap.set(realWebsite, { opacity: 0, y: 40, scale: 0.98 });
-            } else {
-                gsap.set(realWebsite, { opacity: 0 });
-            }
+            gsap.set(realWebsite, { opacity: 0, y: 40, scale: 0.98 });
 
             const w = window.innerWidth;
             const h = window.innerHeight;
@@ -717,21 +747,13 @@
                 }
             }, "+=0.1");
 
-            if (isSmall) {
-                introTl.to(realWebsite, {
-                    opacity: 1,
-                    duration: 1.0,
-                    ease: "power3.out"
-                }, "<");
-            } else {
-                introTl.to(realWebsite, {
-                    opacity: 1,
-                    y: 0,
-                    scale: 1,
-                    duration: 1.0,
-                    ease: "power3.out"
-                }, "<");
-            }
+            introTl.to(realWebsite, {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                duration: 1.0,
+                ease: "power3.out"
+            }, "<");
         }
 
         window.onload = playIntro;
@@ -741,14 +763,7 @@
             if (introOverlay.style.display !== 'none') {
                 introOverlay.style.display = 'none';
                 realWebsite.style.opacity = '1';
-                const realW = screen.width || window.innerWidth;
-                if (realW < 1200) {
-                    realWebsite.style.width = '1200px';
-                    realWebsite.style.transform = 'scale(' + (realW / 1200) + ')';
-                    realWebsite.style.transformOrigin = 'top left';
-                } else {
-                    realWebsite.style.transform = 'translateY(0) scale(1)';
-                }
+                realWebsite.style.transform = 'translateY(0) scale(1)';
             }
         }, 5000);
 
