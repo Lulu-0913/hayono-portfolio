@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAYONO | Culinary Creator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Newsreader:wght@400;500&family=Noto+Serif+SC:wght@400;500&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter Tight', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: #F4F2EE;
+            color: #0E0E0E;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            margin: 0; padding: 0;
+        }
+        .animate-spin-slow { animation: spin 12s linear infinite; }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .vertical-text { writing-mode: vertical-rl; transform: rotate(180deg); }
+        /* Intro Overlay */
+        #intro-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #ffffff; z-index: 9999; overflow: hidden; will-change: opacity; }
+        #intro-content { position: absolute; top: 0; left: 0; width: 100%; height: 100%; will-change: opacity; }
+        .intro-main-title { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 173px; letter-spacing: -0.04em; color: #111; z-index: 10; pointer-events: none; line-height: 1; font-weight: 500; }
+        @media (max-width: 768px) { .intro-main-title { font-size: 60px; } }
+        .intro-card { position: absolute; width: 13vw; height: 17vw; object-fit: cover; z-index: 5; border-radius: 4px; will-change: transform, filter; }
+        .intro-ui-text { font-size: 11px; letter-spacing: 0.02em; color: #111; z-index: 20; text-transform: uppercase; }
+        #real-website { opacity: 0; transform: translateY(40px) scale(0.98); transform-origin: center top; will-change: transform, opacity; }
+        .scroll-track { display: flex; width: max-content; }
+        .phone-scroll-vertical { will-change: transform; }
+        .spotlight-group:hover .spotlight-card { opacity: 0.5; }
+        .spotlight-group .spotlight-card:hover { opacity: 1 !important; transform: scale(1.1); box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); z-index: 10; }
+    </style>
+</head>
+<body class="relative selection:bg-[#E85A2A] selection:text-white">
+
+    <!-- 开场动画 -->
+    <div id="intro-overlay">
+        <div id="intro-content">
+            <div class="absolute top-8 left-8 intro-ui-text font-medium">Hayono</div>
+            <div class="absolute top-8 left-1/2 -translate-x-1/2 intro-ui-text font-medium">Food · Design · Life</div>
+            <div class="absolute top-1/2 left-8 -translate-y-1/2 intro-ui-text leading-relaxed font-medium">Est. 2022<br>Hubei, CN</div>
+            <h1 class="intro-main-title" style="font-family: 'Inter Tight', sans-serif;">Hayono</h1>
+            <div id="cards-container">
+                <img class="intro-card" src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/TEET1TggdXYe9r8l.JPG?Expires=1780281067&Signature=gKUdPoS3AMc1Qx7KpV6XPxJO9MBA5-SkH7wH4HzbNnz0O9yjEHw4BqZ0Sco5Jbl9KbU~EfV-Hc-lG9VzVWNRAsXtHCL56ZcLWvpoxwijCcAo2aGJxGYNWqf4NZhI3RFusoL-2ygpAmm3JR0E1HPxPqpLSD5gRRC2dynTKze5GICm3I6YWwLloW0uGWhzrjCtvltqaTRT3ZX78DzOjGoebfPewwmwTWwuVtXn5PbfEdr1L3qwDZ-43ljTT9BNKZMMwvEu0YDtW6Y0jKISM0PZDFxd4F2lIf4RcYN9ASOas5LS~0JttHPq6-bz~ld89z8x4au4EKQOTz5oI3nYyn~ToA__&Key-Pair-Id=K3USGZIKWMDCSX" data-x="20" data-y="25" />
+                <img class="intro-card" src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/r06sBRO4dOTBgB2L.jpg?Expires=1780281067&Signature=Lxx4x-Okez6XT~XJAriqjrloMroFt08uczdASkZW64MSOg5oARbNS3q2E6xWPupaxFxVaHkmBHlEW~nTHq8syj-poxOl5pCUs9h1NapHft6KceKozJ-udwDcWZ50KfL5XoAiKFuTrN5p5AOnZifu9nAxg5KLgrfs19IYrKCvwD-7wjfktRwE7C9dMuy-Zylf75MZNeYbn2Yq4xSULzreEHrnb74fW~4rpK5Cb51o4BGKrvFBGtGMlVt0FSjujMezwaZDzFcuXG3~SYtDwfF-pqZCDvA8pglH0fkS4PHij~NlhmuFu6CfekKw0xt4du0qXpHSwa-DKtZvKTYt8izDaw__&Key-Pair-Id=K3USGZIKWMDCSX" data-x="68" data-y="20" />
+                <img class="intro-card" src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/YowJOunr7cUFdkgL.jpg?Expires=1780281067&Signature=ewezDx2G7nZfrF-LpzagzrEbnQVEZ7hKJS9LJRKpDqlRPg3dGFRUiRH~KqMWR7wyNH5SC6ZUIrRdT3DsrkmKVQzhasMydzjjMvNWI1z0Eyzfj2wHe1vaznoFR0fEYmIv82KZvlDZAVjSm9UVOS9r2Vkw11kSZQe2RNJ6B~~xIWzC0epZ8WdKs0c0Db-VpmkDmFvSfQ1P3-Uc4sA1IJp-1VM15W5ziyScSlw3MdmXlQvAWLgGpxJUskpctk6ulrxQ8uZmSFVMJlJrbYnO9WNRz9sBL1zoSwhEznhykI9rZh-RoQhiJ3HWxnSlYpwKbIxZweuXRJ5erFfDO9-BV6O-EQ__&Key-Pair-Id=K3USGZIKWMDCSX" data-x="30" data-y="55" />
+                <img class="intro-card" src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/fa9LDaAYOE8UKbai.jpg?Expires=1780281067&Signature=kAypw3x4SfZJkGMkNytHuABP-3h69ZlMyl~GUND4JidC2S5gZ7H3ReRcnup5hqJcGajM3ujc0apdrMd0akW2OYMugdciTfsor2vuQxbUzZYYrn8TnHYwyVcNekxvvOUdP0h1n3lLFKwERpVtHevb1ESOmyoMEKy8gaK-IMbe-wU23awTEUJXoq1Ete3gDePjEUL3qiPOwfzZbFgTPrY-LtIySfTVaQhVMyTwNfuiaUJQzhBthAxIet50-88q3~58sxrKmSAJKwZioi3FGMVtH6iG5TkayKo~j3JEQUUvnC3~txaAHzRTDd3Y6mha8o-s4LwdwxwsQVZjJ5uTfyMUwQ__&Key-Pair-Id=K3USGZIKWMDCSX" data-x="85" data-y="45" />
+                <img class="intro-card" src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/JelFY1cytqBV6CYA.JPG?Expires=1780281067&Signature=DkAW2Egxw2OCeU5wYq~MP-48WP1eUf1AB5hanfjIBlyoWI0W6TQFbxp23wg~thrMzhJCNyh9jXrJAfvD6b~tHQm6-6q2c46iXKv8WuXmtClcvBaYRfTJsqZXBsaLzi8DbrD-u86CiipvK7Gkn86-0WkJ8HaIJWBTsjm5WFZHH~QHRWx068m4EBG8ERL1feipUDqtBg1h2Yy5MkCWQsgngtAuVq19YkqBoUjhd9jamnJ8VBIqnuAxppCbw35x-bJ0UK2XAspPkHZ6tuGTrtR5EMQcPOOqmFG5iULjjm0yZHFWg99A2hJYFH58NDPfgQirUgn9mihlhzpaEBq7KlmMVQ__&Key-Pair-Id=K3USGZIKWMDCSX" data-x="18" data-y="80" />
+                <img class="intro-card" src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/pnFmSUgrwQAjrGnb.jpg?Expires=1780281067&Signature=mHlc8r3ShIz9wbDc4dsj5vL~sGvdFfe3lgoONvW~01OyrF495dUjrUB1JWtVlt7qT-uowS46f5Se~f6l5UXQb~rM1savq~T8SkI-1mD6uBTcqz-dhQ6Gqymrd9z5~wuZCa6kMD6T6~~JMZQSS9-c5uydoEdGGy32IHRXjzGlxZj1Y9U9QOSLiBt8fXEiTEFlF2z5FHUXxFFdO6hWMMCy4Sr4mGXoOUBUf3lj41Ej75UmVi2nA1MOLlw1XuuJqdb6LONxPTKWPeR1BF4T4udpZSLj80giVMex37Zi87VNEH4aebogGpa5azvanQ3OK5xJV8G~vVYycULMjFFMf52zSw__&Key-Pair-Id=K3USGZIKWMDCSX" data-x="52" data-y="82" />
+                <img class="intro-card" src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/ugDsmA5JCN9eevdW.jpg?Expires=1780281067&Signature=c53BRuUbEw8zpzIzgetwRqSnYfCC~YV0js8t67XB4Qofi1b5PYfROGEsNeqVAfZI~BfmWA96Z4MKh2ZONgMKOAS5t0u~q8fia2Nhqne3jfrmnwOkv8~5aZmosjcVpdRWRVNihWPINOjyvresyT2BagRcQ7Kz6vlL~IgdBPYEbsILcSMVo8XXW4iq4SS~SNTNT4KDtKauYUhVuomMOKKzdczhclBTnbhtOURaBhJ2wtFyZ1KR2RANv0oumBydVOeJGnj1MBap-TA1lxj7dvNQhvXqaL96h9Fs95TnCtixZbcOu3yXw0KR21Ox0klYf7Wp~QDSkeGp8wbC2~xv1FPWzA__&Key-Pair-Id=K3USGZIKWMDCSX" data-x="78" data-y="75" />
+            </div>
+        </div>
+    </div>
+
+        <div id="real-website">
+
+    <nav class="h-[72px] px-[40px] flex justify-between items-center bg-[#F4F2EE] border-b border-[#E5E5E5]">
+        <span class="text-[16px] font-medium text-[#0E0E0E] tracking-tight" style="font-family:'Inter Tight',sans-serif;">Hayono</span>
+        <div class="flex items-center gap-8 text-[14px] font-medium text-[#9A9A95]" style="font-family:'Inter Tight',sans-serif;">
+            <span class="cursor-pointer transition-colors duration-200 hover:text-[#0E0E0E]">Menu</span>
+            <span class="cursor-pointer transition-colors duration-200 hover:text-[#0E0E0E]">Index</span>
+            <span class="cursor-pointer transition-colors duration-200 hover:text-[#0E0E0E]">Contact</span>
+            <span class="cursor-pointer transition-colors duration-200 hover:text-[#0E0E0E]">About</span>
+        </div>
+    </nav>
+
+    <!-- 第二屏 -->
+    <section class="relative w-screen h-[65vh] overflow-hidden bg-[#F4F2EE] mb-[80px]">
+        <div class="absolute inset-0 z-0 flex scroll-track w-max">
+            <div class="flex [&_img]:block">
+                <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/msgzxjItDDfNy8PB.jpg?Expires=1780292840&Signature=L4wGxl~P7e7rHPutqtRWzrkpRIYArgNQMY3fvTs8ydHTo1vM2jUctyjSi8BS8fZXepRF6eut9MHWoQEM4Umv4hlOMHtxmjP2JVNulCHQVzo7AvdeBvuddY9Ys5dJqHgRIKiGxqMTY8Fzm6-gdhFV4S6ONfDZV3s5OysDNT~-B~rKRTRc25Fh9qQQYxdxvMw5AVBjlYAODTFiLKXuOe0hVUDHRwIIA7i3olUC15t675dswm2~E~rkXBTP5j15tiut8xDzdBvmC0WPxry3t5a7IwrS8VDsz3DZHIgwmumfpSSosxjFRjkxxqXR~TsZwvqSnahQc4TJ~vQciop0EfbQNA__&Key-Pair-Id=K3USGZIKWMDCSX" class="h-[65vh] aspect-[3/4] object-cover shrink-0" alt="Quiet Manor" />
+                <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/iqCe30lfzG2WFO31.jpg?Expires=1780292840&Signature=m1dSZljLklkHQ6hL8xW0r1wmoYTQdcVSQhwLTZZE-vMz1tdPXW~6SNEHfVg~aSGzXY4GEdBink7jRgmZfcDznlYqTAm9mW451t8Thr2n0KXCgkgOITRajLIaWm6YedaAtxAKhD6eQPkfY7eMkuIlnY9BTaB7i~lmf5At5nGRAG2Y2I6L-WcrRASvYwG9VcM3C~TTViog32Zo~M49oI0rQ5hnPNW53TR8tGvQokvDs8py85srp-7ss5Jg~FIXNsP1uK3dwzo08Ute5UwOqbfY8z41eMAUhk-5glYw9EfeuHRnZVT~g4rSh-yFu4~bNetHXT6yAwj7zY5WSdnnrHSBzQ__&Key-Pair-Id=K3USGZIKWMDCSX" class="h-[65vh] aspect-[3/4] object-cover shrink-0" alt="LOVE Table" />
+                <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/7cnWGRr53vzCfciR.jpg?Expires=1780292840&Signature=XDeN7~EMamAz~LojPjNKln6LrhXhndzbGPUVRWoPdwGoPlYD4RV4yjlufwderMQB-Q1l6yhmpei7rMRGHWfJ1-WwQciopNhUphTPp-0saGnO-q-Vx0Y6fwBJxpX1QBUgJG~cG4R20~64J0sx9lkWC3x92aoed7LfgSwWndSlS106XfUwCH0MITswV7oGwXaypcaOVgpfmBjKCqAsx2dIgmXLevg7Y4PzyIaKSfp0SjyARTDQvzDbe-9AvA-n9yIhZoMoVJtDYnW5wwvf-9Ttgw4VpStn3-cxcD65Nx-O4ijhqGiCLq~~Db6ZqsKae7VKLNH-wj63Itp3cXh~r6OYuw__&Key-Pair-Id=K3USGZIKWMDCSX" class="h-[65vh] aspect-[3/4] object-cover shrink-0" alt="Pasta Fork" />
+                <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/w1adXt42TPhwOkKC.png?Expires=1780292840&Signature=KnhExOrXLbH8yH~9KwjtKMNiQGF30jtRjyTv2cnxakKRb1WdT5bOEmosKLQG5AwjP~RyKD30~iC4sCQvJgdGszD8HTN9BiiiVq4iOHihH3jdiJTTX28dQ8KISB1Et~shB~rnDASJZ3c-2auuv5f87VKzscIDgeqHMpc7kUnr6FyfVOlxGbfOpj4FYh4SZHRL~ba~KX1ba3vNjLzQqppYUwgzgiXwszJWo7VuQiCl6POvizMwV~7zO5wfuJ1dCFs4zluT1P~fZ7FLHC9SUA70~dxYP94Ui-p0-O7LprUmI2wBEbMjDkcZm-8U7E4OuZslonubkhlviG-ahfyv-gMNXg__&Key-Pair-Id=K3USGZIKWMDCSX" class="h-[65vh] aspect-[3/4] object-cover shrink-0" alt="Bar Shelf" />
+                <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/hQujZFztZTrhWU9l.jpg?Expires=1780294171&Signature=MNFh4ORWzNRHCfIUaENOAjotPXN6rstLXEKL2erPAuQFGblc6Bh~1DT6N-~dpcVv81xHd6mObUJ7u5L5v-13Mk1uAK4t3d1HNGNLhoE6EwYm12P8f5m97Ojbxu1McGnt9Quoc6KWFhme1VoJP~7z9KqUpRN-OPEl3ufko72a~FYkayb8qKgCLM8gd95h3fHxbCkl4V442sW9p3Nzbinp1fGSzDvekZoRCy81~1DjzxwTRdmBXlszETp5xihq~e9-jddnt0OAzDRa3t45Ywg5g0EewnZ5S0k9MO~~DNi~FnUGzZOMk-1LOFsQMUvS2kNEHOHIZA0hDDPf1ujG~u1wdg__&Key-Pair-Id=K3USGZIKWMDCSX" class="h-[65vh] aspect-[3/4] object-cover shrink-0" alt="Elegant Table" />
+                <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/rQoPXSUpcXVFpcjG.jpg?Expires=1780293856&Signature=BKdUuU45HotvppTfO9aj8osWshrCs1TIJNhgpxg9JFL~Hl9hw36XbKMhSTlObmcRZvRHN~zf5547ncWR~CEhN88d6fquveXHiH31qR6f5iASyk3D3-tZdRJ2C8i4veUn5aNQT~le6rg5NBExW4H-QL~PZD939P8zmVPW-Hepl95xtpBZVMrKr8bYJlZvjNkeH4vDPt13tuCSVPQDXmFAQuxkA5LXBtnW2QM6ptZP5Es~e-tlz76pssLPSQrEyTUUqYKXqhypbOpRLmlGAJ4mQLztBtASh8D2eTx3VEC3PVaUWrj~pa6J8mYPSJNfcWw786gCdDHdsk8E8HFDlGiD1A__&Key-Pair-Id=K3USGZIKWMDCSX" class="h-[calc(65vh+6px)] aspect-[3/4] object-cover shrink-0 -mb-[6px]" alt="Plates Table" />
+                <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/3Uj2ul9dnFdQSZV2.jpg?Expires=1780293583&Signature=MJxIfqZR~VCLbtbgY12yJwkYy5NWkbsHj0JQ2xH~XbRFv~v9Dktw0PWF~ouRj4giGMMW6540SiHpGYkm7jX3JHrn6ygnFCd6uvIQEaXU1uH6wqSbeA6LtGo5~KLBTv0jHG8EJVjlT1OAE3ayM8izIxAF8xWV9mcHo2HC-td8RwDzwTaem4HG-m1O8z9~X3lAzE2b-hISEWeey0B23Jjiee0linos-~tZynl3tG-Ja3ReiHcYYxlTNtDP--TCG9yvW-bSNdWaXolKnEwcvjpbIxJXijbBkQqWECFnpb~h6ehMDSEc6chO5-MRHQ3ePdBSd~I6A2CluBgghDZ1s0HvQg__&Key-Pair-Id=K3USGZIKWMDCSX" class="h-[65vh] aspect-[3/4] object-cover shrink-0" alt="Dessert Table" />
+            </div>
+            <div class="flex [&_img]:block">
+                <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/msgzxjItDDfNy8PB.jpg?Expires=1780292840&Signature=L4wGxl~P7e7rHPutqtRWzrkpRIYArgNQMY3fvTs8ydHTo1vM2jUctyjSi8BS8fZXepRF6eut9MHWoQEM4Umv4hlOMHtxmjP2JVNulCHQVzo7AvdeBvuddY9Ys5dJqHgRIKiGxqMTY8Fzm6-gdhFV4S6ONfDZV3s5OysDNT~-B~rKRTRc25Fh9qQQYxdxvMw5AVBjlYAODTFiLKXuOe0hVUDHRwIIA7i3olUC15t675dswm2~E~rkXBTP5j15tiut8xDzdBvmC0WPxry3t5a7IwrS8VDsz3DZHIgwmumfpSSosxjFRjkxxqXR~TsZwvqSnahQc4TJ~vQciop0EfbQNA__&Key-Pair-Id=K3USGZIKWMDCSX" class="h-[65vh] aspect-[3/4] object-cover shrink-0" alt="Quiet Manor" />
+                <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/iqCe30lfzG2WFO31.jpg?Expires=1780292840&Signature=m1dSZljLklkHQ6hL8xW0r1wmoYTQdcVSQhwLTZZE-vMz1tdPXW~6SNEHfVg~aSGzXY4GEdBink7jRgmZfcDznlYqTAm9mW451t8Thr2n0KXCgkgOITRajLIaWm6YedaAtxAKhD6eQPkfY7eMkuIlnY9BTaB7i~lmf5At5nGRAG2Y2I6L-WcrRASvYwG9VcM3C~TTViog32Zo~M49oI0rQ5hnPNW53TR8tGvQokvDs8py85srp-7ss5Jg~FIXNsP1uK3dwzo08Ute5UwOqbfY8z41eMAUhk-5glYw9EfeuHRnZVT~g4rSh-yFu4~bNetHXT6yAwj7zY5WSdnnrHSBzQ__&Key-Pair-Id=K3USGZIKWMDCSX" class="h-[65vh] aspect-[3/4] object-cover shrink-0" alt="LOVE Table" />
+                <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/7cnWGRr53vzCfciR.jpg?Expires=1780292840&Signature=XDeN7~EMamAz~LojPjNKln6LrhXhndzbGPUVRWoPdwGoPlYD4RV4yjlufwderMQB-Q1l6yhmpei7rMRGHWfJ1-WwQciopNhUphTPp-0saGnO-q-Vx0Y6fwBJxpX1QBUgJG~cG4R20~64J0sx9lkWC3x92aoed7LfgSwWndSlS106XfUwCH0MITswV7oGwXaypcaOVgpfmBjKCqAsx2dIgmXLevg7Y4PzyIaKSfp0SjyARTDQvzDbe-9AvA-n9yIhZoMoVJtDYnW5wwvf-9Ttgw4VpStn3-cxcD65Nx-O4ijhqGiCLq~~Db6ZqsKae7VKLNH-wj63Itp3cXh~r6OYuw__&Key-Pair-Id=K3USGZIKWMDCSX" class="h-[65vh] aspect-[3/4] object-cover shrink-0" alt="Pasta Fork" />
+                <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/w1adXt42TPhwOkKC.png?Expires=1780292840&Signature=KnhExOrXLbH8yH~9KwjtKMNiQGF30jtRjyTv2cnxakKRb1WdT5bOEmosKLQG5AwjP~RyKD30~iC4sCQvJgdGszD8HTN9BiiiVq4iOHihH3jdiJTTX28dQ8KISB1Et~shB~rnDASJZ3c-2auuv5f87VKzscIDgeqHMpc7kUnr6FyfVOlxGbfOpj4FYh4SZHRL~ba~KX1ba3vNjLzQqppYUwgzgiXwszJWo7VuQiCl6POvizMwV~7zO5wfuJ1dCFs4zluT1P~fZ7FLHC9SUA70~dxYP94Ui-p0-O7LprUmI2wBEbMjDkcZm-8U7E4OuZslonubkhlviG-ahfyv-gMNXg__&Key-Pair-Id=K3USGZIKWMDCSX" class="h-[65vh] aspect-[3/4] object-cover shrink-0" alt="Bar Shelf" />
+                <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/hQujZFztZTrhWU9l.jpg?Expires=1780294171&Signature=MNFh4ORWzNRHCfIUaENOAjotPXN6rstLXEKL2erPAuQFGblc6Bh~1DT6N-~dpcVv81xHd6mObUJ7u5L5v-13Mk1uAK4t3d1HNGNLhoE6EwYm12P8f5m97Ojbxu1McGnt9Quoc6KWFhme1VoJP~7z9KqUpRN-OPEl3ufko72a~FYkayb8qKgCLM8gd95h3fHxbCkl4V442sW9p3Nzbinp1fGSzDvekZoRCy81~1DjzxwTRdmBXlszETp5xihq~e9-jddnt0OAzDRa3t45Ywg5g0EewnZ5S0k9MO~~DNi~FnUGzZOMk-1LOFsQMUvS2kNEHOHIZA0hDDPf1ujG~u1wdg__&Key-Pair-Id=K3USGZIKWMDCSX" class="h-[65vh] aspect-[3/4] object-cover shrink-0" alt="Elegant Table" />
+                <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/rQoPXSUpcXVFpcjG.jpg?Expires=1780293856&Signature=BKdUuU45HotvppTfO9aj8osWshrCs1TIJNhgpxg9JFL~Hl9hw36XbKMhSTlObmcRZvRHN~zf5547ncWR~CEhN88d6fquveXHiH31qR6f5iASyk3D3-tZdRJ2C8i4veUn5aNQT~le6rg5NBExW4H-QL~PZD939P8zmVPW-Hepl95xtpBZVMrKr8bYJlZvjNkeH4vDPt13tuCSVPQDXmFAQuxkA5LXBtnW2QM6ptZP5Es~e-tlz76pssLPSQrEyTUUqYKXqhypbOpRLmlGAJ4mQLztBtASh8D2eTx3VEC3PVaUWrj~pa6J8mYPSJNfcWw786gCdDHdsk8E8HFDlGiD1A__&Key-Pair-Id=K3USGZIKWMDCSX" class="h-[calc(65vh+6px)] aspect-[3/4] object-cover shrink-0 -mb-[6px]" alt="Plates Table" />
+                <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/3Uj2ul9dnFdQSZV2.jpg?Expires=1780293583&Signature=MJxIfqZR~VCLbtbgY12yJwkYy5NWkbsHj0JQ2xH~XbRFv~v9Dktw0PWF~ouRj4giGMMW6540SiHpGYkm7jX3JHrn6ygnFCd6uvIQEaXU1uH6wqSbeA6LtGo5~KLBTv0jHG8EJVjlT1OAE3ayM8izIxAF8xWV9mcHo2HC-td8RwDzwTaem4HG-m1O8z9~X3lAzE2b-hISEWeey0B23Jjiee0linos-~tZynl3tG-Ja3ReiHcYYxlTNtDP--TCG9yvW-bSNdWaXolKnEwcvjpbIxJXijbBkQqWECFnpb~h6ehMDSEc6chO5-MRHQ3ePdBSd~I6A2CluBgghDZ1s0HvQg__&Key-Pair-Id=K3USGZIKWMDCSX" class="h-[65vh] aspect-[3/4] object-cover shrink-0" alt="Dessert Table" />
+            </div>
+        </div>
+        <div class="absolute inset-0 z-0 bg-[#F4F2EE]/10 pointer-events-none"></div>
+        <div class="absolute inset-y-0 left-0 w-full md:w-[65%] lg:w-[55%] bg-gradient-to-r from-[#F4F2EE] via-[#F4F2EE]/60 to-transparent z-10 pointer-events-none"></div>
+        <div class="absolute inset-y-0 left-0 w-full md:w-[55%] lg:w-[45%] flex flex-col justify-center px-[64px] z-20 screen2-text">
+            <h1 class="text-5xl md:text-6xl lg:text-7xl font-['Inter_Tight',sans-serif] mb-6 leading-[1.1] tracking-tight font-normal text-[#0E0E0E]">Your Table<br>Stylist.</h1>
+            <p class="text-base md:text-lg font-['Inter_Tight',sans-serif] text-[#7A7A75] mb-10 leading-relaxed font-light max-w-md">From intimate gatherings to festive celebrations, we cater to all your dining table needs across any setting. Bringing people together through beautifully curated moments.</p>
+        </div>
+    </section>
+
+    <!-- 第三屏 -->
+    <section class="relative w-full bg-[#F4F2EE] px-[64px] pt-[60px] pb-[80px] flex flex-col justify-between">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 w-full">
+            <div class="hidden md:block md:col-span-3"></div>
+            <div class="md:col-span-7">
+                <h2 class="text-[32px] md:text-[44px] font-normal leading-[1.25] tracking-[-0.02em] text-[#0E0E0E]">Taste is only the beginning. Every dish carries an atmosphere, every table tells a story, every space holds a feeling. I build around food — kitchens, brands, objects, images — all of it rooted in warmth, texture, and real craft.</h2>
+            </div>
+            <div class="md:col-span-2 flex justify-center items-start pt-4 md:pt-2">
+                <div class="w-3 h-3 bg-[#0E0E0E] rounded-full"></div>
+            </div>
+        </div>
+        <div class="flex flex-col lg:flex-row justify-between items-end mt-[100px] gap-12 lg:gap-0">
+            <div class="flex flex-wrap md:flex-nowrap gap-8">
+                <div class="flex flex-col gap-3">
+                    <span class="font-['JetBrains_Mono'] text-[11px] text-[#9A9A95]">[01]</span>
+                    <div class="flex gap-2">
+                        <img src="https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?q=80&w=400&auto=format&fit=crop" class="w-[180px] h-[220px] object-cover bg-white p-2 shadow-sm">
+                        <div class="vertical-text text-[8px] text-[#9A9A95] uppercase tracking-widest leading-tight h-[220px]">At W.A.R.E. store, we believe that every table tells a story.</div>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-3">
+                    <span class="font-['JetBrains_Mono'] text-[11px] text-[#9A9A95]">[02]</span>
+                    <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/3f6Vl0I6phRL0zYm.jpg?Expires=1779961320&Signature=tJO75WWibpPycte56VUWrO6LMB~EVhe3Wbv8-GvdKl4DZt6okPYL-Lzwru4iZDGgEIszaiaRKa2UpipA7xF8gF-7Uo-2hMhv4TxreA7UkREgKraL~AmGiu-ElJ0m0SAMfsGyYLMFy~m63yfBPLWTgeFx37B3ke2I1j3R2HnfDAZ9B-FYZ8qGjnKAidbYp67sA9VpSpuk3FGqYXD4FZ279QxMFF8L29rSkIdUBi1o7R6catyqrwUztUsHtLo8E3hE4CeHSPAIt3fFbkzD4Wy2Jyrhly3f4t6moAE~xkwnRpvB14evWvc~Yt7vLSC6N3asmh9l2hXz0YoTOupvjUHBMw__&Key-Pair-Id=K3USGZIKWMDCSX" class="w-[180px] h-[220px] object-cover">
+                </div>
+                <div class="flex flex-col gap-3">
+                    <span class="font-['JetBrains_Mono'] text-[11px] text-[#9A9A95]">[03]</span>
+                    <img id="experience-slideshow" src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/72zscMMj58httZQn.jpg?Expires=1779961567&Signature=oSqO7F8TwFwhM9lYKSxSDfJOaX9-U7sAoq4IDiPdmjrsn6oaBvM23NNrOMjGnWthhh4Q8ERVRmKsAIINkQZBRs5qP9CaYVZM24qpJrV7HxFbzgbl5Ad6HkclwIpRdy7d~AO1-HQu8wLXzWviRaYO45UL62Z7vu~0KmhH6F718yl2zbCE1hkxvk0f3oQhVxkpO9W3KSR1O7oF~B~nX~iRPfKmsvQiNwZK0z3-4DscjGd5nifAloq3bntlEiDfnpHGTWSoNZIZUFWBClTOyHv7lBInyly3LdApTbVIb5hqqs8Ui9JJufHCcgI~k9BFNBy1ulH-OrJqK2JC17nhCe2ilw__&Key-Pair-Id=K3USGZIKWMDCSX" class="w-[180px] h-[220px] object-cover">
+                </div>
+            </div>
+            <div class="flex justify-between items-end w-full lg:w-auto gap-12">
+                <ul class="text-[15px] font-medium text-[#0E0E0E] leading-[2.0] text-left">
+                    <li>Food Creation</li><li>Artful Table</li><li>Influence</li><li>Photography</li>
+                </ul>
+                <div class="font-['JetBrains_Mono'] text-[14px] text-[#0E0E0E] font-medium tracking-tight flex-shrink-0 pb-[2px]">(Scroll.)</div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 第五屏：About -->
+    <section class="relative w-full bg-[#F4F2EE] px-[64px] pt-[60px] pb-[80px] flex justify-between items-start">
+        <div class="font-['JetBrains_Mono'] text-[14px] text-[#0E0E0E] font-medium tracking-tight">(About.)</div>
+        <div class="flex flex-col gap-3">
+            <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/Pp7FviQzvFc9r2ew.jpg?Expires=1779970424&Signature=af1amERs-CPBgPgMMthPBgxW1-1gEAKNExZI3rNuvvui3Z~7OAHfhEcBiY9Mh-H7FbXKVzVqfh0OSL0b6gXnW7pCoMHSmOTCadFelkJ~jVlVCug4CimtoAbb6Hw7J3RIa8BqQ50t6mcVBljffyI3giQREQGBolHQjIKw8cW2Bdd3qrt5Z1xpbJmdV4QqntqE-tZSq0hpErgTsF~gz6r-k-oVNAsWMlqfVqCq9ies~zE~FCNGXFuoL-M7RMQZhzjhC~WBmuxHcL4KctrYizwbD41JH7WDGpAgCDqLnmQhVNsL0Ghr88zsk4Q3S2y4EHHCnWIz9xe1pEi4LYimr6XTcg__&Key-Pair-Id=K3USGZIKWMDCSX" alt="About Space" class="w-[180px] h-[220px] object-cover">
+        </div>
+    </section>
+
+    <!-- 作品集网格版块 -->
+    <section class="relative w-full bg-[#F4F2EE] px-[16px] md:px-[40px] pt-[60px] pb-[80px]">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-5 gap-y-16" id="portfolio-grid">
+            <!-- 01 Berry -->
+            <div class="flex flex-col relative group cursor-pointer">
+                <div class="absolute top-0 left-2 w-3 h-3 bg-[#0E0E0E] rounded-full z-10"></div>
+                <div class="w-full aspect-[3/4] flex flex-col justify-end">
+                    <div class="font-['JetBrains_Mono'] text-[11px] text-[#9A9A95] mb-2.5 tracking-widest">[01]</div>
+                    <div class="w-full overflow-hidden"><img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/avEIDz3RKPSHirzJ.jpg?Expires=1780828013&Signature=BKtWwb61A3OGYLENFUPGikly8uvZWtz49Uga8msNy20UJ3209qNLcKVPK7xjlf0BDVNudTqVwqIQj8amrzQJVBfgY0kwbyuq1aEhd8nhsrBal2pnlzo1MjqOrSimvuok2exWb1tZN4cL983wB7YMi6G8Vq5b9Cm87Vdxag-lWz9cwkwUbY~6~q4yL9NLHFsVLeOac2P75JTRjrxKcmvafUZhTwQMTpJzIMnuNnPIf03p5ydM4B5~SJxXMeSCDVxp4MPNmgDHXszPW8Wo7AhxZl6xwuYcijSBcwqHwwYPRc7ObPtFGSoo41I~tCeYEYHva2pAh8KdJc9FtMTWrS~93w__&Key-Pair-Id=K3USGZIKWMDCSX" alt="Berry" class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-[1.03]"></div>
+                </div>
+                <div class="mt-3 flex flex-col"><span class="text-[#0E0E0E] text-[13px] font-medium tracking-tight" style="font-family:'Inter Tight',sans-serif;">(Berry.)</span><span class="text-[#9A9A95] text-[13px] mt-0.5" style="font-family:'Inter Tight',sans-serif;">Summer Tart</span></div>
+            </div>
+            <!-- 02 Moments — switching images -->
+            <div class="flex flex-col relative group cursor-pointer" id="switching-card">
+                <div class="w-full aspect-[3/4] flex flex-col justify-end">
+                    <div class="font-['JetBrains_Mono'] text-[11px] text-[#9A9A95] mb-2.5 tracking-widest">[02]</div>
+                    <div class="w-full flex-1 min-h-0 overflow-hidden relative"><div class="absolute inset-0 transition-transform duration-500 group-hover:scale-[1.03]"><img id="switching-img" src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/7cxQvVpyWxkIeCxV.jpg?Expires=1780827228&Signature=CVOeN251FqdNFbcXuUmiDV0kgyx4KWR6kOmTxZVlgYkeOgJozoA7o~48hm~QmqH2AqPZczasb0gIiDdakv6o-OV2qrSwMGKc8hDQaOw~okMDWgJDTeCp3DXoai9Zz4W66vRmqzMfuGN1O9pVgG2pU4OkbOGEK5elCOJpOcJAnoD-irumLXwP2O3MEfXUYmGRBxUexmtNzEwSI92ltWpc41ksVHgHikCTHKHXbwP0YAXRag0yHObSeqDHfSi8iRtszvuMn003adRKzg698LvGJtX-~cw86-ixp6meVG45MCP3qVTEWljfvQumXGSgiSbvlrWnwYabH-TrrsSjmtqmfw__&Key-Pair-Id=K3USGZIKWMDCSX" alt="Moments" class="w-full h-full object-cover absolute inset-0"></div></div>
+                </div>
+                <div class="mt-3 flex flex-col"><span class="text-[#0E0E0E] text-[13px] font-medium tracking-tight" style="font-family:'Inter Tight',sans-serif;">(Moments.)</span><span class="text-[#9A9A95] text-[13px] mt-0.5" style="font-family:'Inter Tight',sans-serif;">Visual Diary</span></div>
+            </div>
+            <!-- 03 Motion -->
+            <div class="flex flex-col relative group cursor-pointer">
+                <div class="w-full aspect-[3/4] flex flex-col justify-end">
+                    <div class="font-['JetBrains_Mono'] text-[11px] text-[#9A9A95] mb-2.5 tracking-widest">[03]</div>
+                    <div class="w-full flex-1 min-h-0 overflow-hidden relative"><img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/RXC5fkAEJFu6VBHV.jpg?Expires=1780826357&Signature=a4h2T0xJm3UUa07Bv3fvnb6rq4rcSoEC603dxsflYIaMf8UNnD3DkAnDYHCUqsP5E0V742PGJbfLZH1lOlM~QYhbJYl2dxeMerABC5mBZ0WSDYo0dJ7z5kieMT2os~Mg0zMUATo2Ui6dcxOBbp3Sz~w7VcPjHomdQw3bHuv~JKcYbLKQgFcZq0d~bpQ5PD2Nhzr0yXYeVA-C956djOAWEu0sZNuDZxuls474yMe-6MsxRfvlngdf~oWV7rKhfinuBDiyqDVdlaHJqbBBIhrLNU6c320TOPPByXrQHN1~3pZpmKNNCRmpwWt828l~Q0EmF8U3JqHaiRDIZbGCuithXA__&Key-Pair-Id=K3USGZIKWMDCSX" alt="Motion" class="w-full h-full object-cover absolute inset-0 transition-transform duration-500 group-hover:scale-[1.03]"></div>
+                </div>
+                <div class="mt-3 flex flex-col"><span class="text-[#0E0E0E] text-[13px] font-medium tracking-tight" style="font-family:'Inter Tight',sans-serif;">(Motion.)</span><span class="text-[#9A9A95] text-[13px] mt-0.5" style="font-family:'Inter Tight',sans-serif;">Blurred Elegance</span></div>
+            </div>
+            <!-- 04 Cocktails -->
+            <div class="flex flex-col relative group cursor-pointer">
+                <div class="w-full aspect-[3/4] flex flex-col justify-end">
+                    <div class="font-['JetBrains_Mono'] text-[11px] text-[#9A9A95] mb-2.5 tracking-widest">[04]</div>
+                    <div class="w-full flex-1 min-h-0 overflow-hidden relative"><img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/BCWdOXPEFxDeN2G2.jpg?Expires=1780823042&Signature=g7lLWAYFtRDG2svDzjwnGiVMRsRWEw4XilYwZ81DrB7dpuNbQAUgQpLHe3zUf0HGypMSyaIs8s6JvIdR7dddwySuoEiAh88tFyz3jvS-29r6Nv9f-16i0u62p5PYvCqx0eD4aywySRRfCN-6qoUr6HGbdoydVBKydbHfGugcOQUsu8oVrsi67Fv200V19pEYAqi9aWxCUIxjJDt~sEdVUuw0Dwwi0IZR9EqqFIzrWSjiSjLjhFjyamjhx8Vymj4so612fc7KweLW0YQtvoXkALEvO2JGCTvFovKhp5dQq-m~xlgANTooo8X2X~qRiur55treMCYeHzJp3u8suCcmxQ__&Key-Pair-Id=K3USGZIKWMDCSX" alt="Cocktails" class="w-full h-full object-cover absolute inset-0 transition-transform duration-500 group-hover:scale-[1.03]"></div>
+                </div>
+                <div class="mt-3 flex flex-col"><span class="text-[#0E0E0E] text-[13px] font-medium tracking-tight" style="font-family:'Inter Tight',sans-serif;">(Cocktails.)</span><span class="text-[#9A9A95] text-[13px] mt-0.5" style="font-family:'Inter Tight',sans-serif;">Drink Menu</span></div>
+            </div>
+            <!-- 05 Citrus -->
+            <div class="flex flex-col relative group cursor-pointer">
+                <div class="w-full aspect-[3/4] flex flex-col justify-end">
+                    <div class="font-['JetBrains_Mono'] text-[11px] text-[#9A9A95] mb-2.5 tracking-widest">[05]</div>
+                    <div class="w-full flex-1 min-h-0 overflow-hidden relative"><img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/bvNcUlC4fR5sLcGD.jpg?Expires=1780826558&Signature=S3y7y2BfPPEJQwpPAfvjhV7ikmC5T3byLK~ikAST8gN608YwZhVNLn4zKgI-L8eRwEmHiaUo-7EsQsS3qf45TY9ScVj1jR4KLoFZ0ReyQ89UUp0hDUWhOk3gsb8uWWPcbK~kQyoZxzdJAw5KQI-xC1G2~bl~stI67ETW21ODvsxgW1ONnIDH2iL9kfzOVjFD~DO-dRNzi8Xlt0sK~yuRiszoYC5qCx21y2K1aFJOTFm49jDP7OI-l8KaoPoCkpxbrZnrkT0yy-aEsOJq7mLeIQtEJ74OBJboLaEj0FxBSWygRsTWwK4vD2Suv6rjFAs2OgkJY36E91ba80zqSBa3iA__&Key-Pair-Id=K3USGZIKWMDCSX" alt="Citrus" class="w-full h-full object-cover absolute inset-0 transition-transform duration-500 group-hover:scale-[1.03]"></div>
+                </div>
+                <div class="mt-3 flex flex-col"><span class="text-[#0E0E0E] text-[13px] font-medium tracking-tight" style="font-family:'Inter Tight',sans-serif;">(Citrus.)</span><span class="text-[#9A9A95] text-[13px] mt-0.5" style="font-family:'Inter Tight',sans-serif;">Sunlight & Shadows</span></div>
+            </div>
+            <!-- 06 Oasis -->
+            <div class="flex flex-col relative group cursor-pointer">
+                <div class="w-full aspect-[3/4] flex flex-col justify-end">
+                    <div class="font-['JetBrains_Mono'] text-[11px] text-[#9A9A95] mb-2.5 tracking-widest">[06]</div>
+                    <div class="w-full flex-1 min-h-0 overflow-hidden relative"><img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/tZe2GHZ7L1aDm27y.jpg?Expires=1780826710&Signature=vRe4b5H-X3QPtkLhidTZtT4pcjMQKw9S-XQRmFrDEWyI3jaW8sbVqaj08WK2ZIsJKtClLloil~g6MlCNslRjo~i7ZYJb8CHTMGhLUoHLUAgeTwgUkEu-v3EJ2qFNcjQrHP5Pp-J1hcr0TDRPu~lM8xoMslKHR2HpPhcWB1j0hfVXOz4i67Ibxh7M-GND0m8rAohnok2PYio2g3ACwoBqEZV4yd-edhZBlck9HXhyo403KToWL04WWXfGcUwjxQf~kKnSOtgozHSrDcMLtiq0aIKA6~hsHIdRDNAUKXO~WdF5aFlEevl3TzJ189Z4RNbsrNi85hLflX4Kg6KvQrqebw__&Key-Pair-Id=K3USGZIKWMDCSX" alt="Oasis" class="w-full h-full object-cover absolute inset-0 transition-transform duration-500 group-hover:scale-[1.03]"></div>
+                </div>
+                <div class="mt-3 flex flex-col"><span class="text-[#0E0E0E] text-[13px] font-medium tracking-tight" style="font-family:'Inter Tight',sans-serif;">(Oasis.)</span><span class="text-[#9A9A95] text-[13px] mt-0.5" style="font-family:'Inter Tight',sans-serif;">Aerial View</span></div>
+            </div>
+            <!-- 07 Melon -->
+            <div class="flex flex-col relative group cursor-pointer">
+                <div class="w-full aspect-[3/4] flex flex-col justify-end">
+                    <div class="font-['JetBrains_Mono'] text-[11px] text-[#9A9A95] mb-2.5 tracking-widest">[07]</div>
+                    <div class="w-full flex-1 min-h-0 overflow-hidden relative"><img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/Vy0aB23VrIlbcCdq.jpg?Expires=1780826306&Signature=fO35YSWQQ1Dz3erY8rOKXLdZJ~phQZg3Z0XWQdKq1edLlz~gsylZo-bBHGs-2jUwV9POsHOaYtrN4iV2x6ZCHavrlWvFm-KBWLsilryobzsZTeKtbmvybF3HynN8EJKi69ZiIAHN7dw7QW2rnxVlG04GF4vaCEWfwmsltrfoioc0-0CkasgfXosuujQ8WO8-iE4DWl9dAuRa40jbSQobQ3XMa7g~6Ni0im1tUu-iwGI62la5k8xX-DS3sC1viZaBE52mXegEPhRFVJuhkza1e0ldPd2rKZ07-Qp1s4emR7BTNIsE4Gv1PPX6P371FwJBRG2J4BIyjWOj4RxY8pXNww__&Key-Pair-Id=K3USGZIKWMDCSX" alt="Melon" class="w-full h-full object-cover absolute inset-0 transition-transform duration-500 group-hover:scale-[1.03]"></div>
+                </div>
+                <div class="mt-3 flex flex-col"><span class="text-[#0E0E0E] text-[13px] font-medium tracking-tight" style="font-family:'Inter Tight',sans-serif;">(Melon.)</span><span class="text-[#9A9A95] text-[13px] mt-0.5" style="font-family:'Inter Tight',sans-serif;">Summer Still Life</span></div>
+            </div>
+            <!-- 08 Gathering -->
+            <div class="flex flex-col relative group cursor-pointer">
+                <div class="w-full aspect-[3/4] flex flex-col justify-end">
+                    <div class="font-['JetBrains_Mono'] text-[11px] text-[#9A9A95] mb-2.5 tracking-widest">[08]</div>
+                    <div class="w-full flex-1 min-h-0 overflow-hidden relative"><img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/e6kR2zmBknvTTHjW.jpg?Expires=1780823069&Signature=pKg2iMc3uKdoocX~6Rw5H2BiZxbkO4EjznJ2R8BzCwNksd6nYBAQNFd52bvFTvsvbCwMotOLcWFv9F6a-SPcT0xU1LyeU4pg5cn8xVBDaT8ELr0d6m9cw62vTsS6nCa4o3m5S7~K5tN9dxBySxBUldfdxP2KQx2cTF4ok~CNwthLHRo~I22rGvOpczXSxmH41qOdZ~ShuaAJiCzIvWtQDQoYxUEtxYbB0ShKAlDmkNjm6VFGtJKyKdeeguu0ntHxjT4UBq1IPIQjJYkV8R1cXV3O-v2I4dAsKMyISSVIiR9x4qJvUoMeEOAVn3JEjoa97sPtS4JuruQH-oJ9JgaDhQ__&Key-Pair-Id=K3USGZIKWMDCSX" alt="Gathering" class="w-full h-full object-cover absolute inset-0 transition-transform duration-500 group-hover:scale-[1.03]"></div>
+                </div>
+                <div class="mt-3 flex flex-col"><span class="text-[#0E0E0E] text-[13px] font-medium tracking-tight" style="font-family:'Inter Tight',sans-serif;">(Gathering.)</span><span class="text-[#9A9A95] text-[13px] mt-0.5" style="font-family:'Inter Tight',sans-serif;">L.O.V.E</span></div>
+            </div>
+            <!-- 09 Tea Time (landscape) -->
+            <div class="flex flex-col relative group cursor-pointer">
+                <div class="w-full aspect-[3/4] flex flex-col justify-end">
+                    <div class="font-['JetBrains_Mono'] text-[11px] text-[#9A9A95] mb-2.5 tracking-widest">[09]</div>
+                    <div class="w-full overflow-hidden"><img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/3lHecViWes8OKSBd.jpg?Expires=1780823983&Signature=WsVXsPgZ0pVJet65IBBdaSDbGVcziCcLo0Z7x5mEFk3uzmuB0ZK5BQHqGIi5gGbMXkvC~G741xRtCGn4hEl347CVPEzw6eLvYzCOxt9ty4ou70paWXHUB7DLRqto7KWf3t75FNFLKR93TeX5YmJOqW7Rbw~skg5tDRuaae5OW6u2jB1SltUttgjcGmBfOmAkGWIcKtsQ07C6-ISffS7MmYzn7zj9sTqWiOQiY32BpgJAaloQ~tmTm~PHnS8RiioaxA--6u76VzqvBJZ~KV8~6m-hBn~pZysA4mrhss0IfUEwpIZWsi~tZTsWdPl65Ls7C6CWlPWIkLojl-Z37c0bhg__&Key-Pair-Id=K3USGZIKWMDCSX" alt="Tea Time" class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-[1.03]"></div>
+                </div>
+                <div class="mt-3 flex flex-col"><span class="text-[#0E0E0E] text-[13px] font-medium tracking-tight" style="font-family:'Inter Tight',sans-serif;">(Tea Time.)</span><span class="text-[#9A9A95] text-[13px] mt-0.5" style="font-family:'Inter Tight',sans-serif;">Floral & Sweets</span></div>
+            </div>
+            <!-- 10 Journal -->
+            <div class="flex flex-col relative group cursor-pointer">
+                <div class="w-full aspect-[3/4] flex flex-col justify-end">
+                    <div class="font-['JetBrains_Mono'] text-[11px] text-[#9A9A95] mb-2.5 tracking-widest">[10]</div>
+                    <div class="w-full flex-1 min-h-0 overflow-hidden relative"><img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/CkT7AMzi6jqyBdHX.jpg?Expires=1780823983&Signature=K-mgO5T24vbe44GaCmuCdKYHctZgfpiGQnjGiMpoz1JfbxhZBTFjcouFXuw7NsOaGpV5QJJQcl9HmqyttWHAoZD1dGqWo1B9RAnWF6H-aB9IQ5vu6j7y2ZZfKk1hquRTFeTpcxgBJqgAGsc94~n6NWKCmfSvN2~OnSB8W9qKGMqu17qgW3OGvzwtrZNi9VJRT9WHIogGrkNUmWTI7x3JtL7h7QScjrcuyRNLnpYAZhWEtXtifjYqcFx-BeCYrjqzsvmr-DSCZLvqqK94YAiATiJeWotiZfvmYuTox0yMlfSqTh8lQuocAyMr8~QH5Z2CwDYYchGtJPJLYQiC0JeeoA__&Key-Pair-Id=K3USGZIKWMDCSX" alt="Journal" class="w-full h-full object-cover absolute inset-0 transition-transform duration-500 group-hover:scale-[1.03]"></div>
+                </div>
+                <div class="mt-3 flex flex-col"><span class="text-[#0E0E0E] text-[13px] font-medium tracking-tight" style="font-family:'Inter Tight',sans-serif;">(Journal.)</span><span class="text-[#9A9A95] text-[13px] mt-0.5" style="font-family:'Inter Tight',sans-serif;">Coastal Memories</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 落地项目板块 -->
+    <section class="relative w-full bg-[#F4F2EE] pt-[60px] pb-[120px]" id="projects-section">
+        <div class="pl-[64px]">
+            <span class="font-['JetBrains_Mono'] text-[14px] text-[#0E0E0E] font-medium tracking-tight mb-8 block">(Selected Works.)</span>
+        </div>
+
+        <!-- 项目列表 -->
+        <div class="w-full border-t border-[#DCDACF]">
+            <!-- Project 1: 百年老洋房咖啡馆 -->
+            <div class="flex transition-colors duration-300 hover:bg-[#F0EEEB] border-b border-[#DCDACF]">
+                <div class="w-[10%] px-[24px] pt-[40px] font-['JetBrains_Mono'] text-[11px] text-[#9A9A95]">[01]</div>
+                <div class="w-[15%] px-[16px] pt-[40px]">
+                    <span class="text-[15px] font-medium text-[#0E0E0E] block" style="font-family: 'Inter Tight', sans-serif;">百年老洋房咖啡馆</span>
+                    <span class="font-['JetBrains_Mono'] text-[11px] text-[#9A9A95] mt-1 uppercase tracking-wider block">Visual Upgrade</span>
+                </div>
+                <div class="w-[50%] px-[32px] pt-[36px] pr-[60px]">
+                    <h2 class="text-[24px] leading-[1.35] text-[#0E0E0E] tracking-[-0.01em]" style="font-family: 'Inter Tight', sans-serif;">围绕音乐、美食与数字艺术，完成从空间到产品线的全维度视觉与味觉升级</h2>
+                </div>
+                <div class="w-[25%] aspect-[3/4] relative overflow-hidden cursor-pointer group" onmouseenter="showProject(0)" onmouseleave="hideProject()">
+                    <img src="images/projects/4.jpg" alt="百年老洋房咖啡馆" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                </div>
+            </div>
+
+            <!-- Project 2: 新中式茶饮品牌 -->
+            <div class="flex transition-colors duration-300 hover:bg-[#F0EEEB] border-b border-[#DCDACF]">
+                <div class="w-[10%] px-[24px] pt-[40px] font-['JetBrains_Mono'] text-[11px] text-[#9A9A95]">[02]</div>
+                <div class="w-[15%] px-[16px] pt-[40px]">
+                    <span class="text-[15px] font-medium text-[#0E0E0E] block" style="font-family: 'Inter Tight', sans-serif;">新中式茶饮品牌</span>
+                    <span class="font-['JetBrains_Mono'] text-[11px] text-[#9A9A95] mt-1 uppercase tracking-wider block">Chinese Tea</span>
+                </div>
+                <div class="w-[50%] px-[32px] pt-[36px] pr-[60px]">
+                    <h2 class="text-[24px] leading-[1.35] text-[#0E0E0E] tracking-[-0.01em]" style="font-family: 'Inter Tight', sans-serif;">从零构建新中式茶饮体系，涵盖茶饮、点心与糖水的全案产品设计</h2>
+                </div>
+                <div class="w-[25%] aspect-[3/4] relative overflow-hidden cursor-pointer group" onmouseenter="showProject(1)" onmouseleave="hideProject()">
+                    <img src="images/projects/3.jpg" alt="新中式茶饮品牌" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                </div>
+            </div>
+
+            <!-- Project 3: 防空洞露营基地 -->
+            <div class="flex transition-colors duration-300 hover:bg-[#F0EEEB] border-b border-[#DCDACF]">
+                <div class="w-[10%] px-[24px] pt-[40px] font-['JetBrains_Mono'] text-[11px] text-[#9A9A95]">[03]</div>
+                <div class="w-[15%] px-[16px] pt-[40px]">
+                    <span class="text-[15px] font-medium text-[#0E0E0E] block" style="font-family: 'Inter Tight', sans-serif;">防空洞露营基地</span>
+                    <span class="font-['JetBrains_Mono'] text-[11px] text-[#9A9A95] mt-1 uppercase tracking-wider block">Camping</span>
+                </div>
+                <div class="w-[50%] px-[32px] pt-[36px] pr-[60px]">
+                    <h2 class="text-[24px] leading-[1.35] text-[#0E0E0E] tracking-[-0.01em]" style="font-family: 'Inter Tight', sans-serif;">打破常规空间限制，将户外野趣与地下沉浸感融合，打造极具反差感的青年文化聚集地</h2>
+                </div>
+                <div class="w-[25%] aspect-[3/4] relative overflow-hidden cursor-pointer group" onmouseenter="showProject(2)" onmouseleave="hideProject()">
+                    <img src="images/projects/1.JPG" alt="防空洞露营基地" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                </div>
+            </div>
+
+            <!-- Project 4: 品牌IP落地 -->
+            <div class="flex transition-colors duration-300 hover:bg-[#F0EEEB]" data-project="3">
+                <div class="w-[10%] px-[24px] pt-[40px] font-['JetBrains_Mono'] text-[11px] text-[#9A9A95]">[04]</div>
+                <div class="w-[15%] px-[16px] pt-[40px]">
+                    <span class="text-[15px] font-medium text-[#0E0E0E] block" style="font-family: 'Inter Tight', sans-serif;">品牌IP落地</span>
+                    <span class="font-['JetBrains_Mono'] text-[11px] text-[#9A9A95] mt-1 uppercase tracking-wider block">Brand IP</span>
+                </div>
+                <div class="w-[50%] px-[32px] pt-[36px] pr-[60px]">
+                    <h2 class="text-[24px] leading-[1.35] text-[#0E0E0E] tracking-[-0.01em]" style="font-family: 'Inter Tight', sans-serif;">让线上流量同款走向线下，以个人IP甜品摊的形式，打造流动的高校快闪与市集体验</h2>
+                </div>
+                <div class="w-[25%] aspect-[3/4] relative overflow-hidden cursor-pointer group" onmouseenter="showProject(3)" onmouseleave="hideProject()">
+                    <img src="images/projects/2.JPG" alt="品牌IP落地" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 第六屏：Social 板块 -->
+    <section class="relative w-full bg-[#F4F2EE] px-[8px] pt-[60px] pb-[100px]">
+        <div class="relative w-full bg-[#E8E6E1] rounded-[16px] px-[32px] lg:px-[80px] pt-[100px] pb-[140px] flex flex-col items-center">
+
+            <!-- 胶囊页眉：灰底8px包裹凸起 -->
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-[50%] bg-[#E8E6E1] rounded-full p-[8px] z-10">
+                <div class="inline-flex bg-[#FBFBF9] border border-[#E5E5E5] rounded-full p-2 items-center shadow-sm">
+                    <div class="px-6 py-2.5 bg-[#C75A2A] text-white text-[14px] font-medium rounded-full cursor-pointer transition-colors">Healthy meal</div>
+                    <div class="px-6 py-2.5 text-[#6B6B6B] text-[14px] font-medium rounded-full cursor-pointer hover:text-[#1A1A1A] transition-colors">Baking</div>
+                    <div class="px-6 py-2.5 text-[#6B6B6B] text-[14px] font-medium rounded-full cursor-pointer hover:text-[#1A1A1A] transition-colors">Superfood</div>
+                </div>
+            </div>
+
+            <div class="flex flex-col lg:flex-row items-center justify-center gap-16 lg:gap-[100px] w-full max-w-[1040px]">
+                
+                <!-- 左侧：博主数据与简介 -->
+                <div class="w-full lg:w-[540px] flex flex-col font-['Inter',sans-serif]">
+
+                    <!-- 平台标签 -->
+                    <div class="flex items-center gap-3 mb-10">
+                        <span class="w-6 h-[1px] bg-[#E85A2A]"></span>
+                        <span class="text-[12px] font-normal tracking-[0.06em] text-[#E85A2A]">小红书博主 <span class="text-[#9A9A95] mx-2">/</span> RED NOTE Creator</span>
+                    </div>
+
+                    <div class="flex items-start gap-6 mb-7">
+                        <div class="w-24 h-24 rounded-full overflow-hidden flex-shrink-0 shadow-[0_4px_16px_rgba(0,0,0,0.06)]">
+                            <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/jYemP24SkyDn7NEE.png?Expires=1780038780&Signature=KVR06wXct~T4CzLNevOCrcpADf2KN~DazjOK0WgJiWjcq~XWaxEDV5qbhN4PqiM4mtGOVe8Pllk5WIOlkuSzbYpM7LXBk-6M5qwMoXmVT3Dccru7GFdCOZ2g5mGmyIT0myNxuo9g741rVO~pHAiC1fEhf3BgA5TNz8dGolJ9cotnC3PZPZ84a~vt2MPHXbhb7auxOKFD5abnIXUyzwSaVJrd8Nz7ak4gRCyjH8tyGPQf7ZiDzaE52Ug1msri8LkWv1-0sUZqke70tz2fZuQUeqfuXGCLWMTJuKDNoeGgt1kcgRhNrnlM1xPcHwmVad835j~7m0M7ybX5CMxN-8rY9A__&Key-Pair-Id=K3USGZIKWMDCSX" class="w-full h-full object-cover">
+                        </div>
+                        <div class="flex-1 mt-1">
+                            <h2 class="font-['Inter_Tight','Noto_Sans_SC',sans-serif] font-semibold text-[36px] md:text-[48px] leading-[1.05] tracking-tight text-[#1A1A1A] mb-1.5">Hayono 璐</h2>
+                            <div class="text-[14px] text-[#8B8B8B] tracking-[0.02em]">@Hayono璐 <span class="mx-2 text-[#C8C8C8]">&middot;</span> 美食博主 / 首饰设计师</div>
+                        </div>
+                    </div>
+
+                    <div class="md:ml-[120px] mb-8">
+                        <p class="text-[16px] leading-[1.9] text-[#3A3A3A]">
+                            首饰设计师 <span class="inline-block mx-2.5 text-[#C8C8C8]">&middot;</span> <span class="text-[#C75A2A] font-medium">生活美学倡导者</span>
+                        </p>
+                        <p class="text-[15px] leading-[1.9] text-[#6B6B6B]">
+                            控糖低卡
+                            <span class="inline-block mx-2.5 text-[#C8C8C8]">/</span> Superfood
+                            <span class="inline-block mx-2.5 text-[#C8C8C8]">/</span> 抗炎抗氧化
+                        </p>
+                    </div>
+
+                    <div class="md:ml-[120px] flex flex-wrap gap-y-5 gap-x-7 mb-12">
+                        <span class="inline-flex items-center gap-2 text-[13px] text-[#6B6B6B] tracking-[0.02em]">
+                            <svg class="w-3.5 h-3.5 stroke-[#C75A2A] stroke-[1.8] fill-none" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            湖北 &middot; 中国
+                        </span>
+                        <span class="inline-flex items-center gap-2 text-[13px] text-[#6B6B6B] tracking-[0.02em]">
+                            <svg class="w-3.5 h-3.5 stroke-[#C75A2A] stroke-[1.8] fill-none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="3" y1="12" x2="21" y2="12"/><path d="M12 3a14 14 0 0 0 0 18"/></svg>
+                            小红书号 200410996
+                        </span>
+                        <span class="inline-flex items-center gap-2 text-[13px] text-[#6B6B6B] tracking-[0.02em]">
+                            <svg class="w-3.5 h-3.5 stroke-[#C75A2A] stroke-[1.8] fill-none" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+                            3600611280@qq.com
+                        </span>
+                    </div>
+
+                    <div class="w-full h-[1px] bg-[#D4D2CB] mb-12"></div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                        <div class="flex flex-col gap-4">
+                            <div class="w-8 h-8 flex items-center justify-center bg-[#C75A2A]/10 rounded-lg text-[#C75A2A]">
+                                <svg class="w-[18px] h-[18px] stroke-current stroke-2 fill-none" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                            </div>
+                            <div class="font-['Newsreader','Noto_Serif_SC',serif] text-[28px] font-medium leading-none text-[#1A1A1A] tracking-[-0.02em]">
+                                31.5<span class="font-['Inter',sans-serif] text-[14px] font-medium text-[#6B6B6B] ml-1.5">万 获赞与收藏</span>
+                            </div>
+                            <div class="text-[14px] font-semibold text-[#1A1A1A] tracking-[0.02em]">Engagement Highlights</div>
+                            <div class="flex flex-col gap-1.5 text-[13px] text-[#6B6B6B] leading-[1.6]">
+                                <span class="inline-flex items-center gap-1.5"><span class="text-[#1A1A1A] font-medium">347</span> 关注</span>
+                                <span class="inline-flex items-center gap-1.5"><span class="text-[#1A1A1A] font-medium">1.6万</span> 粉丝</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-4">
+                            <div class="w-8 h-8 flex items-center justify-center bg-[#C75A2A]/10 rounded-lg text-[#C75A2A]">
+                                <svg class="w-[18px] h-[18px] stroke-current stroke-2 fill-none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+                            </div>
+                            <div class="font-['Newsreader','Noto_Serif_SC',serif] text-[28px] font-medium leading-none text-[#1A1A1A] tracking-[-0.02em]">
+                                100<span class="font-['Inter',sans-serif] text-[14px] font-medium text-[#6B6B6B] ml-1.5">+ 品牌合作</span>
+                            </div>
+                            <div class="text-[14px] font-semibold text-[#1A1A1A] tracking-[0.02em]">美食博主 &middot; 中国</div>
+                            <div class="flex flex-col gap-1.5 text-[13px] text-[#6B6B6B] leading-[1.6]">
+                                <span class="inline-flex items-center gap-1.5">3 年内容运营经验</span>
+                                <span class="inline-flex items-center gap-1.5">多篇互动量超 3 万爆文</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 右侧：手机模拟器 -->
+                <div class="w-full lg:w-[280px] flex justify-center relative flex-shrink-0">
+                    <!-- 手机外框：金属质感 -->
+                    <div class="relative w-[280px] h-[580px] rounded-[48px] bg-gradient-to-br from-[#3C3C3E] via-[#2A2A2C] to-[#1C1C1E]" style="overflow:visible;box-shadow: -6px 8px 28px rgba(0,0,0,0.22), -2px 3px 6px rgba(0,0,0,0.12), 0 0 0 1px rgba(255,255,255,0.04);">
+                        <!-- 边框高光 + 金属反光 -->
+                        <div class="absolute inset-0 rounded-[48px] ring-1 ring-inset ring-white/10 pointer-events-none z-30"></div>
+                        <div class="absolute inset-0 rounded-[48px] bg-gradient-to-br from-white/[0.06] via-transparent to-transparent pointer-events-none z-30"></div>
+                        <div class="absolute inset-[3px] rounded-[45px] ring-1 ring-inset ring-white/[0.04] pointer-events-none z-30"></div>
+                        <!-- 左边缘厚度斜面 -->
+                        <div class="absolute top-[6px] bottom-[6px] -left-[2px] w-[3px] rounded-l-[48px] bg-gradient-to-r from-white/20 to-transparent pointer-events-none z-35"></div>
+                        <!-- 屏幕区 -->
+                        <div class="absolute inset-[6px] rounded-[42px] overflow-hidden bg-white ring-1 ring-black/20">
+                            <!-- 灵动岛 -->
+                            <div class="absolute top-[6px] left-1/2 -translate-x-1/2 w-[72px] h-[24px] bg-[#0E0E0E] rounded-full z-20"></div>
+                            <!-- 状态栏 -->
+                            <div class="absolute top-[8px] left-0 right-0 h-[20px] flex justify-between items-center px-[24px] z-20 text-[#0E0E0E]">
+                                <span class="text-[10px] font-semibold" style="font-family: -apple-system, sans-serif;">9:13</span>
+                                <div class="flex items-center gap-[4px]">
+                                    <svg class="w-[13px] h-[9px]" viewBox="0 0 13 9"><rect x="0" y="6" width="1.5" height="3" rx="0.3" fill="#0E0E0E"/><rect x="2.5" y="5" width="1.5" height="4" rx="0.3" fill="#0E0E0E"/><rect x="5" y="3" width="1.5" height="6" rx="0.3" fill="#0E0E0E"/><rect x="7.5" y="1" width="1.5" height="8" rx="0.3" fill="#0E0E0E"/></svg>
+                                    <!-- 满电电池图标 -->
+                                    <svg class="w-[17px] h-[8px]" viewBox="0 0 24 11"><rect x="0.5" y="0.5" width="21" height="10" rx="2.5" fill="none" stroke="#0E0E0E" stroke-width="1"/><path d="M22 3.5v4a1 1 0 0 0 1.5 0.8V4.2A1 1 0 0 0 22 3.5Z" fill="#0E0E0E"/><rect x="2" y="2" width="18" height="7" rx="1.5" fill="#0E0E0E"/></svg>
+                                </div>
+                            </div>
+                            <div id="phone-scroll" class="w-full relative z-10 bg-white pt-0 overflow-hidden">
+                            <div class="phone-scroll-vertical" id="phone-scroll-inner">
+                            <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/B5XNU7enaCXFWEG3.jpg?Expires=1780039431&Signature=oxNIjifYOqKUHHbc0JZRHMWgO90ehWTg0yocXnHdDWHOtW8VpcTG6slGeIaRABBRcnETI0lBuxwqBvJCbRML-yYIKgYrce1FI3hq2hNJauWFVjnI42VLb7d1dO~zTIhOz612RRLR7ZMw~hN~DEdyetPT4qK2ZkFcukMPWDQ3who5y9EaNc~TnwK6CIFki1S0JsI9OaANcSdPH1q8szYDVNg17sK3Xf8Y47rM8Lysdr860aMfCbbWVGagOic8jogM7fAv3p4AqhNw50ZpYGOiPSw0ysb1i8Gm48kYdK2OMM4bTzAoVRODE1cvcqXfjWymjXwA5ja~WSXrxZ4BYHEZCw__&Key-Pair-Id=K3USGZIKWMDCSX" class="w-full h-auto block">
+                            <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/rOzo54lVVO8Kbiog.jpg?Expires=1780039431&Signature=nrdfEqSfycCeAKGMlkJopcIoGQhAmqBv38vjrFvfKSyucWk2CB7Ay480QMu9Jbe5ccuFhbmGOLGshdmvMiREOorDikKKDRoe01DT809LQR7LBmcTTDjZoqAPpPFlGYaRfUs7e7Gw9xQk~jCWSyk8zpJLwr49gAF8DJr~n~uuLLdgheKi2c0GQ4Z3Nsmunxmtwm0VmWl-pSL0zhIC7g0Zfba2h7I7K6yjonzqMj0c7du8ONiavNYWN5NXU3Wum52LwtSlwMIOKeusZ4sQIfpvQCYd8LcF~~A-8a7C4Bhk7GxfZF~2PQr3TL5R1QGWK2ExlNfF9~LN5~RopnlHFR5xMw__&Key-Pair-Id=K3USGZIKWMDCSX" class="w-full h-auto block -mt-[1px]">
+                            <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/Zludbkfaj5yLAIxl.jpg?Expires=1780039431&Signature=eQAnrbo~aJ7I3aSqPpzyP~MEaWlxMsQ9GJYTKj7D0mDoERzcxDS-vBe4OK2gT18eJctpd76mBIhLI-s9yqa~jQ74puvQIuZkBVmUxuhmG4n0CO8cf8wHwOU1LWamzQeoExnLwLQIeZzZtaKDMWy7NN~SOyi9mLvhDkFzhqsDl80toKX69kh0v1YyJus-pDXXyy0rX3mWFY8ORag8xv1AG-zmzBkmiXM-IYspeIRKUyWNZAFWSBFL-lrYNlfPrk1dklRuf0jnlYa4Pl9I4KrELNQ2kPzW96IDFqw0a4XMjp7NtyueBQ42ojkTN48xF7VnE~uusi6vvSXf5JJeGx4xLA__&Key-Pair-Id=K3USGZIKWMDCSX" class="w-full h-auto block -mt-[1px]">
+                            <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/ZXMRN64xqveBEJUi.jpg?Expires=1780039431&Signature=lVpJOSAHpAlcET43uzXvv~q-AETKI8mRvnIL6EGlcWLJtdhPmjgFuY-jWeN1UhSMPCeMKONIe-PyGk6PKjz7eWWLv9e~1YZWmFs3Ly2~dYIOJVmAxFvxElLdOm3GxdcI7VKOoDgLXD~6nIw1DizoLskjh8LlEelg4RU~WekGNUkWDWS1hfIuWw3TJJfT2SrXoyQaok4yFy2iBjKsC8ZJl4NZU47bYLQs2ztoaLDN2jawr9PD-rKSqozKRrQxKxA80T3y3Y3d~diac4zsfF7T7VXEViONkZnwOEvjEf4G-YAMuZfUM84I06DfhF3YOxghsYd5FnzJyxhHk8nUYvQZ7g__&Key-Pair-Id=K3USGZIKWMDCSX" class="w-full h-auto block -mt-[1px]">
+                            <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/IyzOZ3GIvGQX37Ki.jpg?Expires=1780039431&Signature=WnR4MfSaPRIRN7HllgcQhysFyuXDe04jJRZ-6MqlKKbhKiv7RtgiZ2LfDuBqjzdxP257CZlfkDGRkzl8l-m~-2rdM7waitc1AgWVwQvqVMknkBiLEsBRIq6Rept7WL9UQFefzzAvyB4wd3tEqT5fOKPauwz17OJ7LkFOv4GrE~dOyTwK-StO~irIvIgHog-LzKkhcZISEuZ1YsvP-T12dc~LLwdEOewndYLAxFFLpYBzJYhaJrB1cPd4WeICMaFLJg2VSk9GlirM-dNJZTCM3fImBPoVhdAJLkhU5mv3wNPVtvTb5CkAhMFoudM90l9u9GylOdnAKM6On4B3rBCRgA__&Key-Pair-Id=K3USGZIKWMDCSX" class="w-full h-auto block -mt-[1px]">
+                        </div>
+                        </div>
+                        </div>
+<!-- 静音拨片（左侧上） -->
+                        <div class="absolute top-[130px] left-0 -translate-x-[50%] w-[3px] h-[18px] bg-[#3A3A3E] rounded-l-[1px] z-40"></div>
+                        <!-- 音量上键（左侧） -->
+                        <div class="absolute top-[173px] left-0 -translate-x-[40%] w-[3px] h-[28px] bg-[#3A3A3E] rounded-l-[1px] z-40"></div>
+                        <!-- 音量下键（左侧） -->
+                        <div class="absolute top-[213px] left-0 -translate-x-[40%] w-[3px] h-[28px] bg-[#3A3A3E] rounded-l-[1px] z-40"></div>
+                        <!-- 电源键（右侧） -->
+                        <div class="absolute top-[150px] right-0 translate-x-[40%] w-[3px] h-[65px] bg-[#3A3A3E] rounded-r-[1px] z-40"></div>
+                        <!-- 边框斜面厚度：左边缘+左上角极细亮线 -->
+                        <div class="absolute inset-0 rounded-[48px] pointer-events-none z-30" style="box-shadow: inset 1.5px 0 2px -1px rgba(255,255,255,0.12), inset 0 -1.5px 2px -1px rgba(255,255,255,0.05);"></div>
+                        <!-- Home 指示条 -->
+                        <div class="absolute bottom-[8px] left-1/2 -translate-x-1/2 w-[100px] h-[4px] bg-[#0E0E0E]/20 rounded-full z-30"></div>
+                    </div>
+                    </div>
+                    <div class="absolute top-[55%] left-[45%] -translate-x-1/2 -translate-y-1/2 w-[300px] h-[600px] bg-[#E85A2A]/5 blur-[80px] rounded-full pointer-events-none z-0"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- 第四屏：美食卡片墙 -->
+    <section id="food-cards-section" class="relative w-full bg-[#F4F2EE] px-[16px] md:px-[64px] pt-[20px] pb-[60px]">
+        <div class="max-w-7xl mx-auto">
+            <!-- 标题 -->
+            <h2 class="text-center text-3xl md:text-4xl text-[#0E0E0E] tracking-tight mb-6" style="font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif;">Find what fuels you best.</h2>
+            <!-- 呼吸灯按钮 -->
+            <div class="flex flex-col items-center mb-10 cursor-pointer">
+                <p class="text-base text-[#6B6B6B] font-medium mb-4 transition-all duration-500 hover:tracking-[0.1em] hover:text-[#C75A2A]" style="font-family:'Inter','Noto Sans SC',sans-serif;">点击查看你的食谱</p>
+                <div class="relative flex items-center justify-center w-12 h-12">
+                    <div class="absolute inset-0 bg-[#C75A2A]/30 rounded-full animate-ping"></div>
+                    <div class="relative flex items-center justify-center w-10 h-10 bg-[#C75A2A] text-white rounded-full shadow-lg transition-transform duration-300 hover:scale-110">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+                    </div>
+                </div>
+            </div>
+            <!-- 上排5张 -->
+            <div class="flex flex-wrap justify-center gap-2 mb-2 spotlight-group overflow-hidden">
+                <a href="https://www.xiaohongshu.com/explore/64b5038c000000002301c3b6" target="_blank" rel="noopener noreferrer" class="spotlight-card group flex flex-col w-52 md:w-60 bg-[#E8E6E1] rounded-2xl shadow-sm transition-all duration-500 overflow-hidden p-3">
+                    <div class="w-full h-48 md:h-52 overflow-hidden flex items-center justify-center mb-2">
+                        <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/lLepJYxHaj1k1c31.png?Expires=1780317419&Signature=qfXtl2rk5hY2MqFG90PsOwMFi3vGr6z-SxvAtczxpOGUSxW0BHN73yFquRnswEeF3IGB2Jh7dtE~6FY~~dnplRWX7o7i9T04~lzRYfKjZgvE1~4w~vjtp4vVRy6Lj1QCuVSHumpZArDALTpxnApu2mTIxOd6uDOSL61vRLPbzmT2ajfyeXCdWmfi3Khm6uoFgWdsq-TwReCHSwsmgqdGfoH6oU9OYYcOhlab-jcmXpZ11ZSREh6S--GiLFkA-lQC3dqhHSGwCWOQBDIms58-Lfw0TFJHgAPMsJmLvGIYmGYYwMlP~2Tk8YJd9oQRyxHFWBu~LAaT9C59Fd-NIi8E-A__&Key-Pair-Id=K3USGZIKWMDCSX" alt="中式腌渍水果" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110">
+                    </div>
+                    <h3 class="text-[16px] font-bold text-[#3A3A3A] text-center mb-0.5" style="font-family: 'Inter', 'Noto Sans SC', sans-serif;">中式腌渍水果</h3>
+                    <p class="text-[14px] font-medium text-[#6B6B6B] text-center" style="font-family: 'Inter Tight', 'Inter', sans-serif;">Chinese Pickled Fruit</p>
+                </a>
+                <a href="https://www.xiaohongshu.com/explore/62431b8b000000000102cce6" target="_blank" rel="noopener noreferrer" class="spotlight-card group flex flex-col w-52 md:w-60 bg-[#E8E6E1] rounded-2xl shadow-sm transition-all duration-500 overflow-hidden p-3">
+                    <div class="w-full h-48 md:h-52 overflow-hidden flex items-center justify-center mb-2">
+                        <div class="w-full h-full transition-transform duration-500 group-hover:scale-110 flex items-center justify-center"><img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/Y5eE4MtFDx3ibZfV.png?Expires=1780317419&Signature=W6dEG9jhZWF6nH8zYWf2Otql01vR959buDydG0L6SvjUJy705tZvl95djKXn4tjGzHdsMFYyu4KSY5S5Y9OC4QS1EWGxV4tELNPtziyNmnPriBX-4o02XZDAERa4Bo-yvfR3dgPBPU~MGRNiRh4ZSUott1l~K4NvMlq6Pg0waSZ2feZu~ompep2K0QA1wyjAbC2gt7qhukEV8-g8oGLwGpSy3~3mgZd1q2cy398tS5mUqQu9UtAaVmfXSatIyNOmm29SeFGaoc4B2tf1~PhSrjyOOHVejeiCYnElsO~yONaTKqNrc~b1tY4CRqfIBWlHn6FBQM-65w7luEYFGwsxbQ__&Key-Pair-Id=K3USGZIKWMDCSX" alt="巴西莓酸奶碗" class="w-full h-full object-contain scale-125"></div>
+                    </div>
+                    <h3 class="text-[16px] font-bold text-[#3A3A3A] text-center mb-0.5" style="font-family: 'Inter', 'Noto Sans SC', sans-serif;">巴西莓酸奶碗</h3>
+                    <p class="text-[14px] font-medium text-[#6B6B6B] text-center" style="font-family: 'Inter Tight', 'Inter', sans-serif;">Açaí Bowl</p>
+                </a>
+                <a href="https://www.xiaohongshu.com/explore/61998e9a0000000001028c11" target="_blank" rel="noopener noreferrer" class="spotlight-card group flex flex-col w-52 md:w-60 bg-[#E8E6E1] rounded-2xl shadow-sm transition-all duration-500 overflow-hidden p-3">
+                    <div class="w-full h-48 md:h-52 overflow-hidden flex items-center justify-center mb-2">
+                        <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/jmrJFaoroV62KJ9j.png?Expires=1780315586&Signature=iufwCfUsIwkkBWyjVaQ8kSfxjv8PV98GB62yegaMGKiBThI13KPBxe7mPY7Ye7cCgAfDrTtZrTBihhbtHrc73LVq9DYEd2p86JqkWDWspOFaT34XpxlqWziCoU95NDNdiA82gCR5I5xgCzLWwBNefi5~g0wtmViJXWDb2c3MD37t6AS7Tv-f6p-Gy1vUWUcFPFOntXbk4nwot5ujiBK5ga104jX6Vc1fveI0Dr8hQCzmYdT~MxTlrvKzc3CUye7dBMbzRir0aCaoNVbkUBJ6CdqWNbwK7ua3qXhDCIIDk~wzF24UyYU76G4q3F3ZoMlW6g31ixfVfjw8xxA9lB2NoA__&Key-Pair-Id=K3USGZIKWMDCSX" alt="香蕉磅蛋糕" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110">
+                    </div>
+                    <h3 class="text-[16px] font-bold text-[#3A3A3A] text-center mb-0.5" style="font-family: 'Inter', 'Noto Sans SC', sans-serif;">香蕉磅蛋糕</h3>
+                    <p class="text-[14px] font-medium text-[#6B6B6B] text-center" style="font-family: 'Inter Tight', 'Inter', sans-serif;">Banana Pound Cake</p>
+                </a>
+                <a href="https://www.xiaohongshu.com/explore/62fb631e000000000f015161" target="_blank" rel="noopener noreferrer" class="spotlight-card group flex flex-col w-52 md:w-60 bg-[#E8E6E1] rounded-2xl shadow-sm transition-all duration-500 overflow-hidden p-3">
+                    <div class="w-full h-48 md:h-52 overflow-hidden flex items-center justify-center mb-2">
+                        <div class="w-full h-full transition-transform duration-500 group-hover:scale-110 flex items-center justify-center"><img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/KDEpEg2lJ2uAYaJ5.png?Expires=1780316343&Signature=nt91dURra3CTedMRe2cW2Ezk1OXMKOKFQiGRnz51tL7E4~YdSqPK-6SjdNFhqI18Pu3lKYbV2krr3DEx-h7p3rlMJ7jRf0W0zuo-qOrJmSWoOIXMM-E5BJwSOI91nfT~DiMCyN9ih9IKSwRydftvtkjFIYfOKkibrQNOBVS3jM~JFUOrBMDNhBHpQT9rIcz6UZ9wqN~aqaJ2JoZZyJ1YtTkOedPnx~9jDmQ98OUyqi5SqWq3O1LsHf1RnzTFs5ntZvRbl7-pyyfZGLV7ZDxTe6qE4gXhAq0Fa6G~Q7QsQtlVP~TeAMLDrsfLjO5nTFvWg0vMFVARICbZx0F30syk6Q__&Key-Pair-Id=K3USGZIKWMDCSX" alt="三文鱼能量碗" class="w-full h-full object-contain scale-125"></div>
+                    </div>
+                    <h3 class="text-[16px] font-bold text-[#3A3A3A] text-center mb-0.5" style="font-family: 'Inter', 'Noto Sans SC', sans-serif;">三文鱼能量碗</h3>
+                    <p class="text-[14px] font-medium text-[#6B6B6B] text-center" style="font-family: 'Inter Tight', 'Inter', sans-serif;">Salmon Power Bowl</p>
+                </a>
+                <a href="https://www.xiaohongshu.com/explore/6395c784000000002203542a" target="_blank" rel="noopener noreferrer" class="spotlight-card group flex flex-col w-52 md:w-60 bg-[#E8E6E1] rounded-2xl shadow-sm transition-all duration-500 overflow-hidden p-3">
+                    <div class="w-full h-48 md:h-52 overflow-hidden flex items-center justify-center mb-2">
+                        <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/DM58zRDPAob5cWCR.png?Expires=1780315836&Signature=PgeiD-IZcxDxhQ3XZnEDuYKu41V3e-7UJHCowa4H3-G-5-nx18ApNhGILFUKYRep3VphoKSb5glqH8M6m7UKKQlhErvRtRg8g0UxrakHnmO-YlsBjjP8D4V6M4KiJkzLk5ItcTtRIbdJbl8K0hgiodmnik9bXruNC4MSiDuKOAvdXjNpy5NMDu-Ubgl7NsFSq50blhG8-kc4jaECDXFLwqNDrsYGDJ3OxaslyPyfvOWjiOLaFyI4Ru71wdVxM3GO0iTin8-duhlTV1~rDwbKI8tDIHoDoHbvnTrfFkQu2dJoZsUYpvmk9wDPfkHY239Pd~UMGBEa~jEd-QtpoH2V1Q__&Key-Pair-Id=K3USGZIKWMDCSX" alt="抹茶饼干三明治" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110">
+                    </div>
+                    <h3 class="text-[16px] font-bold text-[#3A3A3A] text-center mb-0.5" style="font-family: 'Inter', 'Noto Sans SC', sans-serif;">抹茶饼干三明治</h3>
+                    <p class="text-[14px] font-medium text-[#6B6B6B] text-center" style="font-family: 'Inter Tight', 'Inter', sans-serif;">Matcha Cookie Sandwich</p>
+                </a>
+            </div>
+            <!-- 下排4张 -->
+            <div class="flex flex-wrap justify-center gap-2 spotlight-group overflow-hidden">
+                <a href="https://www.xiaohongshu.com/explore/62fcb98800000000160308f1" target="_blank" rel="noopener noreferrer" class="spotlight-card group flex flex-col w-52 md:w-60 bg-[#E8E6E1] rounded-2xl shadow-sm transition-all duration-500 overflow-hidden p-3">
+                    <div class="w-full h-48 md:h-52 overflow-hidden flex items-center justify-center mb-2">
+                        <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/Wi3QcqL86ZThCQUq.png?Expires=1780316307&Signature=tTqotM3MmLB1xbrGxaLuSr8jd7MXDRRC1n2GAFAOQGqT6mJ~6QmSX~9MVWPO2be2wiQW4oxwYocrJrzrQHdk-~7aJ0d0T-m7JCAwu3a4QWazkoOVfuq6YrMWWqQGq4AuRmAtmcs8mCW5F~pGtcPjeDrRC~FeNWW2-wlE82Xlg5MnWYeSBexBb~dC2TH1U0mZSuXuAV51MlNyoXL6lYEz-qZX3e9Vdgxf~L7hkJYV0HCZVhOY4VbI1Qbm8YCr~JLl2BYCIQDNiR2GbxzX1ueGfLZpk4rCcT-zuIr~kL8T70Cw2rDNTVfwdetV60FwMIssIa0iTSKBIvkaqB4gFSNGoQ__&Key-Pair-Id=K3USGZIKWMDCSX" alt="越南春卷" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110">
+                    </div>
+                    <h3 class="text-[16px] font-bold text-[#3A3A3A] text-center mb-0.5" style="font-family: 'Inter', 'Noto Sans SC', sans-serif;">越南春卷</h3>
+                    <p class="text-[14px] font-medium text-[#6B6B6B] text-center" style="font-family: 'Inter Tight', 'Inter', sans-serif;">Vietnamese Spring Rolls</p>
+                </a>
+                <a href="https://www.xiaohongshu.com/explore/68f1fe9c000000000703bb7a" target="_blank" rel="noopener noreferrer" class="spotlight-card group flex flex-col w-52 md:w-60 bg-[#E8E6E1] rounded-2xl shadow-sm transition-all duration-500 overflow-hidden p-3">
+                    <div class="w-full h-48 md:h-52 overflow-hidden flex items-center justify-center mb-2">
+                        <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/rOxwHTfbJZ1nRbtI.png?Expires=1780316642&Signature=CmEYPRk6LMDRjC2qf2smK7wfpBmtG-CeGx~Ic~v0D5CXiGdstPO79x69rgcfm935nkDxCHvMasT6sXUVvxM31~I0QOfFm2PmCqJ7~JVt06PCqdXLzSN2WRjZNlnKUys-qJ~XK4lMfBlf05QoVuEPjKD-ylw-7fwMMvxM0hpICDCEvvugle5af~GVm9Dazy1lEAqf-htVtPPfcM45vzjVZsm2AqWBs1k0T8ihutTDXWn6wamEt3UHoojldbVk7bpd2rqFwEmsjXV~qfbzbAqm1R-QYS7U405iqkMlXUF-WIJiNmDSq~wC3hMNhbSNJkIg5-cuxvPq1woVkDGPYS~FHQ__&Key-Pair-Id=K3USGZIKWMDCSX" alt="辣奶油培根意面" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110">
+                    </div>
+                    <h3 class="text-[16px] font-bold text-[#3A3A3A] text-center mb-0.5" style="font-family: 'Inter', 'Noto Sans SC', sans-serif;">辣奶油培根意面</h3>
+                    <p class="text-[14px] font-medium text-[#6B6B6B] text-center" style="font-family: 'Inter Tight', 'Inter', sans-serif;">Spicy Creamy Bacon Pasta</p>
+                </a>
+                <a href="https://www.xiaohongshu.com/explore/6475c0a10000000013033d31" target="_blank" rel="noopener noreferrer" class="spotlight-card group flex flex-col w-52 md:w-60 bg-[#E8E6E1] rounded-2xl shadow-sm transition-all duration-500 overflow-hidden p-3">
+                    <div class="w-full h-48 md:h-52 overflow-hidden flex items-center justify-center mb-2">
+                        <div class="w-full h-full transition-transform duration-500 group-hover:scale-110 flex items-center justify-center"><img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/WCa58hzJ6jUsig4Z.png?Expires=1780316771&Signature=kHJco4Yjo4qehJGupiZuMT16kT7cSKADXpvvvzQy-aGtmdJCtRy5Soh70KGC4EyxzvNUz8KvP2KGX5Pc-zazuUrYruB8gm2umVClFoMjEaA0du8eTg0hLjPZ8S4Nd9500TbOm-g2pXAJ~V44l~fKKJceovQJq7iyP0y3XQPunaImgi2FhOYsChFejwZZNL9L3aAsAj9t0wk9W07QkkxH6v7smjN8LKI6Qf9K6joZ9JnP2RbjPJ9PAThK4ZgqPxQnEbEn8N2FaUtgYW9RG~GK8CfdgqP4mydmUlPTXmq-Bpsto-FoJRihSxr6H6ZyosrAd-V6GmlLv9sJc5m~9PxiTQ__&Key-Pair-Id=K3USGZIKWMDCSX" alt="酸奶青瓜沙拉" class="w-full h-full object-contain scale-125"></div>
+                    </div>
+                    <h3 class="text-[16px] font-bold text-[#3A3A3A] text-center mb-0.5" style="font-family: 'Inter', 'Noto Sans SC', sans-serif;">酸奶青瓜沙拉</h3>
+                    <p class="text-[14px] font-medium text-[#6B6B6B] text-center" style="font-family: 'Inter Tight', 'Inter', sans-serif;">Yogurt Cucumber Salad</p>
+                </a>
+                <a href="https://www.xiaohongshu.com/explore/618da923000000002103ce66" target="_blank" rel="noopener noreferrer" class="spotlight-card group flex flex-col w-52 md:w-60 bg-[#E8E6E1] rounded-2xl shadow-sm transition-all duration-500 overflow-hidden p-3">
+                    <div class="w-full h-48 md:h-52 overflow-hidden flex items-center justify-center mb-2">
+                        <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/gJiwpB6K2dkyWEBb.png?Expires=1780317806&Signature=YZAtjbtbknj3quP6tEovvTHVKleF5ZQNtZwllmPh6JEMeNHgswefrCxKwRQiI4jFVD8Eq~bnUZLj8CwEgSY7NyVqddiKE-7hW0RFirqG1HICeP4KNlET~K2yTK~o-Cp7WUrMHQPQWBZ1HevxnN9XibW7hdWgEzW7NRT6KSzXNtugMPO5iDvgyfDxlqMefDhEdfCClvLclazzi~~Fhi5yu1AMxtl47gkqiaHuehySNnB6zLElFD6Yw6i4T11bQotRJywwbiFkepIXjsXQM~GG-Gces8Wp5Z~zfg4vCp1To0KDY8nk9ZOa~xn4e497JM~RkJt-zJPKij-79W3kMg5TKQ__&Key-Pair-Id=K3USGZIKWMDCSX" alt="巧克力燕麦碗" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110">
+                    </div>
+                    <h3 class="text-[16px] font-bold text-[#3A3A3A] text-center mb-0.5" style="font-family: 'Inter', 'Noto Sans SC', sans-serif;">巧克力燕麦碗</h3>
+                    <p class="text-[14px] font-medium text-[#6B6B6B] text-center" style="font-family: 'Inter Tight', 'Inter', sans-serif;">Chocolate Oatmeal Bowl</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact 版块 -->
+    <section class="relative w-full bg-[#E8E6E1] px-[24px] md:px-[64px] mt-[100px] pt-[80px] pb-[32px] border-t border-[#DCDACF]">
+        <div class="mb-12 md:mb-16 -mt-4 text-right">
+            <h2 class="text-[22px] md:text-[32px] leading-[1.1] text-[#0E0E0E] tracking-tight font-light" style="font-family: 'Inter Tight', sans-serif;">Bring your brand to the table.</h2>
+        </div>
+        <div class="flex flex-col lg:flex-row gap-16 lg:gap-8 justify-between items-end mb-24">
+            <div class="w-full lg:w-[30%] flex flex-col justify-start gap-8 -mt-20">
+                <div class="relative w-[130px] h-[130px] flex items-center justify-center">
+                    <svg class="absolute inset-0 w-full h-full animate-spin-slow" viewBox="0 0 100 100">
+                        <path id="textPath" d="M 50, 50 m -38, 0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0" fill="none"></path>
+                        <text font-size="13.5" font-family="'Inter Tight', sans-serif" font-weight="500" fill="#C75A2A">
+                            <textPath href="#textPath" startOffset="0" textLength="238.7" lengthAdjust="spacingAndGlyphs">HAYONO &middot; HAYONO &middot; HAYONO &middot; </textPath>
+                        </text>
+                    </svg>
+                </div>
+                <div class="flex flex-col gap-10">
+                    <div>
+                        <span class="font-['JetBrains_Mono'] text-[11px] text-[#9A9A95] tracking-widest uppercase block mb-2">Email</span>
+                        <a href="mailto:3600611280@qq.com" class="text-[18px] text-[#0E0E0E] font-medium hover:text-[#C75A2A] transition-colors duration-300" style="font-family:'Inter Tight',sans-serif;">3600611280@qq.com</a>
+                    </div>
+                    <div>
+                        <span class="font-['JetBrains_Mono'] text-[11px] text-[#9A9A95] tracking-widest uppercase block mb-2">RedNote</span>
+                        <a href="#" class="text-[18px] text-[#0E0E0E] font-medium hover:text-[#C75A2A] transition-colors duration-300" style="font-family:'Inter Tight',sans-serif;">Hayono璐</a>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full lg:w-[65%] grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="relative aspect-square group cursor-pointer">
+                    <div class="absolute inset-0 border border-[#0E0E0E]/20 rounded-[16px] transition-all duration-500 ease-out overflow-hidden group-hover:inset-5 group-hover:rounded-[48px] group-hover:border-transparent">
+                        <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/3Uj2ul9dnFdQSZV2.jpg?Expires=1780293583&Signature=MJxIfqZR~VCLbtbgY12yJwkYy5NWkbsHj0JQ2xH~XbRFv~v9Dktw0PWF~ouRj4giGMMW6540SiHpGYkm7jX3JHrn6ygnFCd6uvIQEaXU1uH6wqSbeA6LtGo5~KLBTv0jHG8EJVjlT1OAE3ayM8izIxAF8xWV9mcHo2HC-td8RwDzwTaem4HG-m1O8z9~X3lAzE2b-hISEWeey0B23Jjiee0linos-~tZynl3tG-Ja3ReiHcYYxlTNtDP--TCG9yvW-bSNdWaXolKnEwcvjpbIxJXijbBkQqWECFnpb~h6ehMDSEc6chO5-MRHQ3ePdBSd~I6A2CluBgghDZ1s0HvQg__&Key-Pair-Id=K3USGZIKWMDCSX" class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500" alt="Food Styling" />
+                        <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </div>
+                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                        <span class="text-[20px] text-[#0E0E0E] group-hover:text-white transition-colors duration-500 font-medium tracking-tight" style="font-family:'Inter Tight',sans-serif;">Food Styling</span>
+                    </div>
+                </div>
+                <div class="relative aspect-square group cursor-pointer">
+                    <div class="absolute inset-0 border border-[#0E0E0E]/20 rounded-[16px] transition-all duration-500 ease-out overflow-hidden group-hover:inset-5 group-hover:rounded-[48px] group-hover:border-transparent">
+                        <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/rQoPXSUpcXVFpcjG.jpg?Expires=1780293856&Signature=BKdUuU45HotvppTfO9aj8osWshrCs1TIJNhgpxg9JFL~Hl9hw36XbKMhSTlObmcRZvRHN~zf5547ncWR~CEhN88d6fquveXHiH31qR6f5iASyk3D3-tZdRJ2C8i4veUn5aNQT~le6rg5NBExW4H-QL~PZD939P8zmVPW-Hepl95xtpBZVMrKr8bYJlZvjNkeH4vDPt13tuCSVPQDXmFAQuxkA5LXBtnW2QM6ptZP5Es~e-tlz76pssLPSQrEyTUUqYKXqhypbOpRLmlGAJ4mQLztBtASh8D2eTx3VEC3PVaUWrj~pa6J8mYPSJNfcWw786gCdDHdsk8E8HFDlGiD1A__&Key-Pair-Id=K3USGZIKWMDCSX" class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500" alt="Visual Diary" />
+                        <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </div>
+                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                        <span class="text-[20px] text-[#0E0E0E] group-hover:text-white transition-colors duration-500 font-medium tracking-tight" style="font-family:'Inter Tight',sans-serif;">Visual Diary</span>
+                    </div>
+                </div>
+                <div class="relative aspect-square group cursor-pointer">
+                    <div class="absolute inset-0 border border-[#0E0E0E]/20 rounded-[16px] transition-all duration-500 ease-out overflow-hidden group-hover:inset-5 group-hover:rounded-[48px] group-hover:border-transparent">
+                        <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/hQujZFztZTrhWU9l.jpg?Expires=1780294171&Signature=MNFh4ORWzNRHCfIUaENOAjotPXN6rstLXEKL2erPAuQFGblc6Bh~1DT6N-~dpcVv81xHd6mObUJ7u5L5v-13Mk1uAK4t3d1HNGNLhoE6EwYm12P8f5m97Ojbxu1McGnt9Quoc6KWFhme1VoJP~7z9KqUpRN-OPEl3ufko72a~FYkayb8qKgCLM8gd95h3fHxbCkl4V442sW9p3Nzbinp1fGSzDvekZoRCy81~1DjzxwTRdmBXlszETp5xihq~e9-jddnt0OAzDRa3t45Ywg5g0EewnZ5S0k9MO~~DNi~FnUGzZOMk-1LOFsQMUvS2kNEHOHIZA0hDDPf1ujG~u1wdg__&Key-Pair-Id=K3USGZIKWMDCSX" class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500" alt="Art Direction" />
+                        <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </div>
+                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                        <span class="text-[20px] text-[#0E0E0E] group-hover:text-white transition-colors duration-500 font-medium tracking-tight" style="font-family:'Inter Tight',sans-serif;">Art Direction</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="w-full flex flex-col md:flex-row justify-between items-center pt-5 border-t border-[#0E0E0E] text-[#0E0E0E]">
+            <div class="flex items-center gap-3 text-[13px] font-medium" style="font-family:'Inter Tight',sans-serif;">
+                <span class="border border-[#0E0E0E] rounded-full w-[18px] h-[18px] flex items-center justify-center text-[10px] pt-[1px]">C</span>
+                Hayono 2026. All Rights Reserved.
+            </div>
+            <div class="flex gap-8 mt-4 md:mt-0 text-[13px] font-medium text-[#6B6B6B]" style="font-family:'Inter Tight',sans-serif;">
+                <a href="#" class="hover:text-[#0E0E0E] transition-colors">Contact Us</a>
+                <a href="#" class="hover:text-[#0E0E0E] transition-colors">Privacy Policy</a>
+                <a href="#" class="hover:text-[#0E0E0E] transition-colors flex items-center gap-1">
+                    Back to Top
+                    <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    </div><!-- /#real-website -->
+
+    <!-- ====== 项目悬浮详情页 ====== -->
+    <div id="project-overlay" class="fixed inset-0 z-[100] pointer-events-none opacity-0 invisible flex items-center justify-center p-6 md:p-12 transition-all duration-700 ease-out">
+        <div id="overlay-backdrop" class="absolute inset-0 bg-[#0E0E0E]/50 backdrop-blur-sm transition-opacity duration-700 pointer-events-none"></div>
+        <div id="overlay-card" class="relative w-full max-w-6xl h-[85vh] bg-[#F4F2EE] shadow-2xl overflow-hidden transition-all duration-700 ease-out scale-95 translate-y-3 flex flex-col rounded-sm border border-[#DCDACF] pointer-events-auto" onmouseenter="keepProject()" onmouseleave="hideProject()">
+            <div class="flex-shrink-0 w-full px-8 md:px-12 py-6 flex justify-between items-center border-b border-[#DCDACF] bg-[#F4F2EE] z-10">
+                <span id="overlay-label" class="font-['JetBrains_Mono'] text-[11px] tracking-widest text-[#9A9A95] uppercase">Project</span>
+                <span id="overlay-id" class="font-['JetBrains_Mono'] text-[11px] tracking-widest text-[#9A9A95]">[01]</span>
+                <button id="overlay-close" class="absolute top-4 right-4 md:top-6 md:right-8 w-8 h-8 flex items-center justify-center text-[#0E0E0E] hover:text-[#C75A2A] transition-colors cursor-pointer z-20">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+            <div id="overlay-scroll" class="flex-1 overflow-y-auto">
+                <div id="overlay-content"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ========== 开场动画 ==========
+        const cards = document.querySelectorAll('.intro-card');
+        const introOverlay = document.getElementById('intro-overlay');
+        const introContent = document.getElementById('intro-content');
+        const realWebsite = document.getElementById('real-website');
+        let introTl;
+
+        function playIntro() {
+            if (introTl) introTl.kill();
+
+            introOverlay.style.display = 'block';
+            gsap.set(introOverlay, { opacity: 1 });
+            gsap.set(introContent, { opacity: 1 });
+            gsap.set(realWebsite, { opacity: 0, y: 40, scale: 0.98 });
+
+            const w = window.innerWidth;
+            const h = window.innerHeight;
+            const cardW = w * 0.13;
+            const cardH = w * 0.17;
+
+            gsap.set(cards, {
+                x: w / 2 - cardW / 2,
+                y: h / 2 - cardH / 2 + 140,
+                rotation: 0,
+                filter: 'grayscale(0%) opacity(1) blur(0px)',
+                scale: 0.85
+            });
+
+            introTl = gsap.timeline();
+
+            introTl.to(cards, {
+                y: h / 2 - cardH / 2,
+                scale: 1,
+                duration: 0.65,
+                stagger: 0.02,
+                ease: "power4.out"
+            });
+
+            introTl.add("scatter", "-=0.15");
+
+            cards.forEach((card, i) => {
+                const finalX = (parseFloat(card.dataset.x) / 100) * w - (cardW / 2);
+                const finalY = (parseFloat(card.dataset.y) / 100) * h - (cardH / 2);
+
+                introTl.to(card, {
+                    x: finalX,
+                    y: finalY,
+                    rotation: (i) => -5 + Math.random() * 10,
+                    scale: 1,
+                    duration: 2.8,
+                    ease: "expo.out"
+                }, "scatter");
+
+                introTl.to(card, {
+                    filter: 'grayscale(100%) opacity(0.2) blur(3px)',
+                    duration: 1.2,
+                    ease: "power2.inOut"
+                }, "scatter+=1.2");
+            });
+
+            introTl.to(introContent, {
+                opacity: 0,
+                duration: 0.5,
+                ease: "power2.inOut"
+            }, "scatter+=3.0");
+
+            introTl.to(introOverlay, {
+                opacity: 0,
+                duration: 1.0,
+                ease: "power2.inOut",
+                onComplete: () => {
+                    introOverlay.style.display = 'none';
+                }
+            }, "+=0.1");
+
+            introTl.to(realWebsite, {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                duration: 1.0,
+                ease: "power3.out"
+            }, "<");
+        }
+
+        window.onload = playIntro;
+
+        // ========== 手机内图片垂直滚动（5张滚完跳回） ==========
+        const phoneInner = document.getElementById('phone-scroll-inner');
+        if (phoneInner) {
+            const phoneViewH = 568; // screen inner height approx
+            const phoneTotalH = phoneInner.scrollHeight;
+            const phoneMaxScroll = phoneTotalH - phoneViewH;
+            let phoneY = 0;
+            const phoneSpeed = 0.5;
+
+            function phoneScrollLoop() {
+                phoneY -= phoneSpeed;
+                if (phoneY <= -phoneMaxScroll) {
+                    phoneY = 0;
+                }
+                phoneInner.style.transform = `translateY(${phoneY}px)`;
+                requestAnimationFrame(phoneScrollLoop);
+            }
+            requestAnimationFrame(phoneScrollLoop);
+        }
+
+        // ========== 第2屏：暖调图片水平匀速滚动 ==========
+        gsap.to('.scroll-track', {
+            xPercent: -50,
+            ease: "none",
+            duration: 52,
+            repeat: -1
+        });
+
+
+        // ========== 第2屏文字入场 ==========
+        gsap.from('.screen2-text > *', {
+            y: 30,
+            opacity: 0,
+            duration: 1,
+            stagger: 0.15,
+            ease: "power3.out",
+            delay: 0.5
+        });
+
+
+        const experienceImg = document.getElementById('experience-slideshow');
+        if (experienceImg) {
+            const experienceImages = [
+                'https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/72zscMMj58httZQn.jpg?Expires=1779961567&Signature=oSqO7F8TwFwhM9lYKSxSDfJOaX9-U7sAoq4IDiPdmjrsn6oaBvM23NNrOMjGnWthhh4Q8ERVRmKsAIINkQZBRs5qP9CaYVZM24qpJrV7HxFbzgbl5Ad6HkclwIpRdy7d~AO1-HQu8wLXzWviRaYO45UL62Z7vu~0KmhH6F718yl2zbCE1hkxvk0f3oQhVxkpO9W3KSR1O7oF~B~nX~iRPfKmsvQiNwZK0z3-4DscjGd5nifAloq3bntlEiDfnpHGTWSoNZIZUFWBClTOyHv7lBInyly3LdApTbVIb5hqqs8Ui9JJufHCcgI~k9BFNBy1ulH-OrJqK2JC17nhCe2ilw__&Key-Pair-Id=K3USGZIKWMDCSX',
+                'https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/jjBXM166Ks02G0pF.JPG?Expires=1779961567&Signature=g2~KjMGrxHUss07Mmu~Tnsc~2Q4CBD40d3MLMwHvImqAFM-AEC~I63lVxdgn-JNwydPfZYzMoLGa5RROhMDpQCKe6m~H3NocN0GKrQ9NF44yAG-ufI~OtUZI2ndNEcuCeXZGrpkAXB5Jq7xDsmTArqzI8g6mX209vkWq3pubBlPElKXcEj6Hwwb7VHFOF3x4935r16T7vlqG4yCtaqMv3EFBPZ3aGsZphNqmD1Z19V2P6G6CTzg4uhPF-SU0uo~hSL8tVTJqEQvu1ACal7lhC2IskzDi40wjoL~pIfObLjHji~7ywU44Xk8uor7kDpgA8e1DYHdkGHSrrX7r7WqKBw__&Key-Pair-Id=K3USGZIKWMDCSX',
+                'https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/doqlP7OIps3wkuE3.jpg?Expires=1779961567&Signature=u-y2LXf3gO~XqK0YKFLVA4GhrPQ-8OMN8pw5KUysQ4pgta-v1oC~GtBk87eopTuI4~213K0jcqwsawNbZc6SC-BbBXfq9v00awFhNt5VES6y8WGM6QP2gbC0R69uxvC8yrFdJ-SipVCUYx~n-VpsNEQz2iQPqwPzTzpNGdpc~xUflN5U6TLQRDwJwBKewxgZW-UI1jydrdlpNUuujjto4i2ubJeoTp~Cwr03epUITqcBlehQLHjvC8x7ojHC-Ea-U2TsltyRlFNgPzfBZr66TO7xCpg7FZU0vjMwIZCFbCqj-x~rjRn6kEVt7apfy6ZKyT0VKVt82PM0OUAuIH9uhQ__&Key-Pair-Id=K3USGZIKWMDCSX',
+                'https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/xcQVZZMCjE9cp9WF.jpg?Expires=1779961567&Signature=jlGnFAkfA70ewOUYYNsFRKxf3zOFoyU5Y7gcZyiLVPWJyPdATImQws-CzN8yADfTd6Bs46CcIfaF1tSDuvlo-91iOaivyVKFh7OIG6ZFEamLlOR1fL6Urg1z0umjJF4qwNqbRx6H5WNUGwTSTBpU5EgJXVXOTGqv7DxumXKZzKH0prpaXY0DWipBvb7y1rUlqpVV7GP6jquqH8aKlAT5BGOVuS-1ocKM7rLer0GgOmcO43nHx9d8dwG7Lb9Xa~3agSwqd3gMJsyPXMUBWH3GjVrDXKwhX8rYAVWDZgNouH0Ic76q4v5HYJA5BSPUMj~1NYup302RAnACgYcWNJzW1w__&Key-Pair-Id=K3USGZIKWMDCSX'
+            ];
+            let expIndex = 0;
+            setInterval(() => {
+                expIndex = (expIndex + 1) % experienceImages.length;
+                experienceImg.src = experienceImages[expIndex];
+            }, 1500);
+        }
+
+        // ========== 02号位切换图 ==========
+        const switchingImg = document.getElementById('switching-img');
+        if (switchingImg) {
+            const switchingImages = [
+                'https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/7cxQvVpyWxkIeCxV.jpg?Expires=1780827228&Signature=CVOeN251FqdNFbcXuUmiDV0kgyx4KWR6kOmTxZVlgYkeOgJozoA7o~48hm~QmqH2AqPZczasb0gIiDdakv6o-OV2qrSwMGKc8hDQaOw~okMDWgJDTeCp3DXoai9Zz4W66vRmqzMfuGN1O9pVgG2pU4OkbOGEK5elCOJpOcJAnoD-irumLXwP2O3MEfXUYmGRBxUexmtNzEwSI92ltWpc41ksVHgHikCTHKHXbwP0YAXRag0yHObSeqDHfSi8iRtszvuMn003adRKzg698LvGJtX-~cw86-ixp6meVG45MCP3qVTEWljfvQumXGSgiSbvlrWnwYabH-TrrsSjmtqmfw__&Key-Pair-Id=K3USGZIKWMDCSX',
+                'https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/avfIoZfV4zIfmbnW.jpg?Expires=1780827228&Signature=W8~5VNaoog2C~CzacUYB3Qv52smPwPl2BCbb1okknFm87vPjCqghQnaY7pjLoFEJRMkESFNaw9PU082gUOmLjY~glpELVvBeC2w9HPNdk~07ssCcjpsGVt2r7yVbMp7vwn6ylrr5OO6zwD7N7PV4AmBvzuzKInmBnpKgHU4oddrbdWQaX53vt99b7NAHfqdy9BbCx-~YBXnBClEgR03HontXrbOfGfGIT5EXnjBltI7qNdLlZx79DedtuGfypTyKzA~CjWd2BIXJ8~0REmcVOCpCgiBDXkoVQuIKsFhgdUGeSza6ycM0~Qd0DLNk5EXm0Zp5Iyb5JR-~fIhHyhXyOQ__&Key-Pair-Id=K3USGZIKWMDCSX',
+                'https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/Mb6I9fpRkKcIugBv.jpg?Expires=1780827228&Signature=Hm8DU7OkdhaFgR6nmLUJQgjQm96bUqxJWIYqeb~DaQPAyioSrtAGrIHyt3s9KlVW2Lwddgsj1TiZj1l7-~cuZ8JejOlyCjdIAIhbyMOlTe073YuHUDXuzK8X2AzIThuLU5-PjLMMuUO9OxWtpyjpRiJHxRZ1-MnMHFwvhPN5c66hboLZMk-qspz5Hky1cF4Lk9yISEHgPo-pcD7aw-soV~AdSRbkWlNoj1W4dicV6g3FB5EvxKi9L3juFbNmYI7tFoexUyXIZ9a9F~OE3aWSGRQaGTBJBWjg9XQloxs3rK3hB8VYP0noU0cVJ9nST1AKH~~DkLLgMnYW2ieSzTSoXw__&Key-Pair-Id=K3USGZIKWMDCSX',
+                'https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/iutAJv1j53BdSsbI.png?Expires=1780827228&Signature=ER~QZD~RW~IXHM3W2ztOH-JYbesbkupGA1lvsfh37BTcobLgeU6puxJ8LpyQzZZwMTuahRtBlZv0QvIV~W~xpQr~RYtlQT1vluboi7ffJWhdoZeW5hykFEQel8ImjFTDXowgFXy7Xkm5xR-lu28~ti2QNOaiVS9ACdG4czqvnCqlUYMstlpblK7b7-ddYf4TL4tlcZaTYHZRq7JuXqjPgtCp1Y4V8l5q5XUHuiwUvYFHuo0D9EQ4qX3kef7c90M05wpKloFkxMt1a2661QvypEpywyFVYl1BEafyfnc97eHPJ9dqiFShacFIsEECdmBKTRJEztC5R~smVUnE1GJz6w__&Key-Pair-Id=K3USGZIKWMDCSX',
+                'https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/3Ytt796TTFM2YyYp.jpg?Expires=1780827228&Signature=WijJhLRXDGrpfy5fq8VtKyH06sYeOKNngZWsignKKX~zFG8vJaEgMkczpIHs7a2Xz9FCz7Rxd4gsOO9nw5EewARjMR9GmSaw4qxTg1kAdGpT-HV2suJUGvQ-HYeMSCNPtwkH31u9wqfCdF~JUpqKzn2ZDtyE~xkgydy4TvlH6xuX035s3qMWHzImg5BwjU8xhb43-Lyn64McOhXRh5FvwnadzPfeL9O~ISmFc4pEi8I18iCzW1zW-tdj9DpM4FH0Mo2OT6qm8~F3Xs9ziJ1Kbg18D1r3bCS1eDVP2v3bP55CVs0Rsf5hxEjwhbAEOLouMzFkRjwNiwsgj4ti3qUJpw__&Key-Pair-Id=K3USGZIKWMDCSX',
+                'https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/zkczRbI1v8wXnGng.jpg?Expires=1780827229&Signature=GZ4duhhMsadLO-VtieUMOhJj8~1wEBQnDaX8~6Jps86Wcid~osvh4S6ahjeUPoCBI6PySvq0aau2Td3Osw1XfNEjsvqIHGhf9M3MCF1Lt7LUGY4Ms8n8MLkWRgw8ymhMttzUWBNYwH2t0T7i572dwLEWbDzJKuMj76rEYJOrCPfkxFEaM9oMjk7D1RV0XooNHFeXr44GOmgImm3GH13zcH6n~eVemt~cTWUcsnLi1bfgWWCkJ2BVwVp4DOISXzL8UfdKuCmLy9q-eZGcE6HhhDrZDnEMaOKrMtW992Uv60CPL3OTc3g1RRaRru2OLfVQhy3y0CR7-FAFkHe2CpN6qA__&Key-Pair-Id=K3USGZIKWMDCSX',
+                'https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/iT16aK2bM1JPjurv.jpg?Expires=1780827229&Signature=fCWvorgUsUtA6DqcMQ7imSiXvDW9fsDrATD9WcjBZ74HfrhoZ2UTUqm5w5B0UlE6WMtV~m0ypW0pMblfy6Ahs6B0mTNv7mwUb640DLlLzU4oGQ4-4mCGQEMKSP5ojacdIHMu30J7UAt2QHjHCPqEibsHBB8FRUmiYCjOX9i6pj-5lSiF4hQCO8aAto2qdsIjbhzyRf7BbmTBIpw97DL64kVJpc6LbxCZGYzYZNxd09YpyIBUg4tedmks33kZvnjjqtQrnvCeOQLclZ2YdoPXTorj2K39NrJYSyaFmkcuoG4pvjflTsQPFTDc3ZqK9zQuWKR4vD6g850go0re4XDp1g__&Key-Pair-Id=K3USGZIKWMDCSX',
+                'https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/QObPUGS3XBwsm3zZ.JPG?Expires=1780827229&Signature=oHB0b3oHRC6Quu2zkhDIPvhy7fCZVuE~swZp1Bc2G1EPllEwBhRW0eOXdxLJxJc2KE2zHzzEe3HnbCrAD9A0Fpxlz4waAsDgdVNtiX45KsGwRHWIa9kjcYZnCyzuDvRX0cWp75ag71hqUle2BvewoptwLz85Z-lKRETYLxq9EYGVjxMwLLwtFF~xWGlWpSk-818poPWnJVd~rmHeFwP1SA9FhNhzVpdskcDxa1Z1p0YadD7KK2i78gLx5pOERxIZ1njyx8Sbghgz7EiLjlyvMPDirdmhG0mNnKx8~S7A7En39DKuRZA0mpaCgv4Z~nxd4F8RmfX8yP6AAnHs4OWmVA__&Key-Pair-Id=K3USGZIKWMDCSX',
+                'https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/SIxR2YNWJ2ZVAXTE.jpg?Expires=1780827229&Signature=hYLcgu0bHKoioQ-ZZfnJkbMygPAzCiw2HCo3i6qpwJRQzwIt66YBggB0-HkCsBaTnLSouQfWaDeY~wpIphRtLWAsvA5q5Xa2TwllIK4KuOA78zSAxhcHmnAeyGiHa75TRUijGPBMGLWRAEhPawZv4RzN4MUmh7KQbbVGXjkEEMcBSdG3r64tSzmrV3EXChwzCJ2K8BRIE6m29thMR1cI~F8z1DCym-bFGrDKDb525CKMfodI21wBbcUc7AmHkhgxZD7hJAv839sOyzi-7p4qMif3zVGkr51jsX-DDPp14eKxaC4inTNAtQeJhuMb9hofkgJp-WVT76S1xWqpLdprTQ__&Key-Pair-Id=K3USGZIKWMDCSX',
+                'https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/FwkZHsqem4VassFp.JPG?Expires=1780827286&Signature=NHaOT7QBtLshxDoOyI~On7cAcWAJMgi82A~9VnqQ~54PyE3CJqIvHkkNqSQix1XjzQ1UPy80QuQwqZzptftf1wpN5kawxilCZsqx6lo6kaaiTRxY5upNA4L2G3v7BiKlvazyIPD-hyK6dEwlJAe1U9sD0IP~KtcoPwsD-eYharUMEMz~eqiEsQ4MXNfQaxSrUXmPItfwywb-oKnQXOt~6mX9lHNIveNxsXzzLVfkOKpzHaxR~H9yEwslevNe-7DnmR~NgOwxIHur6zMEp58-UCmaiSi88X8cRiBtC8836KN8l-hchBfYRwUSw-50UsmjIxf-83XAdc2Fy1UysGnfAw__&Key-Pair-Id=K3USGZIKWMDCSX',
+                'https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/161SIl1daqDhnqLv.JPG?Expires=1780827347&Signature=TtdErk6Xgg8efOJxfubRPPnHAk-DF2Ade0F~6Bm9pwUuqhnvqRWJWTgkXXLlCmts-GwYvXyY9N06DE7xEd6BGF-qzGEA4aW5INXZqRzeyPSWSm3f04Qz-cIvxA9GK-rVK8db1f6SFY7bLxUUGW5Tzi9RfWpJaxPHALEC2XJuD8uoRt9GY-Xa2k4R5pbXf9y4ysedL6pjhjco8SyQusCEsfnVTU7ipjPlQPw--9Bv218bkd6OP11GlWlSY7nIMozuiPj8iuuW8M-atA94Otdvi6zf~M9HB4xPABlFcFa70p7N9AQIH~yT3r-8NPsw7fiuUjFo7cdzGpZcu60poHnY-Q__&Key-Pair-Id=K3USGZIKWMDCSX',
+                'https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/AtwDKED08SHhrleI.JPG?Expires=1780827347&Signature=Lk-clxAM2O4tDWu8HO6IUATWUtAstqkIU-EDdZyNdR6ryIp865oXpIb1IANleHu9UhD~fDToXcnT5udri2vjPaZX-CUr3~IPCWiZTJtE79be9m1yGjc4POI5UvS41a-070DQ7EqsxXqNcbjX6OakHEOVaR7VP84tp89qGbuMRLAC~6k5nlQx4Mhkx-jsE8TMELPAJKA~bAj~~sxgMCj5xN6~oC2QYse6BE3qJi1BIT9g9MayjEUGGb1nN4fO2cb7gGl1E28BIYlayQ8jl7j6YrY2xMG9dbNR4vPW-7QOiA~aP645MzTZxpS7ZuxuwMlvnfwTgJHcno8p2tPvD7u2PQ__&Key-Pair-Id=K3USGZIKWMDCSX',
+                'https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/YzrUhnAiUv92a74g.jpg?Expires=1780827347&Signature=X1CVV4HEKUmSmN5kK3reFBhYD~EL9kWmyLRVqyOwwVSJoG1xSBvpP21xvP0WCoyRdYcy~8j7j46vZd~VvGCydoYqYkbyQNIKPMMM6OgFX7ICs4EC3y5UG0ObLf7qMmps-hd6b0BrPZnVH62FF75JSo-9SpxIulepYlzA8QTL7TbwmrRFBRB4iuaqpX4LlTtfxwI9hLY~wJfzYx3cMu-NkrF33xswb18Vjv~s1FSQJkhLCgKSo6EQvr6vcH35ggBN0eqcRv-f0Ro43wIgnR6akWhTgHWmb1N~IOKWGQFU-5Jun36SNFCmJM5NaAfKOnWNMBBM6Ms27zIrZmmrk5MATA__&Key-Pair-Id=K3USGZIKWMDCSX',
+                'https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/Oq0D32PvjBJqWiQ6.jpg?Expires=1780827347&Signature=XXEagiRpNoGGu9~xedeegDWtv7qMjk5WLqOPgz-UcoZrR0r~3VJ1lOaNbVn5Sfu8dqig~lD2gAvmH9iPv~6gMKWFYnpu-CmzDzJw6pfWObcYvXnSbskTz5eXTUQg8umKNJGDOVrwJEB~25VUsAqoiyNFdeuV7gEorjYmDZgPbg9Mx3uqJ-lQCn-SgGckP3XDSs-V4Tikj6zfa1KgpMOoN4P3Iy1rS92T63hbEgTwA3~HBTXC3BQhakRodEiQO7PGgWpvdRdxz2xidukNtl9wkPwdaPxdZAJugSZLdZgZtH2HSeLI8E7S-zOWCzcPktWdd7iD8Wm7tbmMnYBkL6Pqvg__&Key-Pair-Id=K3USGZIKWMDCSX',
+                'https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/ZAQ1iwTUrYnjtTot.jpg?Expires=1780827347&Signature=g0nLOIALShzOYNo7RHImf8dGI~halYFSCzAx6zn5Rsju3O5IRENzeAinSqI-DCj1xBtAn7z4uB67WqUOxos8q1CPXXuYn9nFFJP5gg4MhEDxVCMikNwZpMjw7JMV-L24nOduKABnubuLfRSZNEj9djvXeALv1zRLG-4QecykXVWrhBOG2em2dDGjDRbkrdHAqw2T~LnOZiXpHFiJ6NXHH49xMTmdckX28Skbiwza~zKsAo50wRdWx7vrPuYaxUHprFHztyf5J-QFpc62eK1eHlQPhuuuN52mvQewrtGxoaKaNfsrJnREjVPeOhG8L~iZAfSOmiDAtVgAYFf7JD0~xA__&Key-Pair-Id=K3USGZIKWMDCSX'
+            ];
+            let switchIdx = 0;
+            setInterval(function() {
+                switchIdx = (switchIdx + 1) % switchingImages.length;
+                switchingImg.src = switchingImages[switchIdx];
+            }, 500);
+        }
+
+        // ========== 项目悬浮详情页 ==========
+        const projectData = [
+            {
+                id: '01',
+                enLabel: 'Visual Upgrade',
+                subtitle: '百年老洋房咖啡馆',
+                headline: '重塑复古咖啡馆的感官体验，完成全维度的<span class="text-[#C75A2A] italic">视觉升级</span>',
+                details: '完成从建筑空间到产品线的全方位升级。通过复古调饮与沉浸式策展，将音乐与味蕾深度结合，传递独特的城市文化魅力。',
+                points: [
+                    '建筑空间的审美焕新与场景重塑',
+                    '茶、果、咖、酒混调新品深度研发',
+                    '传递城市文化魅力的沉浸式盛宴'
+                ],
+                gallery: {
+                    interior: 'https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/bIXa39iQUegQrLv8.jpg?Expires=1780385977&Signature=ZlC2-MRHD5GFpSlcUnvmyxroF19jB0H2Y6SWlGHP9mEnq36J~6Tx97YWtIXKYwZ2yRZUKGm7MdHbnPsfuDagubWIW1hatAyOmeqvVne-rVoPaUjmG323YIBN7ZgMre7mXw-~e7Y1Qa~VVmS4ei--PaotE331yparO5vtsFCCwQW8gVPm5yvxjyuz4EQYu11HM~4sVs1TPNUvoquWaS-UYPHaGMB5eIxxP6rOiEXU2iCsht5w9VyPC~ioprsxS~dVgzEeFxISlOe2wFiMDsmwet-PMXGWqVxIxqSdfNc1Gp4uMmeFdqObS7dHn8DwcVS4q-N4BUVXKbtpR2VcxYhDGA__&Key-Pair-Id=K3USGZIKWMDCSX',
+                    table: 'https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/gAHsCoxrSmEk5lcr.jpg?Expires=1780386226&Signature=HOthd6xB5~ao-4v8vKShWPbUGlp7TzjCyXZQfBfoA2whl4MuX9-ohiJtwCI7E~rVBoY7TIT8dndU4CEvIFF3pdckQbRS6AQ0ey9~Xw09F907A9Uq0V48EzvZAD26Bf3OPK251~96DTR2LKVUVTzelNgXk5As2ZYlxQson1rBbYRnml9QYqjrPUZ20K4EYqk2bpzY9lRT-H1KpgwKyZypt-MqInybFNinNVDDxSWEio1IKsRwsMnSrUIyJNsMPv2AtqeRopfb~OuB5IjoWbF0Vj2HLzsWO~HRfYs4kB5ZECa4jsuKEWjrobT8hTET-3aNuaMfG~QqigBfm9OtDXv0Fw__&Key-Pair-Id=K3USGZIKWMDCSX',
+                    tablecloth: 'https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/5g0XYgTaDH7IEj1S.JPG?Expires=1780386109&Signature=j5IXnQMsYgJ~DBMg59YuEtksc9UE-56nWGrc0MkgC7~lWW~apBvBTN9VsfviHG8ASJNO6aA2AdxLKkBq9O03zOODXYhfclGjgJHsJPrH-p4PpEeKR-9QnfP847oJ0OOjOcQK4SAopu1T3a6-8BFtMtOA0lWu0ItG96TqmHEpuzk4HHXNaxturqQn-jWXsY5sbnD3wqvPOePY8LdTTvM912LPzYELcHO92pN1VTsyNXRhBQTYNhtEOr9be8rdWiP71Xf7imuZ3IJpgnGe~tVHA8TXad6RkaEYbcVoZDIrM43J4gADxdRD4r0LbxIzvFp7pxWndZmgnw4gNpVFecMDqg__&Key-Pair-Id=K3USGZIKWMDCSX',
+                    tart: 'https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/WURwMTrsHMaIRkvE.JPG?Expires=1780386194&Signature=nCSI-jDSjD7Ksrk-DKXmKz3GcQh3nhj~OSz4IiHWCIq4QLG30~FJTRYsoWX7vkvwL-VT8OJdTnHhWGH-~eGXCBJMzzGO5nAvtzUeDvits9DWpv5N4bKN7cOa~fvhos8r9L9DsShZWMBMIcDkwgc6UCyEw1Mujsi2Qa5i30Wx-qtjge2DaJTh~N1lDHLaJ886kHCDJ3clCdDF7~J~vzBUhR9hanrkTHVCh2DWR2Vi0UH955saFbfhdx8ThbXYbl3jLHO4pD2LbDu5I~RpQdV5-XBJZvjBXjeUusivdKwToV4vg1vxZEI9LLIE1a5bNXJHVffouy1gyaU176EKhiVzMA__&Key-Pair-Id=K3USGZIKWMDCSX',
+                    wineGlass: 'https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/LjcwhTQn1S0qrfKD.JPG?Expires=1780386815&Signature=ZgacYApHrnk-iD6e58jKz5irC2DoaEmVq7mYvuv7EWOG2sgfnTa6x~JGiFqB~xW940LYBsXVTXXSyTOeljd7ulOVcusGRdCH1B8VKMeet~WKblwLd0Il4XOGBfq9~06FlcNgX7xay1qxSgkJJNxF5Me4~XyCsfC7-UGRDcwsPdaLNMKMq-9gYPLJNe6Xk86wdxo53z6wDVlrtk4jXDvAMYi83RB2boOhxhYyv7Uv9w6tOZq08~QAzZDi3KpPuCWVhTzqlrxqPM-Zz~7jkuXpYdDzNbdlU~B37Z7DfS7jfS4xpZ~lBPpwjQZ-6ClIdd8f1KZ6ojNzD1VghqmVxKtfdw__&Key-Pair-Id=K3USGZIKWMDCSX'
+                }
+            },
+            {
+                id: '02',
+                enLabel: 'Chinese Tea',
+                subtitle: '新中式茶饮品牌',
+                headline: '从零构建新中式茶饮体系，打造沉浸式<span class="text-[#C75A2A] italic">茶饮美学</span>',
+                details: '深入门店实际运营，提供从产品打样、味型定量到 SOP 现场教学的完整闭环。同步负责器皿美学搭配与核心食材供应链筛选，并建立每季度菜单迭代机制，确保品牌持续的生命力。',
+                points: [
+                    '全案产品打样与味型定量设计',
+                    '器皿美学搭配与核心供应链筛选',
+                    'SOP现场教学与季度菜单迭代机制'
+                ],
+                gallery: [
+                    'https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/fS23Yu3j3jAUQHQ5.jpg?Expires=1780389174&Signature=oiisHNmfcTe5lEX-0xkmFuUO9i7sr7NZTiF5fE-UGTBMSp3TOSBNV15YD~fgQa-pEpD8Wr55x2zyiVQXcxvjd6YruIGpO1tm5y8SN75VvcGsqSD2rD2FXKMdFyiFDlxcB2V6m1TwPVj0knN5ECC8mHiEJGvHK0FSZkzdcpBUTIxKuIFyvxHioYwColTaBfaTR0ea1zbdue7ZTtV07B~lvivjtk2dnV71ACciBOgY~WH8wn46ao164xxgoejFdjz4s75L0ZU06RrQhJfXvXsQOgMfOnTJdxHi5fdXA9fmNzwFhdjiTPPYus5fLMYzvyANKk3JfH3PEixeiDZARNxdhA__&Key-Pair-Id=K3USGZIKWMDCSX',
+                    'https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/zBGhWwwHc6nahPpf.jpg?Expires=1780389174&Signature=tq2qM6G3nKW57t-WggM2n0ykWogerjdtVBraDbz4ejMh4mmTouEppDw7nW7JrU21nP0OTDEJ4cSs~TTsmhcf0J0q0gzowbYhC38uSZwPbmzVJjl3DEseVXZb9A7~HPixO2wS7halXUYsGmPha50ioGVO-WKYm1ot7Sw8DNyREgLaHbb5pI-1711b3C~PeW7U~DS7OvJDcMbI-v-1IMGI4aGJUubJhORJVgGDeSO7Gs3FXxE2NCdhAVbmkI3iGBnX85ah2wPQ3HFG7d8BRJwospnlrC-H1hzQjfXuXTKfU4ZODOSYJesrsdO-gK1-0H88noceJGQ34M3vNv1Qon4LkQ__&Key-Pair-Id=K3USGZIKWMDCSX',
+                    'https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/qtGkDbQywLyzBrUv.jpg?Expires=1780389174&Signature=XuRjJTUyCplApeqPeYQpK75gVkbNRp913NaHeh3o4sCl79F-sGXd0GuCvmpmvyum8tIY5eu85eYBWdu3Il6YJPoJju02oq4X0vfYRG9SS0ALtD7vpaYT1c6H1yqGi89NBr4awudzfW0LizEYcalJpwJlrRH68oeVz2918-ri77Z3wS~xGWsaQZ5TZKoS0nfcgCD8iM4yr3liYbf0hyfaj~gL82jcQaQlN4vJBT6wT1DtljLY9otx5VgGKgaw~LV7pLPFboLdiNAM90ugr6RlW8XHh4SzKdhOxoWebEOQWXcSV0ffse227wwg3W60gEz14zo6HjYPJw3XIdbwe1dIDQ__&Key-Pair-Id=K3USGZIKWMDCSX',
+                    'https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/6K2ENr4JKSmCMSRD.jpg?Expires=1780389174&Signature=AX3phl-HCAmVPnPd2iodkMX2j55UvpPOm-9ipqJI6Fj281wt8PIqNrQKOs22NJ3-Cktmimo6LkmkNJBEL04MNmugHUsAXyri84yxiB3pal9W~UMcX~2lRB~w~T2cGE8MN5yZBcG62Ev7k4bABew6QKdBdyImabbbWytZADU96ZOtxvFG13KbWLRZN27KyZOsmONY2earO9u-ZtxeXfMW5WC-BoRKE~-QgTpFVJAJ1cSXLlfELxDgtGCEQ0LuhP9XYxpy72zwsenMucmJW1wYNqtMVnluuVRQ05Dc7IuDauMZnXDvQtjfv3EG1QT3iIQLyAGrWBmMvX~~3VHUGzmhqg__&Key-Pair-Id=K3USGZIKWMDCSX',
+                    'https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/YZTbyoArPHRP6TeG.jpg?Expires=1780389174&Signature=MPO6hCitmB75wC-3vRNo2x-MTlgUKaH6CBMwhED3~M3qoy1c65Bn0arIap3ed4H3K7lTKBErH7wLPilzwWUuA5AWb6cqCmZg1mDZnRFvMeq0qe~iv-A4~HJ139xQjfBb6FxrqjV22WPquWrjmkCtvKa48R3u3wQoSXQurEIlqyGQf6sSbNdThLJeB5hNkV1OFxivk28g2bIYkffKxKWN1UjDigJH6J9FQscyUYx2gloD5FBE4ohurOjWZd3zUvrnLv0MeDO0Omneae3sWlZhZ4lQt5L2ezn6XL7EVGvUsXeaOvJRt9k9XBg61Lkk6ECUrV6YKcIRd2pmWB0rCH2vPA__&Key-Pair-Id=K3USGZIKWMDCSX'
+                ]
+            },
+            {
+                id: '03',
+                enLabel: 'Camping',
+                subtitle: '防空洞露营基地',
+                headline: '打破常规空间限制，打造极具反差感的<span class="text-[#C75A2A] italic">青年文化聚集地</span>',
+                details: '以音乐与美食为核心媒介，为这处独特的地下空间设计全线餐品与特调饮品。结合防空洞的冷峻属性，定制专属菜单与摆盘视觉，让每一道出品都自带极强的社交传播力。',
+                points: [
+                    '防空洞冷峻属性与户外露营的碰撞',
+                    '全线餐品与特调饮品的深度定制',
+                    '自带社交传播力的摆盘视觉设计'
+                ],
+                gallery: [
+                    'https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/FMxqQl1bSo2BvmWt.JPG?Expires=1780389881&Signature=OsUtZiNHYzMS2mLGdjgFZ~F3GyXPSjnhMUoHCRyhFOZ4oX5vFrz1LnQzbI~u1wncTI48jVeIR62lW-7NFzIvOcY3A91P-F89hbEopqMzIM1EeSxG2eyTuHinx6COfX-06hfZnihsso6CZ4OkRFYWR~zzBprTOl4hWhvoefysCVTdZ0dYSCoakDS3kY7OXJzRni-9vQ3mP3yYVncfdSaVo3ogJvWP4NaNy2Asf~ObDOAHdZIGRy~0EACDMjlmsCUMAwZ6X63-fta2jG~H~YtQFsYNRgJQODJqKEG4qsCIebqmCKCon1cH1nxKWQ20fQ2fYjdo0HpVo5lGHTd6xSUepA__&Key-Pair-Id=K3USGZIKWMDCSX',
+                    'https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/exhIpfZMiirypaIa.JPG?Expires=1780389959&Signature=ro6wZNLAFRa0hHC32Rbml2PpZ2ryDq-9LWyp61IrzbvfrqcGaDCawdMfptBfTmGMAz~6y5o2B65TBdgCmKeJEFxgM8pUYEMiKp69gm7fr3UykW-oVcSPNJs12yE5kGduqnlnxlwvJrcF1Tp13TiGxAo7fhCP3aN9yDaPsMuB33FrbYc9Wa6cXzvVATf7NlH~zCM2uzgtC1B-encGJxo3WMMmWcvMWEIo7M4v977pF1NDZ2b74MPIWvL428rVl5giP9DeLrPS24OmoVpk1QvqZuuWaBVUyi4ptMRQtRlMwEVqrIMo~sosHPD0D2fxyEpd36lNsttzIOW1dQZb0zF7Zg__&Key-Pair-Id=K3USGZIKWMDCSX',
+                    'https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/IS5Cz642zdGsq54V.JPG?Expires=1780389881&Signature=FTkPxTF8jFCn16MUj8oQSyF1V3mWUMcr9kiJi5scxQr8mnxZpogOV5KojJ~mncZm7cFY~~usg8mN9xQDwC0codUyqgm6W79nPAOrMMkGPIIL3UCHABnly4-2zUQ6xoZfNVq8gRoGhcD8agUft-mGNlb90B6eDx0GO~0JxV46eSuLc7TllfLkEkmX1fW84jDrl4ILNjSNmHMWySKT1dgWEZ2rMm5e1a0lqn2~LLuS2bu2x-PstdZvQmFru-lOKfHnf98a7F4FnnTGJis7lnxiOIbKynHkLKnW0ckCfX-w2FtisVdVjz72a~UVSu6WhTG8BpAnG8-Scy4~OxiPgr~3Dw__&Key-Pair-Id=K3USGZIKWMDCSX',
+                    'https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/znto3gaxJFGOVrdi.JPG?Expires=1780389959&Signature=gvGC6E37oTzyLq4Y7549eL1odceLGoCrcZbvpzWy~WbmQMhj9Tqsm~QwgYgzd1mBJmUWjfBwX7h2UDDJX2wE~npHx3bYt-Ol3l1~-OmvKOcHvd7fGShvfYxpNry-WXOPeeUW3q0JQCrOWu7b9G9GVuHa0XshY0djgt5vLUnqfkMMwZc0WgV3ZZdw5~jEomwC~PasEkzP93c3fkdewXir2RdyzsvWkwN4JdNDH-ZTPOtrE2ndAU37PK6RsUP5fTkN~3-zxOBqSVEQcrplJNXG6geivNn3Rx6WbtFQZkssMa2nNWr2jtVHinNYNli~CJNOp7iv05F~Ln--p~t8SJ7Vvw__&Key-Pair-Id=K3USGZIKWMDCSX',
+                    'https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/r3FJekzBiydXxtlJ.JPG?Expires=1780390014&Signature=RrJB70fwMNVS0kyQ7Ix1AIQQgdBTXmI2NPQ1UEwfyqmx8RLawy8KbI3yOnphvnjxfxrymNrO~cm48sjcqwMM8l0VBqc0SBS0vxfZPslKbDKGkoREHMXD6VvDOo~E~WCHZhQGo8Cc1yqJ~u23a6SekZZ1XbhwT2dYMLveXN4oeOMa4V2hYj7cZZFTKsXxX5L39tDNuQSKwCS9W4UyhYfDJBw7tq~0tKLj52-FO2tVAZS6K5YRxILhgZGZ1EeYiYXXeT5Gb5I4cpaUaBJXwcbbqxlfy7-Y94vQlfeUB9LeD5dBWzQp2zDxr1UoPv5dzydlRtH4w7FjKlc6qx7Dt9ZxdQ__&Key-Pair-Id=K3USGZIKWMDCSX'
+                ]
+            },
+            {
+                id: '04',
+                enLabel: 'Brand IP',
+                subtitle: '品牌IP落地',
+                headline: '让线上流量走向线下，打造流动的高校<span class="text-[#C75A2A] italic">快闪体验</span>',
+                details: '拒绝千篇一律的传统摊位，主打"不做定义，常有惊喜"。产品线涵盖热奶宝等极具爆点的小吃与网红甜点，在保证超高视觉吸引力的同时，死磕真正好吃的口味，实现品牌IP的完美实体落地。',
+                points: [
+                    '线上流量IP的线下实体快闪转化',
+                    '高视觉吸引力的网红甜品研发',
+                    '打破常规的流动市集摊位体验'
+                ],
+                gallery: [
+                    'https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/ebsPT04re6SVsE6V.JPG?Expires=1780390075&Signature=DK-r4l2cDfpov2Bts1gHDGUbLt8EsDsHfPJm5ALydiNyEFcjz6jBcvsdsKmEfQOG9c9Yv4ZRaW~tzW3JXqatKvOMSNYvDv8hwdAUNW~71eEGHe6WuT60TIc-3ijePq8waoILUhkCa989RjBCZdnyjvv65R3G7DjJ5vTr7BP0-6iEKbQq6~vASKDGam9XtoNEvHRoXCfS90YgyDvXt5cwXQow8hmfee8NNUZ8EHk-qmi0~rmF31wX7fL3SYLFprCxk78OkeeBS3YhFUY0SfbaAjBCJyMg-8s8nCIT1bJtwsKhEeqmHWmwKDTGBlBae0T1iNTIxfykU2WVENM82eZ4~w__&Key-Pair-Id=K3USGZIKWMDCSX',
+                    'https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/tRELP0rwG0dAZCNC.JPG?Expires=1780390075&Signature=Y4dKx7RWTJ21ATo8JZjURVO5PN1XmYr6~rK-U7KoGt025W6Il8bKqPYQlxUCGNXsS3WqtyHNo9Dx1VI6LTC-lxOyG2f6eY5p-IetRLvZW108yf5FQdKIVkAj~fflJsBi7-AjEuWCverVGhIkK2pk0USyOJuZZTNX-wU9w1nrmVQ9a44EuG57~H6B~h4ozmx7tIZY2eaOUZLS0fPgscaj7958xhyMYlXpjcaUzeowpzGWL3g6FyIGAUlLkA6peTqnSPjeAdZbi9-9ALZiefvIk-5J2aOsibUSCiYysZ75X7q4jdYYRkkt0xPLYU71-XVn8P8GcW50D5Axu4NQIEvAhQ__&Key-Pair-Id=K3USGZIKWMDCSX',
+                    'https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/9fFds5YvvtWSNs8W.JPG?Expires=1780390075&Signature=Q6NZ~4LFyI8uwkwMSTYWH9O3mqxXmZ86sliHdEAbtR3cEAKRxh8qw71KquTn0eQivdlXX37wm46HkxyujbR4tENfqNYQIbL-N6~Dcgfkk1IhPlU07ai6OiimeoqiZu4FN4DycL8mHWld90PWeE1Pp2a1WrpgWkQEQAVCfSxeiP0~wPGQtkh1Ch2TrZjqrP-IpncOa~N02aDCo1Ir0EbLitsUv4fPITg5vp9MuGkkX3vgLYxYw1YozLOi42IqzreYw-~Q-s6vbsYQSyEBD0pDcUQpCEuOL5exsYCCIfc6v~PmHXLmI7hyG1iuc2URI-c12IBYxGVT6Yu6Kk2ekZiltg__&Key-Pair-Id=K3USGZIKWMDCSX',
+                    'https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/fKoQpxT5qTfUZyI4.JPG?Expires=1780390075&Signature=kwOpAQ33gv6~66-4k8X73b6ZsIvUgrnqmW-V2cQbNGWFuiJe-kXWjEbMqvj3~dCU9rIC~Dp9Me7cHWqiC-gLT40w63ZJzn2FeDJToIt6or28X40cvirMTkIkK~Ctj5RXBUOu8Y57Vy3PBsr4mjjniE5R5nPiVMYzGlX8g9dNAomJifXHf7VXzSJXoBbFaZFttdN4dHCfncO3CSWNy1R~qVD6rCi7AOVGHZQmvMGUGq~3Pm3-pPcPzFfPe-1cfdNJm52qEgETU~A5FMj29g2-ze8CsZokdGm4sUKPrSfis2wiW95oDGOpWzeiXm-COrakwY7T56D7WhTh2wq2UWymJQ__&Key-Pair-Id=K3USGZIKWMDCSX',
+                    'https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/71fqzQUNm27luKTC.JPG?Expires=1780390075&Signature=IGR61NG~cmF6k4i6q7aercI8u2x-qbpH8fQdBZvc3siBeR41ni3BC0blA9ZOwVMaH7xBDxq7M4EjgkBfwsxYH8pj55GcnTxsg4mXqb~OJyEGpY0dbEs3sSv5ShXSLzBpUI-VXv2bswIBIi5PW9q5lpii3LYXl4glKgGnlvxGj6ZbvjWzXoPNDg8-zCV0b7Xvcsr-JhDhhQVvdmtZ4rz6HFEuFs-fc~~wMLxLKXQWiBUHK5UZ0SDP8Db3LzaZUrhl7BVEsxQpzcWbhtb5nrWq8FFGGjZkYR3dfBVbm8~nuWIRlckAZlNvy7WpQ8LJmRJ3liEyJc6rzOVGRDA3tiGOaw__&Key-Pair-Id=K3USGZIKWMDCSX'
+                ]
+            }
+        ];
+
+        const overlay = document.getElementById('project-overlay');
+        const overlayContent = document.getElementById('overlay-content');
+        const overlayLabel = document.getElementById('overlay-label');
+        const overlayId = document.getElementById('overlay-id');
+        const overlayCard = document.getElementById('overlay-card');
+        const overlayClose = document.getElementById('overlay-close');
+        const overlayBackdrop = document.getElementById('overlay-backdrop');
+        const overlayScroll = document.getElementById('overlay-scroll');
+
+        function img(src, h) { return '<img src="' + src + '" alt="" class="w-full h-auto object-contain max-h-[' + h + 'vh]" loading="lazy">'; }
+
+        function openOverlay(index) {
+            const p = projectData[index];
+            overlayLabel.textContent = 'Project · ' + p.enLabel;
+            overlayId.textContent = '[' + p.id + ']';
+
+            var html = '';
+            var g = p.gallery;
+
+            if (index === 0) {
+                // [01] 百年老洋房 — 完整复制React editorial layout
+                function cover(src) { return '<img src="' + src + '" alt="" class="w-full h-auto object-cover" loading="lazy">'; }
+                function caption(title, sub) {
+                    return '<div class="flex justify-between items-start mt-5 w-full">' +
+                        '<div class="flex flex-col gap-0.5"><span class="text-[14px] font-medium text-[#0E0E0E] tracking-wide" style="font-family:\'Inter Tight\',\'Noto Sans SC\',sans-serif;">' + title + '</span><span class="text-[12px] font-light text-[#6B6B6B]" style="font-family:\'Inter Tight\',\'Noto Sans SC\',sans-serif;">' + sub + '</span></div>' +
+                        '<div class="w-1.5 h-1.5 rounded-full bg-[#0E0E0E] mt-2 shrink-0"></div></div>';
+                }
+                html =
+                '<div class="px-12 md:px-20 pt-24 pb-20">' +
+                    '<div class="max-w-4xl mb-20">' +
+                        '<div class="text-[#C75A2A] font-[\'JetBrains_Mono\'] text-[10px] tracking-[0.2em] uppercase mb-6">Project 01 · ' + p.enLabel + '</div>' +
+                        '<h1 class="text-[36px] md:text-[48px] leading-[1.1] text-[#0E0E0E] tracking-[-0.02em] mb-6" style="font-family:\'Newsreader\',\'Noto Serif SC\',Georgia,serif;font-weight:400;">' + p.subtitle + '</h1>' +
+                        '<p class="text-[16px] leading-[1.8] text-[#6B6B6B] mb-4 max-w-2xl" style="font-family:\'Inter Tight\',\'Noto Sans SC\',sans-serif;">' + p.headline + '</p>' +
+                        '<p class="text-[15px] leading-[1.9] text-[#6B6B6B] max-w-2xl" style="font-family:\'Inter Tight\',\'Noto Sans SC\',sans-serif;">' + p.details + '</p>' +
+                    '</div>' +
+                    '<div class="flex flex-col gap-32">' +
+                        '<div class="flex flex-row items-end justify-between w-full">' +
+                            '<div class="w-[35%] flex flex-col">' + cover(g.interior) + caption('教父', 'Cocktail') + '</div>' +
+                            '<div class="w-[55%] flex flex-col">' + cover(g.tablecloth) + caption('百年老洋房', 'Vintage Space') + '</div>' +
+                        '</div>' +
+                        '<div class="flex flex-row items-end justify-between w-full">' +
+                            '<div class="w-[55%] flex flex-col">' +
+                                '<div class="flex w-full items-end">' +
+                                    '<img src="' + g.tart + '" alt="" class="w-1/2 aspect-[4/5] object-cover" loading="lazy">' +
+                                    '<img src="' + g.table + '" alt="" class="w-1/2 aspect-[4/3] object-cover" loading="lazy">' +
+                                '</div>' +
+                                caption('复古花园下午茶', 'Afternoon Tea Setting') +
+                            '</div>' +
+                            '<div class="w-[35%] flex flex-col">' + cover(g.wineGlass) + caption('季节限定-山楂挞', 'French Pastry') + '</div>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>';
+
+            } else if (index === 1) {
+                // [02] 新中式茶饮 — React editorial layout
+                function cover(src) { return '<img src="' + src + '" alt="" class="w-full h-auto object-cover" loading="lazy">'; }
+                function caption(title, sub) {
+                    return '<div class="flex justify-between items-start mt-5 w-full">' +
+                        '<div class="flex flex-col gap-0.5"><span class="text-[14px] font-medium text-[#0E0E0E] tracking-wide" style="font-family:\'Inter Tight\',\'Noto Sans SC\',sans-serif;">' + title + '</span><span class="text-[12px] font-light text-[#6B6B6B]" style="font-family:\'Inter Tight\',\'Noto Sans SC\',sans-serif;">' + sub + '</span></div>' +
+                        '<div class="w-1.5 h-1.5 rounded-full bg-[#0E0E0E] mt-2 shrink-0"></div></div>';
+                }
+                html =
+                '<div class="px-12 md:px-20 pt-24 pb-20">' +
+                    '<div class="max-w-4xl mb-20">' +
+                        '<div class="text-[#C75A2A] font-[\'JetBrains_Mono\'] text-[10px] tracking-[0.2em] uppercase mb-6">Project 02 · ' + p.enLabel + '</div>' +
+                        '<h1 class="text-[36px] md:text-[48px] leading-[1.1] text-[#0E0E0E] tracking-[-0.02em] mb-6" style="font-family:\'Newsreader\',\'Noto Serif SC\',Georgia,serif;font-weight:400;">' + p.subtitle + '</h1>' +
+                        '<p class="text-[16px] leading-[1.8] text-[#6B6B6B] mb-4 max-w-2xl" style="font-family:\'Inter Tight\',\'Noto Sans SC\',sans-serif;">' + p.headline + '</p>' +
+                        '<p class="text-[15px] leading-[1.9] text-[#6B6B6B] max-w-2xl" style="font-family:\'Inter Tight\',\'Noto Sans SC\',sans-serif;">' + p.details + '</p>' +
+                    '</div>' +
+                    '<div class="flex flex-col gap-32">' +
+                        '<div class="flex flex-row items-end justify-between w-full">' +
+                            '<div class="w-[35%] flex flex-col">' + cover(g[0]) + caption('冷萃茶', 'Cold Brew Tea') + '</div>' +
+                            '<div class="w-[55%] flex flex-col">' + cover(g[2]) + caption('新中式茶馆', 'Tea Space') + '</div>' +
+                        '</div>' +
+                        '<div class="flex flex-row items-end justify-between w-full">' +
+                            '<div class="w-[55%] flex flex-col">' +
+                                '<div class="flex w-full items-end">' +
+                                    '<img src="' + g[3] + '" alt="" class="w-1/2 aspect-[4/5] object-cover" loading="lazy">' +
+                                    '<img src="' + g[1] + '" alt="" class="w-1/2 aspect-[4/3] object-cover" loading="lazy">' +
+                                '</div>' + caption('湖边新中式', 'Lakeside Comfort') + '</div>' +
+                            '<div class="w-[35%] flex flex-col">' + cover(g[4]) + caption('茶和中式甜点', 'Tea & Chinese Desserts') + '</div>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>';
+
+            } else if (index === 2) {
+                // [03] 防空洞露营 — React editorial layout
+                function cover(src) { return '<img src="' + src + '" alt="" class="w-full h-auto object-cover" loading="lazy">'; }
+                function caption(title, sub) {
+                    return '<div class="flex justify-between items-start mt-5 w-full">' +
+                        '<div class="flex flex-col gap-0.5"><span class="text-[14px] font-medium text-[#0E0E0E] tracking-wide" style="font-family:\'Inter Tight\',\'Noto Sans SC\',sans-serif;">' + title + '</span><span class="text-[12px] font-light text-[#6B6B6B]" style="font-family:\'Inter Tight\',\'Noto Sans SC\',sans-serif;">' + sub + '</span></div>' +
+                        '<div class="w-1.5 h-1.5 rounded-full bg-[#0E0E0E] mt-2 shrink-0"></div></div>';
+                }
+                html =
+                '<div class="px-12 md:px-20 pt-24 pb-20">' +
+                    '<div class="max-w-4xl mb-20">' +
+                        '<div class="text-[#C75A2A] font-[\'JetBrains_Mono\'] text-[10px] tracking-[0.2em] uppercase mb-6">Project 03 · ' + p.enLabel + '</div>' +
+                        '<h1 class="text-[36px] md:text-[48px] leading-[1.1] text-[#0E0E0E] tracking-[-0.02em] mb-6" style="font-family:\'Newsreader\',\'Noto Serif SC\',Georgia,serif;font-weight:400;">' + p.subtitle + '</h1>' +
+                        '<p class="text-[16px] leading-[1.8] text-[#6B6B6B] mb-4 max-w-2xl" style="font-family:\'Inter Tight\',\'Noto Sans SC\',sans-serif;">' + p.headline + '</p>' +
+                        '<p class="text-[15px] leading-[1.9] text-[#6B6B6B] max-w-2xl" style="font-family:\'Inter Tight\',\'Noto Sans SC\',sans-serif;">' + p.details + '</p>' +
+                    '</div>' +
+                    '<div class="flex flex-col gap-32">' +
+                        '<div class="flex flex-row items-end justify-between w-full">' +
+                            '<div class="w-[35%] flex flex-col">' + cover(g[0]) + caption('防空洞酒吧', 'Shelter Space') + '</div>' +
+                            '<div class="w-[55%] flex flex-col">' + cover(g[2]) + caption('时光隧道', 'Time Tunnel') + '</div>' +
+                        '</div>' +
+                        '<div class="flex flex-row items-end justify-between w-full">' +
+                            '<div class="w-[55%] flex flex-col">' +
+                                '<div class="flex w-full items-end">' +
+                                    '<img src="' + g[3] + '" alt="" class="w-1/2 aspect-[4/5] object-cover" loading="lazy">' +
+                                    '<img src="' + g[1] + '" alt="" class="w-1/2 aspect-[4/3] object-cover" loading="lazy">' +
+                                '</div>' + caption('烧鸟和小吃', 'Yakitori & Snacks') + '</div>' +
+                            '<div class="w-[35%] flex flex-col">' + cover(g[4]) + caption('露营下午茶', 'Afternoon Tea Camp') + '</div>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>';
+
+            } else {
+                // [04] 品牌IP落地 — React editorial layout
+                function cover(src) { return '<img src="' + src + '" alt="" class="w-full h-auto object-cover" loading="lazy">'; }
+                function caption(title, sub) {
+                    return '<div class="flex justify-between items-start mt-5 w-full">' +
+                        '<div class="flex flex-col gap-0.5"><span class="text-[14px] font-medium text-[#0E0E0E] tracking-wide" style="font-family:\'Inter Tight\',\'Noto Sans SC\',sans-serif;">' + title + '</span><span class="text-[12px] font-light text-[#6B6B6B]" style="font-family:\'Inter Tight\',\'Noto Sans SC\',sans-serif;">' + sub + '</span></div>' +
+                        '<div class="w-1.5 h-1.5 rounded-full bg-[#0E0E0E] mt-2 shrink-0"></div></div>';
+                }
+                html =
+                '<div class="px-12 md:px-20 pt-24 pb-20">' +
+                    '<div class="max-w-4xl mb-20">' +
+                        '<div class="text-[#C75A2A] font-[\'JetBrains_Mono\'] text-[10px] tracking-[0.2em] uppercase mb-6">Project 04 · ' + p.enLabel + '</div>' +
+                        '<h1 class="text-[36px] md:text-[48px] leading-[1.1] text-[#0E0E0E] tracking-[-0.02em] mb-6" style="font-family:\'Newsreader\',\'Noto Serif SC\',Georgia,serif;font-weight:400;">' + p.subtitle + '</h1>' +
+                        '<p class="text-[16px] leading-[1.8] text-[#6B6B6B] mb-4 max-w-2xl" style="font-family:\'Inter Tight\',\'Noto Sans SC\',sans-serif;">' + p.headline + '</p>' +
+                        '<p class="text-[15px] leading-[1.9] text-[#6B6B6B] max-w-2xl" style="font-family:\'Inter Tight\',\'Noto Sans SC\',sans-serif;">' + p.details + '</p>' +
+                    '</div>' +
+                    '<div class="flex flex-col gap-32">' +
+                        '<div class="flex flex-row items-end justify-between w-full">' +
+                            '<div class="w-[35%] flex flex-col">' + cover(g[0]) + caption('热奶宝', 'Viral Product') + '</div>' +
+                            '<div class="w-[55%] flex flex-col">' + cover(g[2]) + caption('品牌IP落地', 'Brand Pop-up') + '</div>' +
+                        '</div>' +
+                        '<div class="flex flex-row items-end justify-between w-full">' +
+                            '<div class="w-[55%] flex flex-col">' +
+                                '<div class="flex w-full items-end">' +
+                                    '<img src="' + g[3] + '" alt="" class="w-1/2 aspect-[4/5] object-cover" loading="lazy">' +
+                                    '<img src="' + g[1] + '" alt="" class="w-1/2 aspect-[4/3] object-cover" loading="lazy">' +
+                                '</div>' + caption('燕麦杯咖啡', 'Oatmeal Cup Coffee') + '</div>' +
+                            '<div class="w-[35%] flex flex-col">' + cover(g[4]) + caption('燕麦杯冰淇淋', 'Oatmeal Cup Ice Cream') + '</div>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>';
+            }
+
+            overlayContent.innerHTML = html;
+            overlayScroll.scrollTop = 0;
+            document.body.style.overflow = 'hidden';
+            overlay.classList.remove('opacity-0', 'invisible');
+            overlay.classList.add('opacity-100', 'visible');
+            overlayCard.classList.remove('scale-95', 'translate-y-3');
+            overlayCard.classList.add('scale-100', 'translate-y-0');
+        }
+
+        function closeOverlay() {
+            overlay.classList.add('opacity-0', 'invisible');
+            overlay.classList.remove('opacity-100', 'visible');
+            overlayCard.classList.add('scale-95', 'translate-y-3');
+            overlayCard.classList.remove('scale-100', 'translate-y-0');
+            setTimeout(function() { document.body.style.overflow = ''; }, 700);
+        }
+
+        overlayClose.addEventListener('click', closeOverlay);
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && overlay.classList.contains('visible')) {
+                closeOverlay();
+            }
+        });
+
+        // hover 悬浮页：全局函数供 inline 调用
+        var _overlayTimer = null;
+        window.showProject = function(idx) {
+            if (_overlayTimer) { clearTimeout(_overlayTimer); _overlayTimer = null; }
+            openOverlay(idx);
+        };
+        window.keepProject = function() {
+            if (_overlayTimer) { clearTimeout(_overlayTimer); _overlayTimer = null; }
+        };
+        window.hideProject = function() {
+            _overlayTimer = setTimeout(function() {
+                closeOverlay();
+            }, 150);
+        };
+    </script>
+</body>
+</html>

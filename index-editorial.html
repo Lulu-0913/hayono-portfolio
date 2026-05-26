@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hayono — Culinary Creator & Brand Architect</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F4F2EE;
+  --text: #0E0E0E;
+  --gray-dark: #6B6B6B;
+  --gray: #9A9A95;
+  --hairline: #DCDACF;
+  --surface: #E8E6E1;
+  --accent: #C75A2A;
+}
+body {
+  font-family: 'Inter Tight','Inter','Noto Sans SC',sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  margin:0; padding:0;
+}
+.mono { font-family: 'JetBrains Mono', monospace; }
+.display { font-family: 'Newsreader','Noto Serif SC',Georgia,serif; }
+.hairline { border-color: var(--hairline); }
+</style>
+</head>
+<body class="selection:bg-[#C75A2A] selection:text-white">
+
+<!-- Masthead -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-[#F4F2EE]/90 backdrop-blur-sm border-b hairline">
+  <div class="flex justify-between items-center px-8 md:px-16 py-6">
+    <div class="flex items-baseline gap-4">
+      <span class="display text-[28px] font-light tracking-[-0.03em] leading-none">Hayono</span>
+      <span class="hidden md:inline mono text-[10px] text-[#9A9A95] tracking-[0.15em] uppercase">Est. 2022 &middot; Hubei</span>
+    </div>
+    <nav class="flex items-center gap-8">
+      <span class="mono text-[10px] text-[#9A9A95] tracking-[0.15em] uppercase cursor-pointer hover:text-[#0E0E0E] transition-colors">Work</span>
+      <span class="mono text-[10px] text-[#9A9A95] tracking-[0.15em] uppercase cursor-pointer hover:text-[#0E0E0E] transition-colors">About</span>
+      <span class="mono text-[10px] text-[#9A9A95] tracking-[0.15em] uppercase cursor-pointer hover:text-[#0E0E0E] transition-colors">Contact</span>
+    </nav>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="min-h-[100dvh] flex items-center px-8 md:px-16 pt-24 pb-16">
+  <div class="w-full grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-12">
+    <div class="md:col-span-7 flex flex-col justify-center">
+      <div class="mono text-[10px] text-[#9A9A95] tracking-[0.2em] uppercase mb-8">Culinary Creator & Brand Architect</div>
+      <h1 class="display text-[56px] md:text-[80px] lg:text-[96px] font-light leading-[0.95] tracking-[-0.03em] mb-8">
+        Taste is only<br>the beginning.
+      </h1>
+      <p class="text-[18px] md:text-[20px] leading-[1.7] text-[#6B6B6B] max-w-[45ch] font-light">
+        Every dish carries an atmosphere, every table tells a story. Building around food — kitchens, brands, objects, images — rooted in warmth, texture, and real craft.
+      </p>
+      <div class="flex gap-8 mt-12">
+        <span class="mono text-[11px] text-[#0E0E0E] tracking-[0.15em] uppercase border-b border-[#0E0E0E] pb-1 cursor-pointer hover:text-[#C75A2A] hover:border-[#C75A2A] transition-colors">View Projects &darr;</span>
+      </div>
+    </div>
+    <div class="md:col-span-5 flex items-start justify-center md:justify-end">
+      <div class="w-[280px] h-[380px] md:w-[320px] md:h-[440px] overflow-hidden">
+        <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/ULxEYQwqxRRaesTF.jpg?Expires=1779954966&Signature=AvIgUHAzm32s57XBeHazVw3KD2ry14~GDyDvQrRZvY3BecrgxRNOqI6le~JewrtnmUJinVr4jd0BJ8S1PCVZbynRpEE93G~yh3ghLYinpWd1Zpm9VM0HPekK~zpi-udvuMIKEWLEp9cjUtpDaNVK-iVPZZ~1EdW82Paj8CT9GvV34vXjiFLE5EYaDkY2cN5TogjnQMGiSLF9w79orTXW3KEnTa9gty~JuCtZsv0KL6QP6uN9hvimZRKXCRqT-lZZhcph8phBC0do-w70opb31WIWDrFc59oRbHu5xIBvco4j6Og9g8pBuwK-LVXSnYl52q11tneKrFIx32D~dzA3EA__&Key-Pair-Id=K3USGZIKWMDCSX" alt="Hayono" class="w-full h-full object-cover">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Philosophy -->
+<section class="px-8 md:px-16 py-24 md:py-32 border-t hairline">
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-8">
+    <div class="md:col-span-3">
+      <span class="mono text-[10px] text-[#9A9A95] tracking-[0.15em] uppercase">Philosophy</span>
+    </div>
+    <div class="md:col-span-6">
+      <p class="display text-[28px] md:text-[36px] font-light leading-[1.35] tracking-[-0.02em] text-[#0E0E0E]">
+        Food is not just fuel. It is memory, pleasure, culture, and craft — folded into every meal, every gathering, every photograph.
+      </p>
+    </div>
+    <div class="md:col-span-3 flex items-end">
+      <div class="w-3 h-3 bg-[#0E0E0E] rounded-full"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Services / Expertise -->
+<section class="px-8 md:px-16 py-24 border-t hairline">
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-8">
+    <div class="md:col-span-3">
+      <span class="mono text-[10px] text-[#9A9A95] tracking-[0.15em] uppercase">Capabilities</span>
+    </div>
+    <div class="md:col-span-9 grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div><span class="display text-[24px] font-light leading-none text-[#0E0E0E] block mb-2">Food<br>Creation</span><span class="text-[13px] text-[#9A9A95] leading-relaxed">Recipe R&D, menu design, product prototyping</span></div>
+      <div><span class="display text-[24px] font-light leading-none text-[#0E0E0E] block mb-2">Artful<br>Table</span><span class="text-[13px] text-[#9A9A95] leading-relaxed">Table styling, vessel curation, spatial atmosphere</span></div>
+      <div><span class="display text-[24px] font-light leading-none text-[#0E0E0E] block mb-2">Brand<br>IP</span><span class="text-[13px] text-[#9A9A95] leading-relaxed">Personal brand building, pop-up experiences</span></div>
+      <div><span class="display text-[24px] font-light leading-none text-[#0E0E0E] block mb-2">Content<br>& Media</span><span class="text-[13px] text-[#9A9A95] leading-relaxed">Photography, storytelling, social editorial</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Projects -->
+<section class="px-8 md:px-16 pt-24 pb-32 border-t hairline">
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-4 mb-16">
+    <div class="md:col-span-3">
+      <span class="mono text-[10px] text-[#9A9A95] tracking-[0.15em] uppercase">Selected Works</span>
+    </div>
+    <div class="md:col-span-9">
+      <span class="mono text-[10px] text-[#9A9A95] tracking-[0.15em] uppercase">04 Projects</span>
+    </div>
+  </div>
+
+  <!-- Project 01 -->
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-6 py-16 border-t hairline group cursor-pointer">
+    <div class="md:col-span-3">
+      <span class="mono text-[11px] text-[#9A9A95] tracking-[0.15em]">[01]</span>
+    </div>
+    <div class="md:col-span-5">
+      <h3 class="display text-[32px] md:text-[40px] font-light leading-[1.1] tracking-[-0.02em] mb-3 group-hover:text-[#C75A2A] transition-colors">百年老洋房<br>咖啡馆</h3>
+      <span class="mono text-[10px] text-[#9A9A95] tracking-[0.15em] uppercase">Retro Cafe & Bar &middot; Visual Upgrade</span>
+      <p class="text-[15px] leading-[1.8] text-[#6B6B6B] mt-6 max-w-[45ch]">围绕音乐、美食与数字艺术，完成从空间到产品线的全维度视觉与味觉升级。</p>
+    </div>
+    <div class="md:col-span-4 flex justify-end">
+      <div class="w-[200px] h-[280px] md:w-[240px] md:h-[320px] overflow-hidden">
+        <img src="images/projects/4.jpg" alt="百年老洋房咖啡馆" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+      </div>
+    </div>
+  </div>
+
+  <!-- Project 02 -->
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-6 py-16 border-t hairline group cursor-pointer">
+    <div class="md:col-span-3">
+      <span class="mono text-[11px] text-[#9A9A95] tracking-[0.15em]">[02]</span>
+    </div>
+    <div class="md:col-span-5">
+      <h3 class="display text-[32px] md:text-[40px] font-light leading-[1.1] tracking-[-0.02em] mb-3 group-hover:text-[#C75A2A] transition-colors">新中式茶饮<br>品牌</h3>
+      <span class="mono text-[10px] text-[#9A9A95] tracking-[0.15em] uppercase">Modern Chinese Tea &middot; Chinese Tea</span>
+      <p class="text-[15px] leading-[1.8] text-[#6B6B6B] mt-6 max-w-[45ch]">从零构建新中式茶饮体系，涵盖茶饮、点心与糖水的全案产品设计。</p>
+    </div>
+    <div class="md:col-span-4 flex justify-end">
+      <div class="w-[200px] h-[280px] md:w-[240px] md:h-[320px] overflow-hidden">
+        <img src="images/projects/3.jpg" alt="新中式茶饮品牌" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+      </div>
+    </div>
+  </div>
+
+  <!-- Project 03 -->
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-6 py-16 border-t hairline group cursor-pointer">
+    <div class="md:col-span-3">
+      <span class="mono text-[11px] text-[#9A9A95] tracking-[0.15em]">[03]</span>
+    </div>
+    <div class="md:col-span-5">
+      <h3 class="display text-[32px] md:text-[40px] font-light leading-[1.1] tracking-[-0.02em] mb-3 group-hover:text-[#C75A2A] transition-colors">防空洞<br>露营基地</h3>
+      <span class="mono text-[10px] text-[#9A9A95] tracking-[0.15em] uppercase">Shelter Camp & Food &middot; Camping</span>
+      <p class="text-[15px] leading-[1.8] text-[#6B6B6B] mt-6 max-w-[45ch]">打破常规空间限制，将户外野趣与地下沉浸感融合，打造极具反差感的青年文化聚集地。</p>
+    </div>
+    <div class="md:col-span-4 flex justify-end">
+      <div class="w-[200px] h-[280px] md:w-[240px] md:h-[320px] overflow-hidden">
+        <img src="images/projects/1.JPG" alt="防空洞露营基地" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+      </div>
+    </div>
+  </div>
+
+  <!-- Project 04 -->
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-6 py-16 border-t hairline group cursor-pointer">
+    <div class="md:col-span-3">
+      <span class="mono text-[11px] text-[#9A9A95] tracking-[0.15em]">[04]</span>
+    </div>
+    <div class="md:col-span-5">
+      <h3 class="display text-[32px] md:text-[40px] font-light leading-[1.1] tracking-[-0.02em] mb-3 group-hover:text-[#C75A2A] transition-colors">品牌IP<br>落地</h3>
+      <span class="mono text-[10px] text-[#9A9A95] tracking-[0.15em] uppercase">Brand IP Pop-up &middot; Brand IP</span>
+      <p class="text-[15px] leading-[1.8] text-[#6B6B6B] mt-6 max-w-[45ch]">让线上流量同款走向线下，以个人IP甜品摊的形式，打造流动的高校快闪与市集体验。</p>
+    </div>
+    <div class="md:col-span-4 flex justify-end">
+      <div class="w-[200px] h-[280px] md:w-[240px] md:h-[320px] overflow-hidden">
+        <img src="images/projects/2.JPG" alt="品牌IP落地" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RedNote / Social -->
+<section class="px-8 md:px-16 py-24 md:py-32 border-t hairline">
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-12">
+    <div class="md:col-span-3">
+      <span class="mono text-[10px] text-[#9A9A95] tracking-[0.15em] uppercase">Presence</span>
+    </div>
+    <div class="md:col-span-6">
+      <div class="flex items-start gap-6 mb-10">
+        <div class="w-20 h-20 flex-shrink-0 overflow-hidden">
+          <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/jYemP24SkyDn7NEE.png?Expires=1780038780&Signature=KVR06wXct~T4CzLNevOCrcpADf2KN~DazjOK0WgJiWjcq~XWaxEDV5qbhN4PqiM4mtGOVe8Pllk5WIOlkuSzbYpM7LXBk-6M5qwMoXmVT3Dccru7GFdCOZ2g5mGmyIT0myNxuo9g741rVO~pHAiC1fEhf3BgA5TNz8dGolJ9cotnC3PZPZ84a~vt2MPHXbhb7auxOKFD5abnIXUyzwSaVJrd8Nz7ak4gRCyjH8tyGPQf7ZiDzaE52Ug1msri8LkWv1-0sUZqke70tz2fZuQUeqfuXGCLWMTJuKDNoeGgt1kcgRhNrnlM1xPcHwmVad835j~7m0M7ybX5CMxN-8rY9A__&Key-Pair-Id=K3USGZIKWMDCSX" class="w-full h-full object-cover">
+        </div>
+        <div>
+          <h2 class="display text-[36px] md:text-[48px] font-light leading-[1.05] tracking-[-0.02em] mb-1">Hayono Lu</h2>
+          <div class="text-[14px] text-[#9A9A95]">RedNote Creator &middot; Jewelry Designer &middot; Culinary Curator</div>
+        </div>
+      </div>
+      <p class="text-[15px] leading-[1.9] text-[#6B6B6B] max-w-[55ch]">
+        Food blogger, lifestyle curator, and brand consultant. Three years of content operations. Multiple viral posts exceeding 30k engagement. Based in Hubei, China.
+      </p>
+    </div>
+    <div class="md:col-span-3">
+      <div class="flex flex-col gap-8">
+        <div>
+          <div class="display text-[48px] font-light leading-none tracking-[-0.03em] mb-1">31.5<span class="text-[20px] text-[#9A9A95] ml-2 font-light">万</span></div>
+          <span class="mono text-[10px] text-[#9A9A95] tracking-[0.1em] uppercase">Likes & Saves</span>
+        </div>
+        <div>
+          <div class="display text-[48px] font-light leading-none tracking-[-0.03em] mb-1">100<span class="text-[20px] text-[#9A9A95] ml-2 font-light">+</span></div>
+          <span class="mono text-[10px] text-[#9A9A95] tracking-[0.1em] uppercase">Brand Collabs</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="px-8 md:px-16 py-16 border-t hairline">
+  <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
+    <div>
+      <span class="display text-[28px] font-light tracking-[-0.03em] leading-none block mb-4">Hayono</span>
+      <span class="mono text-[10px] text-[#9A9A95] tracking-[0.15em] uppercase block">Food &middot; Design &middot; Life</span>
+    </div>
+    <div class="flex flex-col items-start md:items-end gap-2">
+      <span class="mono text-[10px] text-[#9A9A95] tracking-[0.1em]">小红书 200410996</span>
+      <span class="mono text-[10px] text-[#9A9A95] tracking-[0.1em]">3600611280@qq.com</span>
+      <span class="mono text-[10px] text-[#9A9A95] tracking-[0.1em] mt-4">Est. 2022 &middot; Hubei, CN &middot; Independent</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+// Hero entrance
+const heroTl = gsap.timeline();
+heroTl.from('header', { y: -40, opacity: 0, duration: 0.8, ease: 'power3.out' });
+heroTl.from('section:first-of-type .display', { y: 60, opacity: 0, duration: 1, ease: 'power3.out' }, '-=0.4');
+heroTl.from('section:first-of-type p', { y: 30, opacity: 0, duration: 0.8, ease: 'power3.out' }, '-=0.6');
+heroTl.from('section:first-of-type img', { scale: 1.05, opacity: 0, duration: 1, ease: 'power3.out' }, '-=0.8');
+
+// Scroll-triggered reveals for sections
+const sections = gsap.utils.toArray('section:not(:first-of-type)');
+sections.forEach((section, i) => {
+  gsap.from(section, {
+    scrollTrigger: { trigger: section, start: 'top 85%', toggleActions: 'play none none none' },
+    y: 40, opacity: 0, duration: 0.8, ease: 'power3.out', delay: i * 0.1
+  });
+});
+
+// Project hover — subtle accent shift on image
+document.querySelectorAll('.group').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    gsap.to(el.querySelector('img'), { scale: 1.05, duration: 0.6, ease: 'power2.out' });
+  });
+  el.addEventListener('mouseleave', () => {
+    gsap.to(el.querySelector('img'), { scale: 1, duration: 0.6, ease: 'power2.out' });
+  });
+});
+</script>
+</body>
+</html>

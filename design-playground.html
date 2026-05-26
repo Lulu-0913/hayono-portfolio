@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design Playground — Hayono</title>
+<style>
+:root {
+  --bg: #F4F2EE;
+  --text: #0E0E0E;
+  --gray-dark: #6B6B6B;
+  --gray: #9A9A95;
+  --gray-light: #DCDACF;
+  --gray-bg: #E8E6E1;
+  --accent: #C75A2A;
+  --display-size: 40px;
+  --title-size: 24px;
+  --body-size: 15px;
+  --label-size: 11px;
+  --display-lh: 1.15;
+  --body-lh: 1.8;
+  --label-ls: 0.1em;
+  --section-py: 120px;
+  --block-gap: 64px;
+  --card-gap: 16px;
+  --density: 4;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Inter Tight','Inter','Noto Sans SC',sans-serif;
+  background: #1a1a1a; color:#fff; display:flex; height:100vh; overflow:hidden;
+  -webkit-font-smoothing: antialiased;
+}
+.panel { width:380px; flex-shrink:0; overflow-y:auto; padding:24px 28px; background:#222; border-right:1px solid #333; }
+.panel h2 { font-family:'JetBrains Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.1em; color:#999; margin:24px 0 8px; }
+.panel h2:first-child { margin-top:0; }
+.panel label { display:flex; justify-content:space-between; align-items:center; font-size:12px; color:#ccc; padding:4px 0; }
+.panel label span.val { font-family:'JetBrains Mono',monospace; font-size:10px; color:#999; min-width:48px; text-align:right; }
+.panel input[type=range] { width:100%; margin:2px 0 10px; accent-color:var(--accent); }
+.panel input[type=color] { width:32px; height:24px; border:none; border-radius:4px; cursor:pointer; padding:0; }
+.panel .color-row { display:flex; justify-content:space-between; align-items:center; padding:3px 0; }
+.panel .color-row span { font-size:12px; color:#ccc; }
+.preview {
+  flex:1; overflow-y:auto; padding:48px; display:flex; align-items:flex-start; justify-content:center;
+  background: repeating-linear-gradient(45deg,#2a2a2a 0,#2a2a2a 2px,#222 0,#222 12px);
+}
+.frame { width:100%; max-width:800px; background:var(--bg); border-radius:8px; overflow:hidden; }
+.section { padding: 48px var(--block-gap); }
+.divider { border-bottom:1px solid var(--gray-light); }
+.label-mono { font-family:'JetBrains Mono',monospace; font-size:var(--label-size); color:var(--gray); letter-spacing:var(--label-ls); text-transform:uppercase; }
+.display { font-size:var(--display-size); font-weight:500; line-height:var(--display-lh); color:var(--text); letter-spacing:-0.02em; }
+.title { font-size:var(--title-size); font-weight:500; line-height:1.35; color:var(--text); }
+.body { font-size:var(--body-size); line-height:var(--body-lh); color:var(--gray-dark); }
+.card { background:var(--gray-bg); border-radius:12px; padding:24px; }
+.accent-text { color:var(--accent); }
+.dot { width:4px; height:4px; border-radius:50%; background:var(--text); display:inline-block; }
+@media (max-width:900px) { body { flex-direction:column; } .panel { width:100%; max-height:40vh; } }
+</style>
+</head>
+<body>
+
+<div class="panel">
+  <h2>🎨 Colors</h2>
+  <div class="color-row"><span>Background</span><input type="color" id="bg" value="#F4F2EE" onchange="update()"></div>
+  <div class="color-row"><span>Text</span><input type="color" id="text" value="#0E0E0E" onchange="update()"></div>
+  <div class="color-row"><span>Gray Dark</span><input type="color" id="gray-dark" value="#6B6B6B" onchange="update()"></div>
+  <div class="color-row"><span>Gray</span><input type="color" id="gray" value="#9A9A95" onchange="update()"></div>
+  <div class="color-row"><span>Gray Light</span><input type="color" id="gray-light" value="#DCDACF" onchange="update()"></div>
+  <div class="color-row"><span>Gray BG</span><input type="color" id="gray-bg" value="#E8E6E1" onchange="update()"></div>
+  <div class="color-row"><span>Accent</span><input type="color" id="accent" value="#C75A2A" onchange="update()"></div>
+
+  <h2>📐 Typography</h2>
+  <label>Display Size <span class="val" id="v-display">40px</span></label>
+  <input type="range" id="display-size" min="20" max="80" value="40" oninput="update()">
+  <label>Title Size <span class="val" id="v-title">24px</span></label>
+  <input type="range" id="title-size" min="16" max="48" value="24" oninput="update()">
+  <label>Body Size <span class="val" id="v-body">15px</span></label>
+  <input type="range" id="body-size" min="11" max="22" value="15" oninput="update()">
+  <label>Label Size <span class="val" id="v-label">11px</span></label>
+  <input type="range" id="label-size" min="8" max="18" value="11" oninput="update()">
+  <label>Display Line Height <span class="val" id="v-display-lh">1.15</span></label>
+  <input type="range" id="display-lh" min="0.9" max="1.8" step="0.05" value="1.15" oninput="update()">
+  <label>Body Line Height <span class="val" id="v-body-lh">1.80</span></label>
+  <input type="range" id="body-lh" min="1.2" max="2.4" step="0.05" value="1.8" oninput="update()">
+  <label>Label Letter Spacing <span class="val" id="v-label-ls">0.10em</span></label>
+  <input type="range" id="label-ls" min="0" max="0.3" step="0.01" value="0.10" oninput="update()">
+
+  <h2>📏 Spacing</h2>
+  <label>Section Vertical <span class="val" id="v-section-py">120px</span></label>
+  <input type="range" id="section-py" min="40" max="240" value="120" oninput="update()">
+  <label>Block Gap <span class="val" id="v-block-gap">64px</span></label>
+  <input type="range" id="block-gap" min="16" max="160" value="64" oninput="update()">
+  <label>Card Gap <span class="val" id="v-card-gap">16px</span></label>
+  <input type="range" id="card-gap" min="4" max="48" value="16" oninput="update()">
+
+  <h2>🎚️ Design Dials</h2>
+  <label>Design Variance <span class="val" id="v-density">4</span></label>
+  <input type="range" id="density" min="1" max="10" value="4" oninput="update()">
+
+  <h2>💾 Actions</h2>
+  <button onclick="exportCSS()" style="margin-top:12px;padding:8px 16px;background:var(--accent);color:#fff;border:none;border-radius:6px;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:11px;">Export CSS Variables</button>
+  <pre id="export-out" style="margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:9px;color:#999;white-space:pre-wrap;max-height:200px;overflow-y:auto;display:none;"></pre>
+</div>
+
+<div class="preview">
+<div class="frame" id="frame">
+
+  <div class="section">
+    <span class="label-mono">(Selected Works.)</span>
+  </div>
+
+  <div class="section divider" style="padding-top:0;">
+    <div style="display:flex;gap:32px;align-items:flex-end;flex-wrap:wrap;">
+      <div style="flex:1;min-width:200px;">
+        <div class="display" style="margin-bottom:12px;">重塑复古咖啡馆的<br>感官体验</div>
+        <div class="body" style="margin-bottom:16px;">完成从建筑空间到产品线的全方位升级。通过复古调饮与沉浸式策展，将音乐与味蕾深度结合。</div>
+        <div style="display:flex;gap:var(--card-gap);flex-wrap:wrap;">
+          <span class="label-mono accent-text">— 场景重塑</span>
+          <span class="label-mono accent-text">— 新品研发</span>
+          <span class="label-mono accent-text">— 文化沉浸</span>
+        </div>
+      </div>
+      <div style="width:180px;height:240px;background:var(--gray-bg);border-radius:8px;display:flex;align-items:center;justify-content:center;">
+        <span class="label-mono" style="text-align:center;">3:4<br>Image</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-top:48px;padding-bottom:48px;">
+    <div class="card">
+      <div class="title" style="margin-bottom:4px;">复古花园下午茶</div>
+      <div class="body" style="font-size:13px;">季节限定 &middot; 山楂挞 &middot; Godfather</div>
+      <span class="dot" style="margin-top:12px;"></span>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<script>
+function update() {
+  const root = document.documentElement.style;
+  const g = (id) => document.getElementById(id);
+  const v = (id,cb) => { const el=g(id); cb(el,el.value); return el.value; };
+  const r = (id,cb) => { cb(g(id)); };
+
+  r('bg',e=>root.setProperty('--bg',e.value));
+  r('text',e=>root.setProperty('--text',e.value));
+  r('gray-dark',e=>root.setProperty('--gray-dark',e.value));
+  r('gray',e=>root.setProperty('--gray',e.value));
+  r('gray-light',e=>root.setProperty('--gray-light',e.value));
+  r('gray-bg',e=>root.setProperty('--gray-bg',e.value));
+  r('accent',e=>{ root.setProperty('--accent',e.value); document.querySelectorAll('input[type=range]').forEach(el=>el.style.accentColor=e.value); g('panel-reset').style.background=e.value; });
+
+  root.setProperty('--display-size', v('display-size',(e,v)=>g('v-display').textContent=v+'px')+'px');
+  root.setProperty('--title-size', v('title-size',(e,v)=>g('v-title').textContent=v+'px')+'px');
+  root.setProperty('--body-size', v('body-size',(e,v)=>g('v-body').textContent=v+'px')+'px');
+  root.setProperty('--label-size', v('label-size',(e,v)=>g('v-label').textContent=v+'px')+'px');
+  root.setProperty('--display-lh', v('display-lh',(e,v)=>g('v-display-lh').textContent=v));
+  root.setProperty('--body-lh', v('body-lh',(e,v)=>g('v-body-lh').textContent=v));
+  root.setProperty('--label-ls', v('label-ls',(e,v)=>g('v-label-ls').textContent=v+'em')+'em');
+  root.setProperty('--section-py', v('section-py',(e,v)=>g('v-section-py').textContent=v+'px')+'px');
+  root.setProperty('--block-gap', v('block-gap',(e,v)=>g('v-block-gap').textContent=v+'px')+'px');
+  root.setProperty('--card-gap', v('card-gap',(e,v)=>g('v-card-gap').textContent=v+'px')+'px');
+  g('v-density').textContent = g('density').value;
+  root.setProperty('--density', g('density').value);
+}
+function exportCSS() {
+  const s = getComputedStyle(document.documentElement);
+  const vars = ['bg','text','gray-dark','gray','gray-light','gray-bg','accent','display-size','title-size','body-size','label-size','display-lh','body-lh','label-ls','section-py','block-gap','card-gap'];
+  const out = ':root {\n' + vars.map(k => '  --' + k + ': ' + s.getPropertyValue('--'+k).trim() + ';').join('\n') + '\n}';
+  const el = document.getElementById('export-out');
+  el.style.display = 'block';
+  el.textContent = out;
+}
+update();
+</script>
+</body>
+</html>
