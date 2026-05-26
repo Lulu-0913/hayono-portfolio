@@ -635,10 +635,27 @@
         function playIntro() {
             if (introTl) introTl.kill();
 
+            // 小屏等比缩放到屏幕宽度（screen.width 获取真实设备宽度）
+            const realWidth = screen.width || window.innerWidth;
+            const isSmall = realWidth < 1200;
+            const pageScale = isSmall ? realWidth / 1200 : 1;
+            if (isSmall) {
+                introOverlay.style.width = '1200px';
+                introOverlay.style.transform = `scale(${pageScale})`;
+                introOverlay.style.transformOrigin = 'top left';
+                realWebsite.style.width = '1200px';
+                realWebsite.style.transform = 'translateY(40px) scale(' + (0.98 * pageScale) + ')';
+                realWebsite.style.transformOrigin = 'top left';
+            }
+
             introOverlay.style.display = 'block';
             gsap.set(introOverlay, { opacity: 1 });
             gsap.set(introContent, { opacity: 1 });
-            gsap.set(realWebsite, { opacity: 0, y: 40, scale: 0.98 });
+            if (!isSmall) {
+                gsap.set(realWebsite, { opacity: 0, y: 40, scale: 0.98 });
+            } else {
+                gsap.set(realWebsite, { opacity: 0 });
+            }
 
             const w = window.innerWidth;
             const h = window.innerHeight;
@@ -700,23 +717,38 @@
                 }
             }, "+=0.1");
 
-            introTl.to(realWebsite, {
-                opacity: 1,
-                y: 0,
-                scale: 1,
-                duration: 1.0,
-                ease: "power3.out"
-            }, "<");
+            if (isSmall) {
+                introTl.to(realWebsite, {
+                    opacity: 1,
+                    duration: 1.0,
+                    ease: "power3.out"
+                }, "<");
+            } else {
+                introTl.to(realWebsite, {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    duration: 1.0,
+                    ease: "power3.out"
+                }, "<");
+            }
         }
 
         window.onload = playIntro;
 
-        // 移动端安全兜底：超过5秒动画未完成，强制显示页面
+        // 安全兜底：超过5秒动画未完成，强制显示页面
         setTimeout(() => {
             if (introOverlay.style.display !== 'none') {
                 introOverlay.style.display = 'none';
                 realWebsite.style.opacity = '1';
-                realWebsite.style.transform = 'translateY(0) scale(1)';
+                const realW = screen.width || window.innerWidth;
+                if (realW < 1200) {
+                    realWebsite.style.width = '1200px';
+                    realWebsite.style.transform = 'scale(' + (realW / 1200) + ')';
+                    realWebsite.style.transformOrigin = 'top left';
+                } else {
+                    realWebsite.style.transform = 'translateY(0) scale(1)';
+                }
             }
         }, 5000);
 
