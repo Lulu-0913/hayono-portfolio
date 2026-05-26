@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=1200, initial-scale=1.0">
     <title>HAYONO | Culinary Creator</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -15,6 +15,7 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             margin: 0; padding: 0;
+            overflow-x: hidden;
         }
         .animate-spin-slow { animation: spin 12s linear infinite; }
         @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
@@ -108,7 +109,7 @@
             </div>
         </div>
         <div class="flex flex-col lg:flex-row justify-between items-end mt-[100px] gap-12 lg:gap-0">
-            <div class="flex flex-wrap md:flex-nowrap gap-8">
+            <div class="flex flex-wrap md:flex-nowrap gap-4 md:gap-8">
                 <div class="flex flex-col gap-3">
                     <span class="font-['JetBrains_Mono'] text-[11px] text-[#9A9A95]">[01]</span>
                     <div class="flex gap-2">
@@ -240,12 +241,12 @@
         <div class="w-full border-t border-[#DCDACF]">
             <!-- Project 1: 百年老洋房咖啡馆 -->
             <div class="flex transition-colors duration-300 hover:bg-[#F0EEEB] border-b border-[#DCDACF]">
-                <div class="w-[10%] px-[24px] pt-[40px] font-['JetBrains_Mono'] text-[11px] text-[#9A9A95]">[01]</div>
-                <div class="w-[15%] px-[16px] pt-[40px]">
+                <div class="w-[10%] px-[8px] md:px-[24px] pt-[40px] font-['JetBrains_Mono'] text-[11px] text-[#9A9A95]">[01]</div>
+                <div class="w-[20%] md:w-[15%] px-[4px] md:px-[16px] pt-[24px] md:pt-[40px]">
                     <span class="text-[15px] font-medium text-[#0E0E0E] block" style="font-family: 'Inter Tight', sans-serif;">百年老洋房咖啡馆</span>
                     <span class="font-['JetBrains_Mono'] text-[11px] text-[#9A9A95] mt-1 uppercase tracking-wider block">Visual Upgrade</span>
                 </div>
-                <div class="w-[50%] px-[32px] pt-[36px] pr-[60px]">
+                <div class="w-[45%] md:w-[50%] px-[8px] md:px-[32px] pt-[24px] md:pt-[36px] pr-[4px] md:pr-[60px]">
                     <h2 class="text-[24px] leading-[1.35] text-[#0E0E0E] tracking-[-0.01em]" style="font-family: 'Inter Tight', sans-serif;">围绕音乐、美食与数字艺术，完成从空间到产品线的全维度视觉与味觉升级</h2>
                 </div>
                 <div class="w-[25%] aspect-[3/4] relative overflow-hidden cursor-pointer group" onmouseenter="showProject(0)" onmouseleave="hideProject()">
@@ -255,12 +256,12 @@
 
             <!-- Project 2: 新中式茶饮品牌 -->
             <div class="flex transition-colors duration-300 hover:bg-[#F0EEEB] border-b border-[#DCDACF]">
-                <div class="w-[10%] px-[24px] pt-[40px] font-['JetBrains_Mono'] text-[11px] text-[#9A9A95]">[02]</div>
-                <div class="w-[15%] px-[16px] pt-[40px]">
+                <div class="w-[10%] px-[8px] md:px-[24px] pt-[40px] font-['JetBrains_Mono'] text-[11px] text-[#9A9A95]">[02]</div>
+                <div class="w-[20%] md:w-[15%] px-[4px] md:px-[16px] pt-[24px] md:pt-[40px]">
                     <span class="text-[15px] font-medium text-[#0E0E0E] block" style="font-family: 'Inter Tight', sans-serif;">新中式茶饮品牌</span>
                     <span class="font-['JetBrains_Mono'] text-[11px] text-[#9A9A95] mt-1 uppercase tracking-wider block">Chinese Tea</span>
                 </div>
-                <div class="w-[50%] px-[32px] pt-[36px] pr-[60px]">
+                <div class="w-[45%] md:w-[50%] px-[8px] md:px-[32px] pt-[24px] md:pt-[36px] pr-[4px] md:pr-[60px]">
                     <h2 class="text-[24px] leading-[1.35] text-[#0E0E0E] tracking-[-0.01em]" style="font-family: 'Inter Tight', sans-serif;">从零构建新中式茶饮体系，涵盖茶饮、点心与糖水的全案产品设计</h2>
                 </div>
                 <div class="w-[25%] aspect-[3/4] relative overflow-hidden cursor-pointer group" onmouseenter="showProject(1)" onmouseleave="hideProject()">
@@ -270,12 +271,12 @@
 
             <!-- Project 3: 防空洞露营基地 -->
             <div class="flex transition-colors duration-300 hover:bg-[#F0EEEB] border-b border-[#DCDACF]">
-                <div class="w-[10%] px-[24px] pt-[40px] font-['JetBrains_Mono'] text-[11px] text-[#9A9A95]">[03]</div>
-                <div class="w-[15%] px-[16px] pt-[40px]">
+                <div class="w-[10%] px-[8px] md:px-[24px] pt-[40px] font-['JetBrains_Mono'] text-[11px] text-[#9A9A95]">[03]</div>
+                <div class="w-[20%] md:w-[15%] px-[4px] md:px-[16px] pt-[24px] md:pt-[40px]">
                     <span class="text-[15px] font-medium text-[#0E0E0E] block" style="font-family: 'Inter Tight', sans-serif;">防空洞露营基地</span>
                     <span class="font-['JetBrains_Mono'] text-[11px] text-[#9A9A95] mt-1 uppercase tracking-wider block">Camping</span>
                 </div>
-                <div class="w-[50%] px-[32px] pt-[36px] pr-[60px]">
+                <div class="w-[45%] md:w-[50%] px-[8px] md:px-[32px] pt-[24px] md:pt-[36px] pr-[4px] md:pr-[60px]">
                     <h2 class="text-[24px] leading-[1.35] text-[#0E0E0E] tracking-[-0.01em]" style="font-family: 'Inter Tight', sans-serif;">打破常规空间限制，将户外野趣与地下沉浸感融合，打造极具反差感的青年文化聚集地</h2>
                 </div>
                 <div class="w-[25%] aspect-[3/4] relative overflow-hidden cursor-pointer group" onmouseenter="showProject(2)" onmouseleave="hideProject()">
@@ -285,12 +286,12 @@
 
             <!-- Project 4: 品牌IP落地 -->
             <div class="flex transition-colors duration-300 hover:bg-[#F0EEEB]" data-project="3">
-                <div class="w-[10%] px-[24px] pt-[40px] font-['JetBrains_Mono'] text-[11px] text-[#9A9A95]">[04]</div>
-                <div class="w-[15%] px-[16px] pt-[40px]">
+                <div class="w-[10%] px-[8px] md:px-[24px] pt-[40px] font-['JetBrains_Mono'] text-[11px] text-[#9A9A95]">[04]</div>
+                <div class="w-[20%] md:w-[15%] px-[4px] md:px-[16px] pt-[24px] md:pt-[40px]">
                     <span class="text-[15px] font-medium text-[#0E0E0E] block" style="font-family: 'Inter Tight', sans-serif;">品牌IP落地</span>
                     <span class="font-['JetBrains_Mono'] text-[11px] text-[#9A9A95] mt-1 uppercase tracking-wider block">Brand IP</span>
                 </div>
-                <div class="w-[50%] px-[32px] pt-[36px] pr-[60px]">
+                <div class="w-[45%] md:w-[50%] px-[8px] md:px-[32px] pt-[24px] md:pt-[36px] pr-[4px] md:pr-[60px]">
                     <h2 class="text-[24px] leading-[1.35] text-[#0E0E0E] tracking-[-0.01em]" style="font-family: 'Inter Tight', sans-serif;">让线上流量同款走向线下，以个人IP甜品摊的形式，打造流动的高校快闪与市集体验</h2>
                 </div>
                 <div class="w-[25%] aspect-[3/4] relative overflow-hidden cursor-pointer group" onmouseenter="showProject(3)" onmouseleave="hideProject()">
@@ -462,7 +463,7 @@
             </div>
             <!-- 上排5张 -->
             <div class="flex flex-wrap justify-center gap-2 mb-2 spotlight-group overflow-hidden">
-                <a href="https://www.xiaohongshu.com/explore/64b5038c000000002301c3b6" target="_blank" rel="noopener noreferrer" class="spotlight-card group flex flex-col w-52 md:w-60 bg-[#E8E6E1] rounded-2xl shadow-sm transition-all duration-500 overflow-hidden p-3">
+                <a href="https://www.xiaohongshu.com/explore/64b5038c000000002301c3b6" target="_blank" rel="noopener noreferrer" class="spotlight-card group flex flex-col w-44 md:w-60 bg-[#E8E6E1] rounded-2xl shadow-sm transition-all duration-500 overflow-hidden p-2 md:p-3">
                     <div class="w-full h-48 md:h-52 overflow-hidden flex items-center justify-center mb-2">
                         <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/lLepJYxHaj1k1c31.png?Expires=1780317419&Signature=qfXtl2rk5hY2MqFG90PsOwMFi3vGr6z-SxvAtczxpOGUSxW0BHN73yFquRnswEeF3IGB2Jh7dtE~6FY~~dnplRWX7o7i9T04~lzRYfKjZgvE1~4w~vjtp4vVRy6Lj1QCuVSHumpZArDALTpxnApu2mTIxOd6uDOSL61vRLPbzmT2ajfyeXCdWmfi3Khm6uoFgWdsq-TwReCHSwsmgqdGfoH6oU9OYYcOhlab-jcmXpZ11ZSREh6S--GiLFkA-lQC3dqhHSGwCWOQBDIms58-Lfw0TFJHgAPMsJmLvGIYmGYYwMlP~2Tk8YJd9oQRyxHFWBu~LAaT9C59Fd-NIi8E-A__&Key-Pair-Id=K3USGZIKWMDCSX" alt="中式腌渍水果" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110">
                     </div>
@@ -558,7 +559,7 @@
                     </div>
                 </div>
             </div>
-            <div class="w-full lg:w-[65%] grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="w-full lg:w-[65%] grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
                 <div class="relative aspect-square group cursor-pointer">
                     <div class="absolute inset-0 border border-[#0E0E0E]/20 rounded-[16px] transition-all duration-500 ease-out overflow-hidden group-hover:inset-5 group-hover:rounded-[48px] group-hover:border-transparent">
                         <img src="https://d41chssnpqdne.cloudfront.net/user_upload_by_module/chat_bot/files/27466518/3Uj2ul9dnFdQSZV2.jpg?Expires=1780293583&Signature=MJxIfqZR~VCLbtbgY12yJwkYy5NWkbsHj0JQ2xH~XbRFv~v9Dktw0PWF~ouRj4giGMMW6540SiHpGYkm7jX3JHrn6ygnFCd6uvIQEaXU1uH6wqSbeA6LtGo5~KLBTv0jHG8EJVjlT1OAE3ayM8izIxAF8xWV9mcHo2HC-td8RwDzwTaem4HG-m1O8z9~X3lAzE2b-hISEWeey0B23Jjiee0linos-~tZynl3tG-Ja3ReiHcYYxlTNtDP--TCG9yvW-bSNdWaXolKnEwcvjpbIxJXijbBkQqWECFnpb~h6ehMDSEc6chO5-MRHQ3ePdBSd~I6A2CluBgghDZ1s0HvQg__&Key-Pair-Id=K3USGZIKWMDCSX" class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500" alt="Food Styling" />
@@ -588,7 +589,7 @@
                 </div>
             </div>
         </div>
-        <div class="w-full flex flex-col md:flex-row justify-between items-center pt-5 border-t border-[#0E0E0E] text-[#0E0E0E]">
+        <div class="w-full flex flex-col md:flex-row justify-between items-center pt-4 md:pt-5 border-t border-[#0E0E0E] text-[#0E0E0E]">
             <div class="flex items-center gap-3 text-[13px] font-medium" style="font-family:'Inter Tight',sans-serif;">
                 <span class="border border-[#0E0E0E] rounded-full w-[18px] h-[18px] flex items-center justify-center text-[10px] pt-[1px]">C</span>
                 Hayono 2026. All Rights Reserved.
@@ -709,6 +710,15 @@
         }
 
         window.onload = playIntro;
+
+        // 移动端安全兜底：超过5秒动画未完成，强制显示页面
+        setTimeout(() => {
+            if (introOverlay.style.display !== 'none') {
+                introOverlay.style.display = 'none';
+                realWebsite.style.opacity = '1';
+                realWebsite.style.transform = 'translateY(0) scale(1)';
+            }
+        }, 5000);
 
         // ========== 手机内图片垂直滚动（5张滚完跳回） ==========
         const phoneInner = document.getElementById('phone-scroll-inner');
